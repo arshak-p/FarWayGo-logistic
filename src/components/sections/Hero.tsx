@@ -20,7 +20,7 @@ export function Hero() {
       className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40"
     >
       {/* ambient sky gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#eef4f6] via-[var(--color-mist)] to-[var(--color-mist)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#7dd3fc] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
 
       {/* Hero Image (Group 2) */}
       <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 top-[5%] md:top-[8%] lg:top-[10%] w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0 pointer-events-none">
