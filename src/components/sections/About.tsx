@@ -44,7 +44,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="min-h-screen relative bg-[var(--color-mist)] container-px py-20 md:py-28">
+    <section id="about" className="min-h-screen relative bg-[#7dd3fc] container-px py-20 md:py-28">
       <div className="max-content">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-start">
           <AnimatedSection>

@@ -57,7 +57,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="min-h-screen relative bg-[var(--color-mist)] container-px py-20 md:py-28">
+    <section id="services" className="min-h-screen relative bg-[#7dd3fc] container-px py-20 md:py-28">
       <div className="max-content">
         <AnimatedSection>
           <AnimatedItem>
