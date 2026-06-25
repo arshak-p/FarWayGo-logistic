@@ -45,7 +45,7 @@ export function TrustGrid() {
         <div className="sticky top-[0vh] w-full flex justify-center">
           <div className="w-[70%] md:w-[45%] lg:w-[35%] xl:w-[30%] max-w-[500px] flex justify-center items-center -translate-y-[8%]">
             <Image
-              src="/images/group-1.png"
+              src="/images/group-1-new.png"
               alt="Logistics Operations"
               width={1600}
               height={1600}
