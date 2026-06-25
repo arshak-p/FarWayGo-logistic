@@ -84,7 +84,7 @@ export function WhyStandOut() {
             </h2>
           </div>
 
-          <h2 className="font-display font-semibold uppercase text-[#dbe1e3] text-[20vw] md:text-[12vw] leading-[0.85] text-center select-none pointer-events-none mt-2 md:-mt-8 relative z-0">
+          <h2 className="font-display font-semibold uppercase text-[#dbe1e3] text-[20vw] md:text-[12vw] leading-[0.85] text-center select-none pointer-events-none mt-8 md:mt-16 relative z-0">
             Stand Out?
           </h2>
         </div>
