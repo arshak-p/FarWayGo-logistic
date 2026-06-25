@@ -37,15 +37,7 @@ const rightFeatures: { title: string; body: ReactNode }[] = [
 export function TrustGrid() {
   return (
     <section id="trust" className="relative bg-[var(--color-mist)] container-px pb-20 md:pb-28">
-      
-      {/* 'WHY WE STAND OUT' Faded Background Text */}
-      <div className="absolute top-[5%] md:top-[10%] left-0 right-0 flex justify-center pointer-events-none select-none overflow-hidden z-0">
-        <h2 className="font-display font-bold uppercase text-[15vw] md:text-[12vw] leading-none text-[var(--color-navy)] opacity-[0.03] text-center whitespace-nowrap">
-          Why <span className="mx-10 md:mx-32"></span> We
-          <br />
-          Stand Out?
-        </h2>
-      </div>
+
 
       {/* Sticky Group 1 image centered */}
       <div className="absolute inset-0 z-0 pointer-events-none">
