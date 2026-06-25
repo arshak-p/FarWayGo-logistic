@@ -50,7 +50,7 @@ export function Hero() {
       </div>
 
       {/* Hero Image (Group 2) */}
-      <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 top-[12%] md:top-[15%] lg:top-[18%] w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0 pointer-events-none">
+      <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 top-[5%] md:top-[8%] lg:top-[10%] w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0 pointer-events-none">
         <Image
           src="/images/group-2.png"
           alt="Logistics Solutions Group"
