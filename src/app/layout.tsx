@@ -48,7 +48,7 @@ export default function RootLayout({
       lang="en"
       className={`${clashDisplay.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-hidden">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-hidden">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
