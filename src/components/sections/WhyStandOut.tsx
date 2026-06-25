@@ -61,13 +61,14 @@ export function WhyStandOut() {
     <section
       id="why-us"
       ref={ref}
-      className="min-h-screen relative bg-[var(--color-mist)] overflow-hidden py-24 md:py-32"
+      className="min-h-screen relative bg-[#7dd3fc] overflow-hidden py-24 md:py-32"
     >
       {/* Floating clouds instead of simple blurs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div
-          style={{ x: smokeX, opacity: smokeOpacity }}
-          className="absolute top-[15%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
+          animate={{ x: [0, 40, 0], y: [0, -15, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[15%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px] opacity-90"
         >
           <img src="/images/clouds/8918172.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
@@ -75,7 +76,7 @@ export function WhyStandOut() {
         <motion.div
           animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px] opacity-60"
+          className="absolute bottom-[-10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px] opacity-90"
         >
           <img src="/images/clouds/8918181.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
