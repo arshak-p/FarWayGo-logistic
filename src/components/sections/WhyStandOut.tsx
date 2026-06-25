@@ -54,9 +54,6 @@ export function WhyStandOut() {
     offset: ["start 0.9", "end 0.3"],
   });
 
-  const containerY = useTransform(scrollYProgress, [0, 0.55], [-160, 0]);
-  const cableScale = useTransform(scrollYProgress, [0, 0.55], [0.25, 1]);
-  const sway = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [-3, 3, -2, 0]);
   const smokeX = useTransform(scrollYProgress, [0, 1], [-40, 60]);
   const smokeOpacity = useTransform(scrollYProgress, [0, 0.3, 0.8], [0, 0.5, 0.15]);
 
@@ -81,17 +78,6 @@ export function WhyStandOut() {
             <h2 className="font-display font-semibold uppercase text-[#dbe1e3] text-[16vw] md:text-[7.5rem] leading-[0.85] text-center select-none pointer-events-none">
               Why
             </h2>
-
-            <motion.div
-              style={{ y: containerY, rotate: sway }}
-              className="relative z-10 w-[220px] md:w-[300px]"
-            >
-              <ContainerHook className="w-full h-auto drop-shadow-[0_30px_40px_rgba(2,51,65,0.25)]" />
-              <motion.div
-                style={{ scaleY: cableScale }}
-                className="absolute -top-[260px] md:-top-[340px] left-1/2 -translate-x-1/2 w-px h-[260px] md:h-[340px] bg-[var(--color-navy)]/30 origin-bottom"
-              />
-            </motion.div>
 
             <h2 className="font-display font-semibold uppercase text-[#dbe1e3] text-[16vw] md:text-[7.5rem] leading-[0.85] text-center select-none pointer-events-none">
               We
