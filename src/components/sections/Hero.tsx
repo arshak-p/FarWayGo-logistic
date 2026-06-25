@@ -22,6 +22,33 @@ export function Hero() {
       {/* ambient sky gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#7dd3fc] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
 
+      {/* Floating Clouds */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div
+          animate={{ x: [0, 60, 0], y: [0, 15, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[5%] left-[-15%] md:left-[-5%] w-[80%] md:w-[50%] max-w-[800px] opacity-60 mix-blend-screen"
+        >
+          <img src="/images/clouds/single-white-cloud-isolated-black-background.jpg" alt="cloud" className="w-full h-auto object-contain" />
+        </motion.div>
+        
+        <motion.div
+          animate={{ x: [0, -50, 0], y: [0, -20, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[30%] right-[-20%] md:right-[-5%] w-[70%] md:w-[45%] max-w-[700px] opacity-50 mix-blend-screen"
+        >
+          <img src="/images/clouds/single-white-fluffy-cloud-flying-black-background.jpg" alt="cloud" className="w-full h-auto object-contain" />
+        </motion.div>
+
+        <motion.div
+          animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+          className="absolute bottom-[-10%] left-[20%] w-[90%] md:w-[60%] max-w-[900px] opacity-40 mix-blend-screen"
+        >
+          <img src="/images/clouds/white-cloud-isolated-black-background-3d-illustration.jpg" alt="cloud" className="w-full h-auto object-contain" />
+        </motion.div>
+      </div>
+
       {/* Hero Image (Group 2) */}
       <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 top-[5%] md:top-[8%] lg:top-[10%] w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0 pointer-events-none">
         <Image
