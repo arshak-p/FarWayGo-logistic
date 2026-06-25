@@ -42,7 +42,7 @@ export function TrustGrid() {
       {/* Sticky Group 1 image centered */}
       {/* Extends into the next section so the container stops between the WHY WE text */}
       <div className="absolute top-0 left-0 right-0 -bottom-[350px] md:-bottom-[480px] z-0 pointer-events-none">
-        <div className="sticky top-[15vh] w-full flex justify-center">
+        <div className="sticky top-[0vh] w-full flex justify-center">
           <div className="w-[70%] md:w-[45%] lg:w-[35%] xl:w-[30%] max-w-[500px] flex justify-center items-center -translate-y-[8%]">
             <Image
               src="/images/group-1-new.png"
