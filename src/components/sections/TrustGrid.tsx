@@ -59,7 +59,7 @@ export function TrustGrid() {
         <div className="grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-14 md:gap-y-24 relative max-w-[1400px] mx-auto">
           <AnimatedSection className="flex flex-col md:pr-16 lg:pr-24">
             <AnimatedItem>
-              <h2 className="font-display font-semibold uppercase text-[var(--color-navy)] text-[10vw] md:text-[3.4rem] leading-[1.02] max-w-3xl">
+              <h2 className="font-display font-bold uppercase text-[var(--color-navy-deep)] text-[12vw] md:text-[4.5rem] leading-[0.95] tracking-tight max-w-3xl">
                 Delivering Trust
                 <br />
                 Across Every Mile
