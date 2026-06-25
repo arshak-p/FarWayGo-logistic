@@ -61,7 +61,7 @@ export function WhyStandOut() {
     <section
       id="why-us"
       ref={ref}
-      className="relative bg-[var(--color-mist)] overflow-hidden py-24 md:py-32"
+      className="min-h-screen relative bg-[var(--color-mist)] overflow-hidden py-24 md:py-32"
     >
       {/* drifting cloud / smoke accents */}
       <motion.div

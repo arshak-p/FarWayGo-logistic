@@ -22,7 +22,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative bg-[var(--color-mist)] container-px py-20 md:py-28">
+    <section id="contact" className="min-h-screen relative bg-[var(--color-mist)] container-px py-20 md:py-28">
       <div className="max-content">
         <AnimatedSection>
           <AnimatedItem>

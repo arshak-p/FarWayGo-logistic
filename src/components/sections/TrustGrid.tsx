@@ -36,7 +36,7 @@ const rightFeatures: { title: string; body: ReactNode }[] = [
 
 export function TrustGrid() {
   return (
-    <section id="trust" className="relative z-20 bg-[var(--color-mist)] container-px pb-20 md:pb-28">
+    <section id="trust" className="min-h-screen relative z-20 bg-[var(--color-mist)] container-px pb-20 md:pb-28">
 
 
       {/* Sticky Group 1 image centered */}

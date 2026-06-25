@@ -34,7 +34,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section className="container-px py-10 md:py-16">
+    <section className="min-h-screen container-px py-10 md:py-16">
       <div className="max-content">
         <AnimatedSection
           className="relative rounded-[28px] md:rounded-[36px] bg-[var(--color-navy-deep)] overflow-hidden px-6 md:px-12 py-12 md:py-16"
