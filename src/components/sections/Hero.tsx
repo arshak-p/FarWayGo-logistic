@@ -29,7 +29,7 @@ export function Hero() {
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-[5%] left-[-15%] md:left-[-5%] w-[80%] md:w-[50%] max-w-[800px] opacity-60"
         >
-          <img src="/images/clouds/41576353_8918181.png" alt="cloud" className="w-full h-auto object-contain" />
+          <img src="/images/clouds/8918166.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
         
         <motion.div
@@ -37,7 +37,7 @@ export function Hero() {
           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute top-[30%] right-[-20%] md:right-[-5%] w-[70%] md:w-[45%] max-w-[700px] opacity-50"
         >
-          <img src="/images/clouds/41576358_8918169.png" alt="cloud" className="w-full h-auto object-contain" />
+          <img src="/images/clouds/8918191.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
 
         <motion.div
@@ -45,7 +45,7 @@ export function Hero() {
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 5 }}
           className="absolute bottom-[-10%] left-[20%] w-[90%] md:w-[60%] max-w-[900px] opacity-40"
         >
-          <img src="/images/clouds/41576353_8918181.png" alt="cloud" className="w-full h-auto object-contain scale-x-[-1]" />
+          <img src="/images/clouds/8918206.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
       </div>
 

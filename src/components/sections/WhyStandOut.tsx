@@ -69,7 +69,7 @@ export function WhyStandOut() {
           style={{ x: smokeX, opacity: smokeOpacity }}
           className="absolute top-[15%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
         >
-          <img src="/images/clouds/41576353_8918181.png" alt="cloud" className="w-full h-auto object-contain" />
+          <img src="/images/clouds/8918172.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
 
         <motion.div
@@ -77,7 +77,7 @@ export function WhyStandOut() {
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-[-10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px] opacity-60"
         >
-          <img src="/images/clouds/41576358_8918169.png" alt="cloud" className="w-full h-auto object-contain scale-x-[-1]" />
+          <img src="/images/clouds/8918181.png" alt="cloud" className="w-full h-auto object-contain" />
         </motion.div>
       </div>
 
