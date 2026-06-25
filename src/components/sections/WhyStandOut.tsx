@@ -74,7 +74,7 @@ export function WhyStandOut() {
         {/* headline with hanging container layered through it */}
         <div className="relative flex flex-col items-center justify-center min-h-[280px] md:min-h-[360px] w-full">
           
-          <div className="flex items-center justify-center gap-10 md:gap-32 w-full relative z-0">
+          <div className="flex items-center justify-center gap-32 md:gap-[400px] lg:gap-[600px] w-full relative z-0">
             <h2 className="font-display font-semibold uppercase text-[#dbe1e3] text-[16vw] md:text-[7.5rem] leading-[0.85] text-center select-none pointer-events-none">
               Why
             </h2>
