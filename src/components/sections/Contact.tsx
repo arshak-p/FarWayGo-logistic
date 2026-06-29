@@ -22,11 +22,11 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="min-h-screen relative bg-[#7dd3fc] container-px py-20 md:py-28">
+    <section id="contact" className="min-h-screen relative bg-transparent container-px pt-32 md:pt-40 pb-20 md:pb-28">
       <div className="max-content">
         <AnimatedSection>
           <AnimatedItem>
-            <h2 className="font-display font-semibold uppercase text-[var(--color-navy)] text-[14vw] md:text-6xl">
+            <h2 className="font-display font-semibold uppercase tracking-normal text-[var(--color-navy)] text-[16vw] md:text-[7.5rem] leading-[0.85]">
               Contact Us
             </h2>
           </AnimatedItem>
@@ -122,7 +122,7 @@ export function Contact() {
             )}
           </AnimatedSection>
 
-          <AnimatedSection className="flex flex-col gap-4">
+          <AnimatedSection className="flex flex-col gap-4 lg:mt-[52px]">
             <AnimatedItem className="rounded-2xl border border-[var(--color-navy)]/10 bg-white p-6 flex gap-4 items-start">
               <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/10 flex items-center justify-center shrink-0">
                 <MapPin size={20} weight="fill" className="text-[var(--color-orange)]" />

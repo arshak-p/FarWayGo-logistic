@@ -3,10 +3,15 @@
 import { CheckCircle, HandCoins, ShieldCheck, Globe } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
+import ScrollFloat from "@/components/ui/ScrollFloat";
+import CountUp from "@/components/ui/CountUp";
+
 const stats = [
   {
     icon: CheckCircle,
     value: "5+",
+    countTo: 5,
+    suffix: "+",
     label: "Years Experience",
     body: "Bringing expertise and industry knowledge to deliver the best logistics solutions.",
     bg: "bg-[var(--color-navy)]",
@@ -16,6 +21,8 @@ const stats = [
   {
     icon: HandCoins,
     value: "240+",
+    countTo: 240,
+    suffix: "+",
     label: "Successful Deliveries",
     body: "A proven track record of delivering excellence across diverse cargo and destinations.",
     bg: "bg-[var(--color-orange)]",
@@ -25,6 +32,8 @@ const stats = [
   {
     icon: ShieldCheck,
     value: "100%",
+    countTo: 100,
+    suffix: "%",
     label: "Cargo Safety Commitment",
     body: "Your cargo's safety is our top priority, every step of the way.",
     bg: "bg-[var(--color-mist-dim)]",
@@ -34,6 +43,8 @@ const stats = [
   {
     icon: Globe,
     value: "GCC &",
+    countTo: undefined,
+    suffix: "",
     label: "International Operations",
     body: "Operating across the GCC and globally to connect businesses to the world.",
     bg: "bg-white",
@@ -44,39 +55,35 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="min-h-screen relative bg-[#7dd3fc] container-px py-20 md:py-28">
+    <section id="about" className="min-h-screen relative bg-transparent container-px py-20 md:py-28">
       <div className="max-content">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-24 items-start">
-          <AnimatedSection>
-            <AnimatedItem>
-              <h2 className="font-display font-semibold uppercase text-[var(--color-navy)] text-[18vw] md:text-[8rem] leading-[0.85] tracking-tighter">
-                About Us
-              </h2>
-            </AnimatedItem>
-          </AnimatedSection>
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+          <div className="h-full relative">
+            <div className="md:sticky md:top-1/2 md:-translate-y-1/2">
+              <AnimatedSection>
+                <AnimatedItem>
+                  <h2 className="font-display font-semibold uppercase text-[var(--color-navy)] text-[16vw] md:text-[7.5rem] leading-[0.85] tracking-normal">
+                    About Us
+                  </h2>
+                </AnimatedItem>
+              </AnimatedSection>
+            </div>
+          </div>
 
-          <AnimatedSection className="flex flex-col gap-6 md:pt-6">
+          <AnimatedSection className="flex flex-col gap-8 md:pt-6">
             <AnimatedItem>
-              <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-3xl md:text-4xl tracking-tight">
+              <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-[40px] md:text-[60px] leading-[0.9] tracking-tight">
                 We Are <span className="text-[var(--color-orange)]">Farwaygo</span>
               </h3>
             </AnimatedItem>
             
-            <AnimatedItem delay={0.06} className="text-[var(--color-ink)]/80 text-[16px] leading-relaxed">
-              FarWayGo is a dynamic logistics and transportation solutions
-              provider based in Riyadh, Saudi Arabia. Operating under Halloul
-              Al Riadeh Co. Ltd., we combine fleet ownership, advanced
-              logistics systems, and industry expertise to deliver seamless
-              end-to-end transportation services across multiple industries.
-            </AnimatedItem>
+            <div className="text-[var(--color-ink)]/80 text-[18px] md:text-[25px] leading-relaxed">
+              FarWayGo is a dynamic logistics and transportation solutions provider based in Riyadh, Saudi Arabia. Operating under Halloul Al Riadeh Co. Ltd., we combine fleet ownership, advanced logistics systems, and industry expertise to deliver seamless end-to-end transportation services across multiple industries.
+            </div>
             
-            <AnimatedItem delay={0.12} className="text-[var(--color-ink)]/80 text-[16px] leading-relaxed">
-              Our integrated logistics network enables businesses to manage
-              transportation, warehousing, heavy equipment rentals, and
-              project cargo handling through one reliable partner. We focus
-              on operational efficiency, cargo safety, and long-term business
-              partnerships.
-            </AnimatedItem>
+            <div className="text-[var(--color-ink)]/80 text-[18px] md:text-[25px] leading-relaxed">
+              Our integrated logistics network enables businesses to manage transportation, warehousing, heavy equipment rentals, and project cargo handling through one reliable partner. We focus on operational efficiency, cargo safety, and long-term business partnerships.
+            </div>
           </AnimatedSection>
         </div>
 
@@ -92,7 +99,13 @@ export function About() {
                   <s.icon size={32} weight="regular" />
                 </span>
                 <div className="flex flex-col items-center">
-                  <p className="font-subheading font-bold text-4xl md:text-5xl">{s.value}</p>
+                  <p className="font-subheading font-bold text-4xl md:text-5xl">
+                    {s.countTo !== undefined ? (
+                      <CountUp to={s.countTo} suffix={s.suffix} duration={2} />
+                    ) : (
+                      s.value
+                    )}
+                  </p>
                   <p className="font-subheading uppercase text-sm md:text-[13px] font-semibold tracking-wide mt-3 px-2">
                     {s.label}
                   </p>

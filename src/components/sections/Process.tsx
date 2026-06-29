@@ -1,34 +1,31 @@
-"use client";
-
 import Image from "next/image";
-import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
 
 const steps = [
   {
     title: "Consultation",
     body: "Understanding shipment requirements, cargo type, and logistics needs.",
-    img: "/images/warehouse-2.jpg",
+    img: "/images/warehouse-2.webp",
   },
   {
     title: "Planning",
     body: "Route optimization, customs coordination, and transportation scheduling.",
-    img: "/images/warehouse-1.jpg",
+    img: "/images/warehouse-1.webp",
   },
   {
     title: "Warehousing",
     body: "Safe loading, warehousing, and operational management.",
-    img: "/images/chatgpt-1.png",
+    img: "/images/chatgpt-1.webp",
   },
   {
     title: "Transportation",
     body: "Efficient cargo movement through air, sea, or land transportation.",
-    img: "/images/kling-2.png",
+    img: "/images/kling-2.webp",
   },
   {
     title: "Delivery",
     body: "Secure and timely shipment delivery with real-time tracking support.",
-    img: "/images/kling-1.png",
+    img: "/images/kling-1.webp",
   },
 ];
 
@@ -36,25 +33,26 @@ export function Process() {
   return (
     <section className="min-h-screen relative bg-[#7dd3fc] container-px py-10 md:py-16">
       <div className="max-content">
-        <AnimatedSection
+        <div
           className="relative rounded-[28px] md:rounded-[36px] bg-[var(--color-navy-deep)] overflow-hidden px-6 md:px-12 py-12 md:py-16"
         >
-          <div className="pointer-events-none absolute -top-32 right-0 w-[500px] h-[500px] rounded-full bg-[var(--color-orange)]/10 blur-[100px]" />
+          {/* Replaced heavy blur filter with a highly performant GPU-friendly radial gradient to fix scrolling lag */}
+          <div className="pointer-events-none absolute -top-32 right-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,var(--color-orange)_0%,transparent_70%)] opacity-20" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 relative z-10">
             {/* The Text Column taking the first slot */}
-            <AnimatedItem className="flex flex-col justify-start lg:pr-6 mb-4 lg:mb-0">
+            <div className="flex flex-col justify-start lg:pr-6 mb-4 lg:mb-0">
               <div className="w-max mb-6">
                 <EyebrowBadge variant="orange">Our Process</EyebrowBadge>
               </div>
               <h2 className="font-display text-white text-[10vw] md:text-[3.2rem] leading-[1.05] tracking-tight">
                 How we move<br/>your cargo across<br/>the skies
               </h2>
-            </AnimatedItem>
+            </div>
 
             {/* The 5 Cards mapping into the remaining grid slots */}
             {steps.map((s) => (
-              <AnimatedItem key={s.title} className="flex flex-col gap-4">
+              <div key={s.title} className="flex flex-col gap-4">
                 <div className="relative w-full aspect-[16/10] rounded-[1.5rem] overflow-hidden border border-white/5">
                   <Image
                     src={s.img}
@@ -74,10 +72,10 @@ export function Process() {
                     {s.body}
                   </p>
                 </div>
-              </AnimatedItem>
+              </div>
             ))}
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );

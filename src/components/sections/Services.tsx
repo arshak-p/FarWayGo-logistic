@@ -1,7 +1,3 @@
-"use client";
-
-import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
-
 const services = [
   {
     title: "Freight Forwarding",
@@ -57,11 +53,11 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="min-h-screen relative bg-[#7dd3fc] container-px py-20 md:py-28">
+    <section id="services" className="min-h-screen relative bg-transparent container-px py-20 md:py-28">
       <div className="max-content">
-        <AnimatedSection>
-          <AnimatedItem>
-            <h2 className="font-display font-semibold uppercase tracking-tighter text-[16vw] md:text-[7.5rem] leading-[0.85]">
+        <div>
+          <div>
+            <h2 className="font-display font-semibold uppercase tracking-normal text-[16vw] md:text-[7.5rem] leading-[0.85]">
               <span className="block text-[var(--color-navy)]">
                 Our
               </span>
@@ -69,35 +65,40 @@ export function Services() {
                 Services
               </span>
             </h2>
-          </AnimatedItem>
-          <AnimatedItem delay={0.08} className="mt-8 max-w-xl">
+          </div>
+          <div className="mt-8 max-w-xl">
             <p className="text-[var(--color-ink)]/80 text-[16px] md:text-[18px] leading-relaxed font-medium">
               From freight forwarding across continents to last-mile
               delivery, FarWayGo moves what matters on time, every time.
             </p>
-          </AnimatedItem>
-        </AnimatedSection>
+          </div>
+        </div>
 
-        <AnimatedSection className="mt-20 flex flex-wrap justify-center gap-6">
+        <div className="mt-20 flex flex-wrap justify-start gap-6">
           {services.map((s) => (
-            <AnimatedItem 
+            <div 
               key={s.title} 
               className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex"
             >
-              <div className="w-full h-full group rounded-2xl bg-[var(--color-cream)] border border-[var(--color-cream-line)] p-8 flex flex-col transition-all duration-300 hover:bg-[var(--color-navy)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(2,51,65,0.18)]">
-                <h3 className="font-subheading font-bold text-[var(--color-orange)] text-xl leading-snug mb-3">
+              <div 
+                className="w-full h-full group relative overflow-hidden rounded-r-3xl rounded-l-md p-8 flex flex-col transition-transform duration-500 bg-[var(--color-cream)] border-[var(--color-cream-line)] hover:border-transparent hover:shadow-[0_20px_40px_rgba(253,94,2,0.25)] hover:scale-[1.02]"
+              >
+                {/* Expanding Background Layer (Hover) - Optimized with scaleX instead of width */}
+                <div className="absolute inset-0 bg-[var(--color-orange)] z-0 origin-left scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]" />
+
+                <h3 className="relative z-10 font-subheading font-bold text-xl leading-snug mb-3 transition-colors duration-300 text-[var(--color-orange)] group-hover:text-white">
                   {s.title}
                 </h3>
-                <p className="text-[11px] uppercase tracking-wider font-bold text-[var(--color-ink)]/40 group-hover:text-white/50 transition-colors mb-4">
+                <p className="relative z-10 text-[11px] uppercase tracking-wider font-bold mb-4 transition-colors duration-300 text-[var(--color-ink)]/40 group-hover:text-white/75">
                   {s.tag}
                 </p>
-                <p className="text-[14px] font-semibold text-[var(--color-ink)]/85 group-hover:text-white/90 transition-colors leading-relaxed mt-auto">
+                <p className="relative z-10 text-[14px] font-semibold leading-relaxed mt-auto transition-colors duration-300 text-[var(--color-ink)]/85 group-hover:text-white/95">
                   {s.body}
                 </p>
               </div>
-            </AnimatedItem>
+            </div>
           ))}
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );

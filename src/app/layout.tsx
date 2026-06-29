@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { Preloader } from "@/components/ui/Preloader";
 
-const clashDisplay = localFont({
-  src: "./fonts/clash/ClashGrotesk-Variable.ttf",
+const bebasNeue = Bebas_Neue({
+  weight: "400",
   variable: "--font-display",
-  weight: "200 700",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -46,9 +49,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${clashDisplay.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
+      className={`${bebasNeue.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-hidden">
+        <Preloader />
+        <CustomCursor />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
