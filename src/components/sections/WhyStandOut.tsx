@@ -57,19 +57,34 @@ const stats = [
   },
 ];
 
-function TiltCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number }) {
+function OrbitCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number }) {
   const Icon = s.icon;
-  const ref = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "start 0.4"],
+  });
+
+  const isEven = idx % 2 === 0;
+  
+  const rotateYScroll = useTransform(scrollYProgress, [0, 1], [isEven ? -90 : 90, 0]);
+  const rotateXScroll = useTransform(scrollYProgress, [0, 1], [25, 0]);
+  const translateZScroll = useTransform(scrollYProgress, [0, 1], [-300, 0]);
+  const translateXScroll = useTransform(scrollYProgress, [0, 1], [isEven ? -150 : 150, 0]);
+  const scaleScroll = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+  const opacityScroll = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  const hoverRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 15 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 150, damping: 15 });
+  const hoverRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 15 });
+  const hoverRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 150, damping: 15 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
+    if (!hoverRef.current) return;
+    const rect = hoverRef.current.getBoundingClientRect();
     const xPct = (e.clientX - rect.left) / rect.width - 0.5;
     const yPct = (e.clientY - rect.top) / rect.height - 0.5;
     mouseX.set(xPct);
@@ -83,37 +98,50 @@ function TiltCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number }) 
 
   return (
     <div
+      ref={cardRef}
       className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}
+      style={{ transformStyle: "preserve-3d" }}
     >
+      {/* Outer scroll-driven motion.div */}
       <motion.div
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        initial={{ opacity: 0, rotateY: idx % 2 === 0 ? -75 : 75 }}
-        whileInView={{ opacity: 1, rotateY: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         style={{
-          rotateX,
-          rotateY,
+          rotateY: rotateYScroll,
+          rotateX: rotateXScroll,
+          z: translateZScroll,
+          x: translateXScroll,
+          scale: scaleScroll,
+          opacity: opacityScroll,
           transformStyle: "preserve-3d",
         }}
-        className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/40 backdrop-blur-sm p-6 [will-change:transform] ${
-          isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"
-        }`}
+        className="w-full [will-change:transform]"
       >
-        <div 
-          className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]"
-          style={{ transform: "translateZ(40px)" }}
+        {/* Inner hover-driven motion.div */}
+        <motion.div
+          ref={hoverRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{
+            rotateX: hoverRotateX,
+            rotateY: hoverRotateY,
+            transformStyle: "preserve-3d",
+          }}
+          className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/40 backdrop-blur-sm p-6 [will-change:transform] ${
+            isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"
+          }`}
         >
-          <Icon size={32} weight="regular" />
-        </div>
-        <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-lg mb-2">
-          {s.title}
-        </h3>
-        <p className="text-[var(--color-ink)]/60 text-[14.5px] leading-relaxed max-w-md">
-          {s.body}
-        </p>
+          <div 
+            className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]"
+            style={{ transform: "translateZ(40px)" }}
+          >
+            <Icon size={32} weight="regular" />
+          </div>
+          <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-lg mb-2">
+            {s.title}
+          </h3>
+          <p className="text-[var(--color-ink)]/60 text-[14.5px] leading-relaxed max-w-md">
+            {s.body}
+          </p>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -294,11 +322,11 @@ export function WhyStandOut() {
         {/* feature grid */}
         <div 
           className="relative mt-16 md:mt-24 grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
-          style={{ perspective: "1200px" }}
+          style={{ perspective: "1500px" }}
         >
           {stats.map((s, idx) => {
             const isLeft = idx % 2 === 0;
-            return <TiltCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
+            return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
           })}
         </div>
       </div>
