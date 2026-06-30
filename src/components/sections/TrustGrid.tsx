@@ -123,7 +123,7 @@ export function TrustGrid() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection className="flex flex-col gap-14 md:gap-20 md:pl-16 lg:pl-24 pt-20 md:pt-[240px] lg:pt-[320px] text-left">
+          <AnimatedSection className="flex flex-col gap-14 md:gap-20 md:pl-16 lg:pl-24 pt-32 md:pt-[380px] lg:pt-[500px] xl:pt-[600px] text-left">
             {rightFeatures.map((f) => (
               <AnimatedItem key={f.title}>
                 <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-xl md:text-[1.4rem] mb-3">

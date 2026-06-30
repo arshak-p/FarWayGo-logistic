@@ -2,49 +2,122 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { Truck, Globe, MapPin, UsersThree, Lightning, ShieldCheck, Headset, Tag, Clock, Star } from "@phosphor-icons/react";
 
 const stats = [
   {
     title: "Reliable Delivery",
     body: "We ensure every shipment reaches its destination safely, securely, and on time with complete operational precision.",
+    icon: Truck,
   },
   {
     title: "Global Network",
     body: "Our strong international logistics network allows us to provide seamless transportation solutions across worldwide markets.",
+    icon: Globe,
   },
   {
     title: "Real-Time Tracking",
     body: "Track your cargo anytime with advanced monitoring systems designed for transparency and accuracy.",
+    icon: MapPin,
   },
   {
     title: "Experienced Team",
     body: "Our logistics professionals bring years of industry expertise to manage shipments efficiently and professionally.",
+    icon: UsersThree,
   },
   {
     title: "Fast & Efficient Service",
     body: "We streamline transportation and supply chain operations to reduce delays and improve delivery performance.",
+    icon: Lightning,
   },
   {
     title: "Secure Cargo Handling",
     body: "Your goods are handled with the highest safety standards throughout every stage of transportation.",
+    icon: ShieldCheck,
   },
   {
     title: "Customer-Focused Solutions",
     body: "We create customized logistics strategies tailored to meet your business requirements and shipping goals.",
+    icon: Headset,
   },
   {
     title: "Competitive Pricing",
     body: "High-quality logistics services delivered with cost-effective solutions that maximize business value.",
+    icon: Tag,
   },
   {
     title: "24/7 Support",
     body: "Our dedicated support team is available around the clock to assist with shipments and operational inquiries.",
+    icon: Clock,
   },
   {
     title: "Trusted By Businesses",
     body: "Companies rely on us for dependable logistics solutions that support long-term business growth and success.",
+    icon: Star,
   },
 ];
+
+function TiltCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number }) {
+  const Icon = s.icon;
+  const ref = useRef<HTMLDivElement>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 15 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 150, damping: 15 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  return (
+    <div
+      className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}
+    >
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        initial={{ opacity: 0, rotateY: idx % 2 === 0 ? -75 : 75 }}
+        whileInView={{ opacity: 1, rotateY: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/40 backdrop-blur-sm p-6 [will-change:transform] ${
+          isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"
+        }`}
+      >
+        <div 
+          className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]"
+          style={{ transform: "translateZ(40px)" }}
+        >
+          <Icon size={32} weight="regular" />
+        </div>
+        <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-lg mb-2">
+          {s.title}
+        </h3>
+        <p className="text-[var(--color-ink)]/60 text-[14.5px] leading-relaxed max-w-md">
+          {s.body}
+        </p>
+      </motion.div>
+    </div>
+  );
+}
 
 export function WhyStandOut() {
   const ref = useRef<HTMLDivElement>(null);
@@ -219,22 +292,13 @@ export function WhyStandOut() {
         </div>
 
         {/* feature grid */}
-        <div className="mt-16 md:mt-24 grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto">
+        <div 
+          className="relative mt-16 md:mt-24 grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
+          style={{ perspective: "1200px" }}
+        >
           {stats.map((s, idx) => {
             const isLeft = idx % 2 === 0;
-            return (
-              <div
-                key={s.title}
-                className={isLeft ? "text-right flex flex-col items-end md:pr-16 lg:pr-24" : "text-left flex flex-col items-start md:pl-16 lg:pl-24"}
-              >
-                <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-lg mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-[var(--color-ink)]/60 text-[14.5px] leading-relaxed max-w-md">
-                  {s.body}
-                </p>
-              </div>
-            );
+            return <TiltCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
           })}
         </div>
       </div>
