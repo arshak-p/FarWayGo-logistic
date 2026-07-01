@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useLenis } from "@/components/providers/SmoothScrollProvider";
+import { CaretDown } from "@phosphor-icons/react";
 
 const FRAME_COUNT = 437;
 
@@ -247,6 +248,13 @@ export function Services() {
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white uppercase tracking-tight text-center drop-shadow-xl">
                 Our <span className="text-[var(--color-orange)]">Services</span>
               </h2>
+              <motion.div 
+                className="mt-4 text-[var(--color-orange)] drop-shadow-md"
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <CaretDown size={32} weight="bold" />
+              </motion.div>
             </div>
 
             {/* Service Cards */}
