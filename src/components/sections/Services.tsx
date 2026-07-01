@@ -259,7 +259,7 @@ export function Services() {
                     variants={{
                       enter: (dir: number) => ({
                         opacity: 1,
-                        x: dir === 1 ? '100vw' : '-100vw',
+                        x: dir === 1 ? '-100vw' : '100vw',
                         scale: 1
                       }),
                       center: {
@@ -269,7 +269,7 @@ export function Services() {
                       },
                       exit: (dir: number) => ({
                         opacity: 1,
-                        x: dir === 1 ? '-100vw' : '100vw',
+                        x: dir === 1 ? '100vw' : '-100vw',
                         scale: 1
                       })
                     }}
