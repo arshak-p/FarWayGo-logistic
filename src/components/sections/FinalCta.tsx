@@ -136,7 +136,7 @@ export function FinalCta() {
                   <a href="https://www.instagram.com/arshak._aj?igsh=Ym50OTV3dGEwOGF4&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[var(--color-orange)] transition-colors text-[9px] uppercase border border-white/20 rounded-sm px-1 py-0.5 ml-0.5 leading-none mt-0.5">ig</a>
                 </span>
                 <span className="text-white/20 hidden sm:inline">•</span>
-                <span>by <a href="https://colourparrot.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors font-medium">@colourparrot</a></span>
+                <span>by <a href="https://colourparrot.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors font-medium">colourparrot.com</a></span>
               </span>
             </div>
             <div className="flex gap-6 pointer-events-auto">
