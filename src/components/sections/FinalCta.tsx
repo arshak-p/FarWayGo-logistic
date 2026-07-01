@@ -126,12 +126,17 @@ export function FinalCta() {
         {/* Bottom Copyright Bar */}
         <div className="bg-[var(--color-navy)] py-6 container-px mt-4 relative z-10">
           <div className="max-content flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-white/50 text-[12px] tracking-wide pointer-events-auto">
-              © 2024 FarWayGo. Global Logistics & Infrastructure. 
-              <span className="ml-4">
-                Developed by <a href="https://www.linkedin.com/in/arshak-p" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors">arshak-p</a>
+            <div className="text-white/50 text-[12px] tracking-wide pointer-events-auto flex flex-col lg:flex-row lg:items-center">
+              <span>© 2024 FarWayGo. Global Logistics & Infrastructure.</span>
+              <span className="lg:ml-4 flex items-center flex-wrap gap-x-3 gap-y-1 mt-3 lg:mt-0">
+                <span>Designed by <a href="https://www.linkedin.com/in/aadhil-yoosuf-27b704411?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors">aadhil</a></span>
+                <span className="text-white/20 hidden sm:inline">•</span>
+                <span className="flex items-center gap-1.5">
+                  Developed by <a href="https://www.linkedin.com/in/arshak-p" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors">arshak-p</a>
+                  <a href="https://www.instagram.com/arshak._aj?igsh=Ym50OTV3dGEwOGF4&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[var(--color-orange)] transition-colors text-[9px] uppercase border border-white/20 rounded-sm px-1 py-0.5 ml-0.5 leading-none mt-0.5">ig</a>
+                </span>
               </span>
-            </p>
+            </div>
             <div className="flex gap-6 pointer-events-auto">
               <a href="#" className="text-white/50 text-[12px] tracking-wide hover:text-white">
                 Terms of Service
