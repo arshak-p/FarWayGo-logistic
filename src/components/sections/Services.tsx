@@ -283,16 +283,16 @@ export function Services() {
                         key={service.id} 
                         animate={{ y: [0, idx === 0 ? -15 : -10, 0] }}
                         transition={{ duration: idx === 0 ? 4 : 4.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="flex-1 min-w-0 bg-black/40 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
+                        className="flex-1 min-w-0 bg-black/60 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
                         style={{ WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
                       >
-                        <p className="text-[var(--color-orange)] text-xs md:text-sm font-bold tracking-widest uppercase mb-3">
+                        <p className="text-[var(--color-orange)] text-sm md:text-base font-bold tracking-widest uppercase mb-3">
                           {service.id.padStart(2, '0')} // {service.tag}
                         </p>
-                        <h3 className="text-2xl md:text-3xl font-display text-white leading-tight mb-3">
+                        <h3 className="text-3xl md:text-4xl font-display text-white leading-tight mb-3">
                           {service.title}
                         </h3>
-                        <p className="text-white/80 text-sm md:text-base font-medium">
+                        <p className="text-white/80 text-base md:text-lg font-medium leading-relaxed">
                           {service.body}
                         </p>
                       </motion.div>
