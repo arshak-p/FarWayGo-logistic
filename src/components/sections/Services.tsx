@@ -258,9 +258,9 @@ export function Services() {
                     custom={direction}
                     variants={{
                       enter: (dir: number) => ({
-                        opacity: 0,
-                        x: dir === 1 ? -150 : 150,
-                        scale: 0.95
+                        opacity: 1,
+                        x: dir === 1 ? '100vw' : '-100vw',
+                        scale: 1
                       }),
                       center: {
                         opacity: 1,
@@ -268,15 +268,15 @@ export function Services() {
                         scale: 1
                       },
                       exit: (dir: number) => ({
-                        opacity: 0,
-                        x: dir === 1 ? 150 : -150,
-                        scale: 0.95
+                        opacity: 1,
+                        x: dir === 1 ? '-100vw' : '100vw',
+                        scale: 1
                       })
                     }}
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ type: "spring", stiffness: 120, damping: 25, duration: 0.5 }}
+                    transition={{ type: "spring", stiffness: 90, damping: 20, mass: 1 }}
                     className="absolute flex flex-col md:flex-row items-stretch justify-center gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
                     style={{ perspective: 1000, willChange: "transform, opacity" }}
                   >
