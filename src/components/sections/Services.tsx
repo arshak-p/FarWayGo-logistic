@@ -243,8 +243,10 @@ export function Services() {
           <div className="w-full max-w-6xl mx-auto relative h-full flex flex-col justify-center">
             
             {/* Header */}
-            <div className="absolute top-24 left-0 md:left-auto">
-              <EyebrowBadge variant="orange">Our Services</EyebrowBadge>
+            <div className="absolute top-12 md:top-20 w-full flex flex-col items-center justify-center pointer-events-none z-30">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white uppercase tracking-tight text-center drop-shadow-xl">
+                Our <span className="text-[var(--color-orange)]">Services</span>
+              </h2>
             </div>
 
             {/* Service Cards */}
