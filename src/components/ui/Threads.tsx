@@ -135,7 +135,13 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({ alpha: true });
+    let renderer;
+    try {
+      renderer = new Renderer({ alpha: true });
+    } catch (error) {
+      console.warn("Failed to create WebGL context (likely hit browser limit during HMR).", error);
+      return;
+    }
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
