@@ -30,6 +30,7 @@ export function Services() {
   const lenis = useLenis();
   
   const [activePairIndex, setActivePairIndex] = useState(-1);
+  const [direction, setDirection] = useState(1);
   const prevPairIndexRef = useRef(-1);
   
   const [framesReady, setFramesReady] = useState(false);
@@ -146,6 +147,7 @@ export function Services() {
         }
 
         if (pairIndex !== prevPairIndexRef.current) {
+          setDirection(pairIndex > prevPairIndexRef.current ? 1 : -1);
           prevPairIndexRef.current = pairIndex;
           setActivePairIndex(pairIndex);
         }
@@ -247,13 +249,31 @@ export function Services() {
 
             {/* Service Cards */}
             <div className="relative w-full flex items-center justify-center">
-              <AnimatePresence>
+              <AnimatePresence custom={direction}>
                 {activePairIndex >= 0 && (
                   <motion.div 
                     key={activePairIndex}
-                    initial={{ opacity: 0, x: -150, scale: 0.95 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 150, scale: 0.95 }}
+                    custom={direction}
+                    variants={{
+                      enter: (dir: number) => ({
+                        opacity: 0,
+                        x: dir === 1 ? -150 : 150,
+                        scale: 0.95
+                      }),
+                      center: {
+                        opacity: 1,
+                        x: 0,
+                        scale: 1
+                      },
+                      exit: (dir: number) => ({
+                        opacity: 0,
+                        x: dir === 1 ? 150 : -150,
+                        scale: 0.95
+                      })
+                    }}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
                     transition={{ type: "spring", stiffness: 120, damping: 25, duration: 0.5 }}
                     className="absolute flex flex-col md:flex-row items-stretch justify-center gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
                     style={{ perspective: 1000 }}
