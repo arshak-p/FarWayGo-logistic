@@ -22,7 +22,17 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="-mt-[100vh] z-20 min-h-screen relative bg-black bg-bottom container-px pt-32 md:pt-40 pb-20 md:pb-28" style={{ backgroundImage: 'url(/images/contact-bg-3.webp)', backgroundSize: 'max(150vw, 150vh)' }}>
+    <section id="contact" className="-mt-[100vh] z-20 min-h-screen relative overflow-hidden bg-black container-px pt-32 md:pt-40 pb-20 md:pb-28">
+      {/* Scaled Background to hide the black sky built into the image */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-bottom bg-no-repeat pointer-events-none origin-bottom"
+        style={{ 
+          backgroundImage: 'url(/images/contact-bg-3.webp)',
+          transform: 'scale(1.4)'
+        }}
+      />
+
+      
       <div className="max-content relative z-10">
         <AnimatedSection>
           <AnimatedItem>
