@@ -137,7 +137,7 @@ export function Hero() {
           </AnimatedItem>
         </AnimatedSection>
 
-        <div className="mt-24 md:mt-32 max-w-md ml-auto">
+        <div className="mt-8 md:mt-12 max-w-md ml-auto">
           <AnimatedSection>
             <AnimatedItem>
               <p className="font-subheading text-[var(--color-orange)] font-semibold uppercase text-xl md:text-2xl tracking-wide leading-tight">
