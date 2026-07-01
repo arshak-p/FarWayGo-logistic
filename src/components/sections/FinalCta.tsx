@@ -127,7 +127,10 @@ export function FinalCta() {
         <div className="bg-[var(--color-navy)] py-6 container-px mt-4 relative z-10">
           <div className="max-content flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-white/50 text-[12px] tracking-wide pointer-events-auto">
-              © 2024 FarWayGo. Global Logistics & Infrastructure.
+              © 2024 FarWayGo. Global Logistics & Infrastructure. 
+              <span className="ml-4">
+                Developed by <a href="https://www.linkedin.com/in/arshak-p" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors">arshak-p</a>
+              </span>
             </p>
             <div className="flex gap-6 pointer-events-auto">
               <a href="#" className="text-white/50 text-[12px] tracking-wide hover:text-white">
