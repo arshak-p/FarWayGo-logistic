@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useLenis } from "@/components/providers/SmoothScrollProvider";
 
 const FRAME_COUNT = 437;
@@ -34,6 +34,9 @@ export function Services() {
   
   const [framesReady, setFramesReady] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
+
+  const panelTriggerRef = useRef(null);
+  const isPanelInView = useInView(panelTriggerRef, { once: false, amount: 0 });
 
   // 1. Preload Frames
   useEffect(() => {
@@ -184,8 +187,10 @@ export function Services() {
     <section 
       id="services" 
       ref={sectionRef} 
-      className="relative w-full h-[800vh] bg-black"
+      className="relative w-full h-[800vh] bg-transparent z-10"
     >
+      <div ref={panelTriggerRef} className="absolute top-[100vh] bottom-0 left-0 w-full pointer-events-none" />
+
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
         {/* Loading Overlay */}
@@ -211,11 +216,23 @@ export function Services() {
           )}
         </AnimatePresence>
 
-        {/* Canvas Frame Sequence */}
-        <canvas 
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {/* Canvas & Background Frame Sequence Wrapper */}
+        <motion.div
+          className="absolute inset-0 z-0 overflow-hidden"
+          initial="hidden"
+          animate={isPanelInView ? "visible" : "hidden"}
+          variants={{
+            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+          }}
+          style={{ willChange: "transform" }}
+        >
+          <div className="absolute inset-0 bg-black" />
+          <canvas 
+            ref={canvasRef}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </motion.div>
 
         {/* Content Overlays */}
         <div className="absolute inset-0 flex items-center justify-center container-px z-20 pointer-events-none">
