@@ -228,28 +228,29 @@ export function Services() {
 
             {/* Service Cards */}
             <div className="relative w-full flex items-center justify-center">
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {activePairIndex >= 0 && (
                   <motion.div 
                     key={activePairIndex}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -30 }}
-                    transition={{ type: "tween", duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col md:flex-row items-stretch justify-center gap-16 md:gap-32 w-full pointer-events-auto"
+                    initial={{ opacity: 0, x: -150, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: 150, scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 25, duration: 0.5 }}
+                    className="absolute flex flex-col md:flex-row items-stretch justify-center gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
+                    style={{ perspective: 1000 }}
                   >
                     {activePair.map((service) => (
                       <div 
                         key={service.id} 
-                        className="flex-1 min-w-0 bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-3xl shadow-2xl flex flex-col justify-center"
+                        className="flex-1 min-w-0 bg-white/10 backdrop-blur-md border border-white/20 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col justify-center"
                       >
-                        <p className="text-[var(--color-orange)] text-sm font-bold tracking-widest uppercase mb-4">
+                        <p className="text-[var(--color-orange)] text-xs md:text-sm font-bold tracking-widest uppercase mb-3">
                           {service.id.padStart(2, '0')} // {service.tag}
                         </p>
-                        <h3 className="text-3xl md:text-4xl font-display text-white leading-tight mb-4">
+                        <h3 className="text-2xl md:text-3xl font-display text-white leading-tight mb-3">
                           {service.title}
                         </h3>
-                        <p className="text-white/80 text-base md:text-lg font-medium">
+                        <p className="text-white/80 text-sm md:text-base font-medium">
                           {service.body}
                         </p>
                       </div>
