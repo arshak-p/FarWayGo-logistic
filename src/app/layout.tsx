@@ -4,7 +4,6 @@ import { Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { Preloader } from "@/components/ui/Preloader";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -52,7 +51,6 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-hidden">
-        <Preloader />
         <CustomCursor />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

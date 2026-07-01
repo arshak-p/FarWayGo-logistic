@@ -18,8 +18,10 @@ export default function Home() {
         <WhyStandOut />
         <About />
         <Services />
-        <Process />
-        <Contact />
+        <div className="bg-black">
+          <Process />
+          <Contact />
+        </div>
       </main>
       <FinalCta />
     </>

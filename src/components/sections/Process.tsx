@@ -49,7 +49,7 @@ export function Process() {
 
   return (
     // 250vh gives plenty of scroll room between triggers and a clean exit at the bottom
-    <section className="h-[250vh] relative z-20 w-full bg-transparent">
+    <section className="h-[250vh] relative z-0 w-full bg-black">
       
       {/* 
         1. PANEL TRIGGER: Placed exactly at 100vh.
@@ -64,7 +64,7 @@ export function Process() {
         You must scroll 60vh INTO the pinned section before this hits the bottom of your screen.
         When scrolling back up, this exits the screen first (at 60vh), making the content disappear BEFORE the panel.
       */}
-      <div ref={contentTriggerRef} className="absolute top-[160vh] bottom-0 left-0 w-full pointer-events-none" />
+      <div ref={contentTriggerRef} className="absolute top-[110vh] bottom-0 left-0 w-full pointer-events-none" />
 
       {/* The sticky wrapper holds the UI on screen while we scroll through the triggers */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center py-24 px-6 md:px-12">

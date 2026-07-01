@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
+
+const LenisContext = createContext<Lenis | null>(null);
+export const useLenis = () => useContext(LenisContext);
 
 export default function SmoothScrollProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
   useEffect(() => {
     const isSafari =
@@ -24,7 +27,7 @@ export default function SmoothScrollProvider({
       wheelMultiplier: 0.8,
     });
 
-    lenisRef.current = lenis;
+    setLenisInstance(lenis);
 
     let rafId: number;
     function raf(time: number) {
@@ -39,5 +42,9 @@ export default function SmoothScrollProvider({
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <LenisContext.Provider value={lenisInstance}>
+      {children}
+    </LenisContext.Provider>
+  );
 }

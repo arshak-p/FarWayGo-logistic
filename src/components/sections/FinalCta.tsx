@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
+import Threads from "@/components/ui/Threads";
 
 const footerLinks = {
   Services: [
@@ -18,7 +19,7 @@ const footerLinks = {
 
 export function FinalCta() {
   return (
-    <footer className="relative">
+    <footer className="relative bg-black">
       {/* final CTA card overlapping the dark footer */}
       <div className="container-px relative z-10 -mb-24 md:-mb-32">
         <div className="max-content">
@@ -41,9 +42,17 @@ export function FinalCta() {
         </div>
       </div>
 
-      <div className="bg-black pt-40 md:pt-52">
-        <div className="container-px">
-          <div className="max-content">
+      <div className="bg-black pt-40 md:pt-52 relative overflow-hidden">
+        <Threads 
+          color={[0.99, 0.37, 0.01]} 
+          amplitude={1.5} 
+          distance={0} 
+          enableMouseInteraction={true} 
+          className="absolute inset-0 z-0 opacity-40 mix-blend-screen"
+        />
+        
+        <div className="container-px relative z-10 pointer-events-none">
+          <div className="max-content pointer-events-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-16">
               <div>
                 <p className="text-[var(--color-orange)] font-semibold uppercase text-[13px] tracking-wide mb-4">
@@ -115,12 +124,12 @@ export function FinalCta() {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="bg-[var(--color-navy)] py-6 container-px mt-4">
+        <div className="bg-[var(--color-navy)] py-6 container-px mt-4 relative z-10">
           <div className="max-content flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-white/50 text-[12px] tracking-wide">
+            <p className="text-white/50 text-[12px] tracking-wide pointer-events-auto">
               © 2024 FarWayGo. Global Logistics & Infrastructure.
             </p>
-            <div className="flex gap-6">
+            <div className="flex gap-6 pointer-events-auto">
               <a href="#" className="text-white/50 text-[12px] tracking-wide hover:text-white">
                 Terms of Service
               </a>
