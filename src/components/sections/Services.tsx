@@ -276,7 +276,7 @@ export function Services() {
                     exit="exit"
                     transition={{ type: "spring", stiffness: 120, damping: 25, duration: 0.5 }}
                     className="absolute flex flex-col md:flex-row items-stretch justify-center gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
-                    style={{ perspective: 1000 }}
+                    style={{ perspective: 1000, willChange: "transform, opacity" }}
                   >
                     {activePair.map((service, idx) => (
                       <motion.div 
