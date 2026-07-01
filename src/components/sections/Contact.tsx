@@ -22,7 +22,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="-mt-[100vh] z-20 min-h-screen relative bg-black bg-cover bg-bottom container-px pt-32 md:pt-40 pb-20 md:pb-28" style={{ backgroundImage: 'url(/images/contact-bg-3.webp)' }}>
+    <section id="contact" className="-mt-[100vh] z-20 min-h-screen relative bg-black bg-bottom container-px pt-32 md:pt-40 pb-20 md:pb-28" style={{ backgroundImage: 'url(/images/contact-bg-3.webp)', backgroundSize: 'max(150vw, 150vh)' }}>
       <div className="max-content relative z-10">
         <AnimatedSection>
           <AnimatedItem>
