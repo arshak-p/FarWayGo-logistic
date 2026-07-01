@@ -202,7 +202,9 @@ export function Services() {
               transition={{ duration: 0.5 }}
               className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-center"
             >
-              <EyebrowBadge variant="orange" className="mb-8">Optimizing Assets</EyebrowBadge>
+              <div className="mb-8">
+                <EyebrowBadge variant="orange">Optimizing Assets</EyebrowBadge>
+              </div>
               <div className="w-64 h-1 bg-white/20 rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-[var(--color-orange)] transition-all duration-300 ease-out"

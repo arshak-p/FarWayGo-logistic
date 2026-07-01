@@ -135,7 +135,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const container = containerRef.current;
     if (!container) return;
 
-    let renderer;
+    let renderer: any;
     try {
       renderer = new Renderer({ alpha: true });
     } catch (error) {

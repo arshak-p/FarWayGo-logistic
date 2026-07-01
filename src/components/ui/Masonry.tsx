@@ -125,7 +125,7 @@ export const Masonry = ({
   useLayoutEffect(() => {
     if (!imagesReady) return;
 
-    grid.forEach((item, index) => {
+    grid.forEach((item: any, index: number) => {
       const selector = `[data-key="${item.id}"]`;
       const animationProps = {
         x: item.x,
@@ -213,8 +213,8 @@ export const Masonry = ({
   };
 
   return (
-    <div ref={containerRef} className="list" style={{ height: grid.length > 0 ? Math.max(...grid.map(i => i.y + i.h)) : 'auto' }}>
-      {grid.map(item => {
+    <div ref={containerRef} className="list" style={{ height: grid.length > 0 ? Math.max(...grid.map((i: any) => i.y + i.h)) : 'auto' }}>
+      {grid.map((item: any) => {
         return (
           <div
             key={item.id}
