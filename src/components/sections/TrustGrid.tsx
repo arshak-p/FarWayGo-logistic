@@ -70,8 +70,8 @@ export function TrustGrid() {
   );
 
   const smoothY = useSpring(rawY, {
-    stiffness: 30, // Lower stiffness = more delay/lag
-    damping: 15,
+    stiffness: 70,
+    damping: 20,
     restDelta: 0.001
   });
 
