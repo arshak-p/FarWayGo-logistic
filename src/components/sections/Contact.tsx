@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, EnvelopeSimple, CaretDown } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, EnvelopeSimple, CaretDown, CheckCircle } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
 
@@ -61,15 +62,25 @@ export function Contact() {
             </AnimatedItem>
 
             {submitted ? (
-              <AnimatedItem>
-                <div className="rounded-2xl bg-black/30 backdrop-blur-md border border-white/20 p-8 text-white">
-                  <p className="font-subheading text-xl mb-2">Inquiry received.</p>
-                  <p className="text-white/80 text-[14.5px]">
-                    A FarWayGo logistics specialist will reach out within one
-                    business day.
-                  </p>
-                </div>
-              </AnimatedItem>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-2xl bg-black/40 backdrop-blur-xl border border-[var(--color-orange)]/50 p-10 text-white flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(255,107,0,0.15)] mt-4"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
+                  className="w-16 h-16 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center mb-6"
+                >
+                  <CheckCircle size={36} weight="fill" className="text-[var(--color-orange)]" />
+                </motion.div>
+                <h4 className="font-display font-semibold text-3xl mb-3 tracking-wide">Message Sent Successfully</h4>
+                <p className="text-white/80 text-[15.5px] leading-relaxed max-w-md">
+                  Thank you for reaching out to FarWayGo. A logistics specialist has received your inquiry and will contact you within one business day.
+                </p>
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="grid gap-5">
                 <div className="grid sm:grid-cols-2 gap-5">
