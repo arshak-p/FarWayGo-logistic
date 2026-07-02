@@ -394,11 +394,11 @@ export function WhyStandOut() {
           />
 
           {/* Flight Image Layer */}
-          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-0">
+          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-0 overflow-visible">
             <img 
               src="/images/flight.webp" 
               alt="Flight" 
-              className="w-[80vw] max-w-4xl object-contain drop-shadow-2xl"
+              className="w-[120vw] md:w-[100vw] max-w-none object-contain drop-shadow-2xl"
             />
           </div>
 
