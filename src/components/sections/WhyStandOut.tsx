@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView } from "framer-motion";
 import { Truck, Globe, MapPin, UsersThree, Lightning, ShieldCheck, Headset, Tag, Clock, Star } from "@phosphor-icons/react";
 const stats = [
   {
@@ -148,6 +148,9 @@ function OrbitCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number })
 
 export function WhyStandOut() {
   const ref = useRef<HTMLDivElement>(null);
+  const trackTriggerRef = useRef(null);
+  const isTrackInView = useInView(trackTriggerRef, { once: false, amount: 0.2 });
+
   
   // Mouse Parallax Tracking
   const mouseX = useMotionValue(0);
@@ -335,10 +338,17 @@ export function WhyStandOut() {
         </div>
       </div>
 
-      <div 
-        className="relative w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32 mt-24 md:mt-40" 
-        style={{ backgroundImage: "url('/images/track.webp')" }}
-      >
+      <div ref={trackTriggerRef} className="relative w-full mt-24 md:mt-40 overflow-hidden">
+        <motion.div 
+          initial="hidden"
+          animate={isTrackInView ? "visible" : "hidden"}
+          variants={{
+            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+          }}
+          style={{ willChange: "transform", backgroundImage: "url('/images/track.webp')" }}
+          className="relative w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
+        >
         <div className="container-px max-content">
           {/* feature grid */}
           <div 
@@ -350,7 +360,8 @@ export function WhyStandOut() {
               return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
             })}
           </div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
