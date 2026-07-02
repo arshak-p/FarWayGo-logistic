@@ -16,9 +16,22 @@ const subjects = [
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "01ee2b70-09d9-41a9-b517-0e838f83efdd");
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -65,6 +78,7 @@ export function Contact() {
                       Full Name
                     </label>
                     <input
+                      name="name"
                       required
                       type="text"
                       placeholder="John Doe"
@@ -76,6 +90,7 @@ export function Contact() {
                       Business Email
                     </label>
                     <input
+                      name="email"
                       required
                       type="email"
                       placeholder="j.doe@enterprise.com"
@@ -89,7 +104,7 @@ export function Contact() {
                     Subject
                   </label>
                   <div className="relative">
-                    <select className="w-full appearance-none rounded-xl border border-white/20 bg-black/30 backdrop-blur-sm px-4 py-3 text-[14.5px] text-white outline-none focus:border-[var(--color-orange)] transition-colors">
+                    <select name="subject" className="w-full appearance-none rounded-xl border border-white/20 bg-black/30 backdrop-blur-sm px-4 py-3 text-[14.5px] text-white outline-none focus:border-[var(--color-orange)] transition-colors">
                       {subjects.map((s) => (
                         <option key={s} value={s} className="bg-black/90 text-white">{s}</option>
                       ))}
@@ -106,6 +121,7 @@ export function Contact() {
                     Message
                   </label>
                   <textarea
+                    name="message"
                     required
                     rows={5}
                     placeholder="Describe your logistical requirements..."
