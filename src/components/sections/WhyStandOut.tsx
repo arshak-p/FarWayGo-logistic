@@ -383,20 +383,29 @@ export function WhyStandOut() {
           }}
           className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center pt-64 md:pt-96 pb-48 md:pb-64 overflow-hidden" 
         >
-          {/* Flight Image Layer (Behind track, positioned vertically at the bottom) */}
-          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end pointer-events-none z-0 pb-[10vh]">
+          {/* Background Layer (Track/Road) */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat z-0 pointer-events-none"
+            style={{ backgroundImage: "url('/images/track.webp')" }}
+          />
+
+          {/* Container Layer (GroupB) */}
+          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-start pointer-events-none z-10 pt-[15vh]">
+            <img 
+              src="/images/GroupB.webp" 
+              alt="Container" 
+              className="w-[80vw] md:w-[60vw] max-w-2xl object-contain drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Flight Image Layer (Airplane on top) */}
+          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end pointer-events-none z-20 pb-[5vh]">
             <img 
               src="/images/flight.webp" 
               alt="Flight" 
               className="w-[120vw] md:w-[100vw] max-w-none object-contain drop-shadow-2xl"
             />
           </div>
-
-          {/* Track Foreground Layer (Road & Container cutout) */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat z-10 pointer-events-none"
-            style={{ backgroundImage: "url('/images/track.webp')" }}
-          />
 
           <div className="container-px max-content pointer-events-auto relative z-10 mt-[280px] md:mt-[360px]">
             {/* feature grid */}
