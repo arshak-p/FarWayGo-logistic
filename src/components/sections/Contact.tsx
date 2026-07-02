@@ -16,9 +16,13 @@ const subjects = [
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
+    setError("");
     const formData = new FormData(e.currentTarget);
     formData.append("access_key", "01ee2b70-09d9-41a9-b517-0e838f83efdd");
     
@@ -29,9 +33,14 @@ export function Contact() {
       });
       if (response.ok) {
         setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -142,8 +151,9 @@ export function Contact() {
 
                 <div>
                   <Button type="submit" variant="primary">
-                    Submit Inquiry
+                    {loading ? "Submitting..." : "Submit Inquiry"}
                   </Button>
+                  {error && <p className="text-red-400 text-sm mt-3">{error}</p>}
                 </div>
               </form>
             )}
