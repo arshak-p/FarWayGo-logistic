@@ -209,6 +209,9 @@ export function WhyStandOut() {
   const cloudCenterY = useTransform(smoothProgress, [0, 1], ["50%", "0%"]);
   const cloudCenterScale = useTransform(smoothProgress, [0, 1], [0.8, 1]);
   
+  // Flight Parallax
+  const flightY = useTransform(smoothProgress, [0, 1], ["40%", "-20%"]);
+  
   const cloudOpacity = useTransform(smoothProgress, [0, 1], [0, 0.9]);
 
   return (
@@ -395,7 +398,8 @@ export function WhyStandOut() {
 
           {/* Flight Image Layer */}
           <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-10 overflow-visible">
-            <img 
+            <motion.img 
+              style={{ y: flightY }}
               src="/images/flight.webp" 
               alt="Flight" 
               className="w-[110vw] md:w-[90vw] max-w-none object-contain drop-shadow-2xl"
