@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useLenis } from "@/components/providers/SmoothScrollProvider";
 import { CaretDown } from "@phosphor-icons/react";
 
-const FRAME_COUNT = 437;
+const FRAME_COUNT = 273;
 
 const services = [
   { id: "1", title: "Freight Forwarding", tag: "Air, Sea and Land", body: "Express shipments to bulk cargo across all modes." },
@@ -24,11 +24,17 @@ const services = [
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const bitmapCache = useRef<Map<number, ImageBitmap>>(new Map());
+  const fetchingRef = useRef<Set<number>>(new Set());
+  const WINDOW_SIZE = 40;
+  
   const currentFrameRef = useRef(-1);
   const tickingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lenis = useLenis();
+  
+  const sectionTopRef = useRef(0);
+  const sectionHeightRef = useRef(0);
   
   const [activePairIndex, setActivePairIndex] = useState(-1);
   const [direction, setDirection] = useState(1);
@@ -40,37 +46,66 @@ export function Services() {
   const panelTriggerRef = useRef(null);
   const isPanelInView = useInView(panelTriggerRef, { once: false, amount: 0, margin: "10000px 0px 0px 0px" });
 
-  // 1. Preload Frames
-  useEffect(() => {
-    let loadedCount = 0;
-    const images: HTMLImageElement[] = [];
+  const ensureFrameLoaded = useCallback(async (index: number) => {
+    if (bitmapCache.current.has(index)) return bitmapCache.current.get(index)!;
+    if (fetchingRef.current.has(index)) return null;
     
-    for (let i = 1; i <= FRAME_COUNT; i++) {
-      const img = new Image();
-      img.src = `/frames/services/frame_${String(i).padStart(4, '0')}.jpg`;
-      img.onload = () => {
-        loadedCount++;
-        setLoadProgress(loadedCount / FRAME_COUNT);
-        if (loadedCount === FRAME_COUNT) {
-          setFramesReady(true);
+    fetchingRef.current.add(index);
+    try {
+      const res = await fetch(`/frames/services-v2/frame_${String(index + 1).padStart(4, '0')}.jpg`);
+      const blob = await res.blob();
+      const bitmap = await createImageBitmap(blob);
+      bitmapCache.current.set(index, bitmap);
+      
+      for (const key of bitmapCache.current.keys()) {
+        if (Math.abs(key - currentFrameRef.current) > WINDOW_SIZE) {
+          const oldBitmap = bitmapCache.current.get(key);
+          if (oldBitmap && oldBitmap.close) oldBitmap.close();
+          bitmapCache.current.delete(key);
         }
-      };
-      images.push(img);
+      }
+      fetchingRef.current.delete(index);
+      return bitmap;
+    } catch (err) {
+      fetchingRef.current.delete(index);
+      return null;
     }
-    imagesRef.current = images;
   }, []);
 
-  // 2. Draw Frame Logic (cover-fit)
-  const drawFrame = useCallback((index: number) => {
+  // 1. Preload Initial Frames
+  useEffect(() => {
+    let cancelled = false;
+    let loadedCount = 0;
+    const initialLoadCount = Math.min(WINDOW_SIZE, FRAME_COUNT);
+    
+    async function init() {
+      for (let i = 0; i < initialLoadCount; i++) {
+        await ensureFrameLoaded(i);
+        if (cancelled) return;
+        loadedCount++;
+        setLoadProgress(loadedCount / initialLoadCount);
+      }
+      setFramesReady(true);
+    }
+    
+    init();
+    return () => { cancelled = true; };
+  }, [ensureFrameLoaded]);
+
+  // 2. Draw Frame Logic
+  const drawFrame = useCallback(async (index: number) => {
     const canvas = canvasRef.current;
-    const img = imagesRef.current[index];
-    if (!canvas || !img || !img.complete) return;
+    if (!canvas) return;
+    
+    const bitmap = await ensureFrameLoaded(index);
+    if (!bitmap) return; 
+    if (currentFrameRef.current !== index) return;
     
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
     const canvasAspect = canvas.width / canvas.height;
-    const imgAspect = img.width / img.height;
+    const imgAspect = bitmap.width / bitmap.height;
     
     let drawWidth = canvas.width;
     let drawHeight = canvas.height;
@@ -86,14 +121,18 @@ export function Services() {
     }
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    ctx.drawImage(bitmap, offsetX, offsetY, drawWidth, drawHeight);
   }, []);
 
-  // 3. Resize Handler (DPR scaling)
-  useEffect(() => {
-    const resizeCanvas = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
+  // 3. Resize & Bounds Handler
+  const recalcBounds = useCallback(() => {
+    if (sectionRef.current) {
+      sectionTopRef.current = sectionRef.current.offsetTop;
+      sectionHeightRef.current = sectionRef.current.offsetHeight;
+    }
+    
+    const canvas = canvasRef.current;
+    if (canvas) {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
@@ -104,29 +143,40 @@ export function Services() {
       } else if (framesReady) {
         drawFrame(0);
       }
-    };
-    
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-    return () => window.removeEventListener("resize", resizeCanvas);
+    }
   }, [drawFrame, framesReady]);
+
+  useEffect(() => {
+    window.addEventListener("resize", recalcBounds);
+    recalcBounds();
+    return () => window.removeEventListener("resize", recalcBounds);
+  }, [recalcBounds]);
 
   // 4. Scroll Engine
   useEffect(() => {
     if (!framesReady) return;
 
-    // Draw initial frame if we haven't scrolled yet
     if (currentFrameRef.current === -1) {
       currentFrameRef.current = 0;
       drawFrame(0);
     }
+    
+    const START_DELAY = 0.20;
+    
+    // Unified math helper
+    const getPairIndex = (prog: number) => {
+      let adj = Math.max(0, (prog - START_DELAY) / (1 - START_DELAY));
+      adj = Math.min(1, adj);
+      if (prog < START_DELAY) return -1;
+      return Math.min(4, Math.floor(adj * 5));
+    };
 
     const updateScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const scrollableDistance = rect.height - window.innerHeight;
+      if (sectionHeightRef.current > 0) {
+        const scrollableDistance = sectionHeightRef.current - window.innerHeight;
+        const scrollY = window.scrollY;
         
-        let progress = -rect.top / scrollableDistance;
+        let progress = (scrollY - sectionTopRef.current) / scrollableDistance;
         progress = Math.max(0, Math.min(1, progress));
         
         // Scrub Frames
@@ -137,15 +187,7 @@ export function Services() {
         }
 
         // Pair Logic
-        const START_DELAY = 0.20;
-        let adjustedProgress = Math.max(0, (progress - START_DELAY) / (1 - START_DELAY));
-        adjustedProgress = Math.min(1, adjustedProgress);
-        
-        let pairIndex = -1;
-        if (progress >= START_DELAY) {
-          pairIndex = Math.floor(adjustedProgress * 5.2);
-          if (pairIndex >= 5) pairIndex = 4;
-        }
+        const pairIndex = getPairIndex(progress);
 
         if (pairIndex !== prevPairIndexRef.current) {
           setDirection(pairIndex > prevPairIndexRef.current ? 1 : -1);
@@ -153,17 +195,7 @@ export function Services() {
           setActivePairIndex(pairIndex);
         }
 
-        // JS Settle
-        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = setTimeout(() => {
-          if (progress > START_DELAY && progress < 0.99 && lenis) {
-            const currentPair = Math.min(4, Math.max(0, Math.floor(adjustedProgress * 5.2)));
-            const targetAdjusted = (currentPair + 0.5) / 5.2;
-            const targetProgress = START_DELAY + targetAdjusted * (1 - START_DELAY);
-            const targetY = sectionRef.current!.offsetTop + targetProgress * scrollableDistance;
-            lenis.scrollTo(targetY, { duration: 1.2 });
-          }
-        }, 150);
+        // Removed JS Settle (Debounced Snap) to prevent scroll jacking and restore smooth scrolling
       }
       tickingRef.current = false;
     };
@@ -176,7 +208,7 @@ export function Services() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // initial trigger
+    onScroll(); 
     
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -285,7 +317,7 @@ export function Services() {
                     animate="center"
                     exit="exit"
                     transition={{ type: "spring", stiffness: 90, damping: 20, mass: 1 }}
-                    className="absolute flex flex-col md:flex-row items-stretch justify-center gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
+                    className="absolute grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
                     style={{ perspective: 1000, willChange: "transform, opacity" }}
                   >
                     {activePair.map((service, idx) => (
@@ -293,7 +325,7 @@ export function Services() {
                         key={service.id} 
                         animate={{ y: [0, idx === 0 ? -15 : -10, 0] }}
                         transition={{ duration: idx === 0 ? 4 : 4.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="flex-1 min-w-0 bg-black/60 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
+                        className="h-[240px] md:h-[250px] w-full min-w-0 bg-black/60 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
                         style={{ WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
                       >
                         <p className="text-[var(--color-orange)] text-sm md:text-base font-bold tracking-widest uppercase mb-3">

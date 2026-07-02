@@ -1,0 +1,416 @@
+﻿diff --git a/src/components/sections/WhyStandOut.tsx b/src/components/sections/WhyStandOut.tsx
+index 3f20599..73f07d5 100644
+--- a/src/components/sections/WhyStandOut.tsx
++++ b/src/components/sections/WhyStandOut.tsx
+@@ -1,7 +1,7 @@
+ "use client";
+ 
+ import { useRef, useEffect } from "react";
+-import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView } from "framer-motion";
++import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView, useMotionTemplate } from "framer-motion";
+ import { Truck, Globe, MapPin, UsersThree, Lightning, ShieldCheck, Headset, Tag, Clock, Star } from "@phosphor-icons/react";
+ const stats = [
+   {
+@@ -56,82 +56,36 @@ const stats = [
+   },
+ ];
+ 
+-function OrbitCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number }) {
++function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; idx: number; gridProgress: any }) {
+   const Icon = s.icon;
+-  const cardRef = useRef<HTMLDivElement>(null);
+-
+-  const { scrollYProgress } = useScroll({
+-    target: cardRef,
+-    offset: ["start end", "start 0.4"],
+-  });
+-
+   const isEven = idx % 2 === 0;
+   
+-  const rotateYScroll = useTransform(scrollYProgress, [0, 1], [isEven ? -90 : 90, 0]);
+-  const rotateXScroll = useTransform(scrollYProgress, [0, 1], [25, 0]);
+-  const translateZScroll = useTransform(scrollYProgress, [0, 1], [-300, 0]);
+-  const translateXScroll = useTransform(scrollYProgress, [0, 1], [isEven ? -150 : 150, 0]);
+-  const scaleScroll = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+-  const opacityScroll = useTransform(scrollYProgress, [0, 1], [0, 1]);
+-
+-  const hoverRef = useRef<HTMLDivElement>(null);
+-  const mouseX = useMotionValue(0);
+-  const mouseY = useMotionValue(0);
+-
+-  const hoverRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), { stiffness: 150, damping: 15 });
+-  const hoverRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 150, damping: 15 });
+-
+-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+-    if (!hoverRef.current) return;
+-    const rect = hoverRef.current.getBoundingClientRect();
+-    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+-    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+-    mouseX.set(xPct);
+-    mouseY.set(yPct);
+-  };
+-
+-  const handleMouseLeave = () => {
+-    mouseX.set(0);
+-    mouseY.set(0);
+-  };
++  const rowIdx = Math.floor(idx / 2);
++  const start = 0.1 + (rowIdx * 0.15); 
++  const end = start + 0.15;
++  
++  const localProgress = useTransform(gridProgress, [start, end], [0, 1]);
++  
++  const rotateYScroll = useTransform(localProgress, [0, 1], [isEven ? -90 : 90, 0]);
++  const rotateXScroll = useTransform(localProgress, [0, 1], [25, 0]);
++  const translateXScroll = useTransform(localProgress, [0, 1], [isEven ? -150 : 150, 0]);
++  const scaleScroll = useTransform(localProgress, [0, 1], [0.7, 1]);
++  const opacityScroll = useTransform(localProgress, [0, 1], [0, 1]);
+ 
+   return (
+-    <div
+-      ref={cardRef}
+-      className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}
+-      style={{ transformStyle: "preserve-3d" }}
+-    >
+-      {/* Outer scroll-driven motion.div */}
++    <div className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}>
+       <motion.div
+         style={{
+           rotateY: rotateYScroll,
+           rotateX: rotateXScroll,
+-          z: translateZScroll,
+           x: translateXScroll,
+           scale: scaleScroll,
+           opacity: opacityScroll,
+-          transformStyle: "preserve-3d",
+         }}
+         className="w-full [will-change:transform]"
+       >
+-        {/* Inner hover-driven motion.div */}
+-        <motion.div
+-          ref={hoverRef}
+-          onMouseMove={handleMouseMove}
+-          onMouseLeave={handleMouseLeave}
+-          style={{
+-            rotateX: hoverRotateX,
+-            rotateY: hoverRotateY,
+-            transformStyle: "preserve-3d",
+-          }}
+-          className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/40 backdrop-blur-sm p-6 [will-change:transform] ${
+-            isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"
+-          }`}
+-        >
+-          <div 
+-            className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]"
+-            style={{ transform: "translateZ(40px)" }}
+-          >
++        <div className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-6 ${isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"}`}>
++          <div className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]">
+             <Icon size={32} weight="regular" />
+           </div>
+           <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-lg mb-2">
+@@ -140,7 +94,7 @@ function OrbitCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number })
+           <p className="text-[var(--color-ink)]/60 text-[14.5px] leading-relaxed max-w-md">
+             {s.body}
+           </p>
+-        </motion.div>
++        </div>
+       </motion.div>
+     </div>
+   );
+@@ -151,6 +105,13 @@ export function WhyStandOut() {
+   const trackTriggerRef = useRef(null);
+   const flightContainerRef = useRef<HTMLDivElement>(null);
+   const isTrackInView = useInView(trackTriggerRef, { once: false, amount: 0.2, margin: "10000px 0px 0px 0px" });
++  const sectionInView = useInView(ref, { once: false, amount: 0.1 });
++  
++  const gridRef = useRef<HTMLDivElement>(null);
++  const { scrollYProgress: gridProgress } = useScroll({
++    target: gridRef,
++    offset: ["start end", "end start"],
++  });
+   
+   // Track specifically the flight container scrolling through the viewport
+   const { scrollYProgress: flightScrollProgress } = useScroll({
+@@ -161,7 +122,7 @@ export function WhyStandOut() {
+   const smoothFlightProgress = useSpring(flightScrollProgress, {
+     stiffness: 70,
+     damping: 20,
+-    restDelta: 0.001
++    restDelta: 0.01
+   });
+   // Mouse Parallax Tracking
+   const mouseX = useMotionValue(0);
+@@ -180,8 +141,8 @@ export function WhyStandOut() {
+   }, [mouseX, mouseY]);
+ 
+   // Spring smooth the mouse for fluid parallax
+-  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+-  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
++  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20, restDelta: 0.01 });
++  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20, restDelta: 0.01 });
+ 
+   // Different depths for clouds
+   const parallax1X = useTransform(smoothMouseX, [-1, 1], [-40, 40]);
+@@ -201,7 +162,7 @@ export function WhyStandOut() {
+   const smoothProgress = useSpring(scrollYProgress, {
+     stiffness: 70,
+     damping: 20,
+-    restDelta: 0.001
++    restDelta: 0.01
+   });
+ 
+   // Text splitting animation
+@@ -220,13 +181,23 @@ export function WhyStandOut() {
+   const cloudCenterY = useTransform(smoothProgress, [0, 1], ["50%", "0%"]);
+   const cloudCenterScale = useTransform(smoothProgress, [0, 1], [0.8, 1]);
+   
++  const cloudOpacity = useTransform(smoothProgress, [0, 1], [0, 0.9]);
++  
+   // Flight Parallax (Cinematic slow glide upwards as the 150vh container scrolls)
+   const flightY = useTransform(smoothFlightProgress, [0, 1], ["0%", "-40%"]);
+   
+   // Track Parallax (Opposite direction of flight, slow glide downwards)
+   const trackY = useTransform(smoothFlightProgress, [0, 1], ["0%", "20%"]);
+-  
+-  const cloudOpacity = useTransform(smoothProgress, [0, 1], [0, 0.9]);
++
++  const cloudScroll1 = useTransform(smoothFlightProgress, [0, 1], [0, 200]);
++  const cloudScroll2 = useTransform(smoothFlightProgress, [0, 1], [0, 350]);
++  const cloudScroll3 = useTransform(smoothFlightProgress, [0, 1], [0, 150]);
++  const cloudScroll4 = useTransform(smoothFlightProgress, [0, 1], [0, 250]);
++
++  const combinedY1 = useMotionTemplate`calc(${parallax1Y}px + ${cloudScroll1}px)`;
++  const combinedY2 = useMotionTemplate`calc(${parallax2Y}px + ${cloudScroll2}px)`;
++  const combinedY3 = useMotionTemplate`calc(${parallax3Y}px + ${cloudScroll3}px)`;
++  const combinedY4 = useMotionTemplate`calc(${parallax2Y}px + ${cloudScroll4}px)`;
+ 
+   return (
+     <section
+@@ -234,88 +205,26 @@ export function WhyStandOut() {
+       ref={ref}
+       className="min-h-screen relative bg-transparent py-24 md:py-32"
+     >
+-      {/* Floating clouds with scroll AND mouse parallax */}
+-      <div className="absolute inset-0 pointer-events-none z-0">
+-        
+-        {/* CLOUD 1: Top Left (The new one we just added) */}
+-        <motion.div
+-          style={{ x: cloudLeftX, opacity: cloudOpacity }}
+-          className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
+-        >
+-          <motion.div style={{ x: parallax2X, y: parallax1Y }}>
+-            <motion.img 
+-              animate={{ x: [0, 25, 0], y: [0, 10, 0] }}
+-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+-              src="/images/clouds/41576358_8918169.webp" 
+-              alt="cloud" 
+-              className="w-full h-auto object-contain opacity-70" 
+-            />
+-          </motion.div>
+-        </motion.div>
+-
+-        {/* CLOUD 2: Mid Left (Behind "WHY" and "STAND") */}
+-        <motion.div
+-          style={{ x: cloudLeftX, opacity: cloudOpacity }}
+-          className="absolute top-[10%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
+-        >
+-          <motion.div style={{ x: parallax1X, y: parallax1Y }}>
+-            <motion.img 
+-              animate={{ x: [0, 40, 0], y: [0, -15, 0] }}
+-              transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+-              src="/images/clouds/8918172.webp" 
+-              alt="cloud" 
+-              className="w-full h-auto object-contain opacity-80" 
+-            />
+-          </motion.div>
+-        </motion.div>
+-
+-        {/* CLOUD 3: Bottom Right (Below the container on the right) */}
+-        <motion.div
+-          style={{ x: cloudRightX, opacity: cloudOpacity }}
+-          className="absolute top-[10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
+-        >
+-          <motion.div style={{ x: parallax2X, y: parallax2Y }}>
+-            <motion.img 
+-              animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
+-              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+-              src="/images/clouds/8918181.webp" 
+-              alt="cloud" 
+-              className="w-full h-auto object-contain" 
+-            />
+-          </motion.div>
+-        </motion.div>
+-
+-        {/* CLOUD 4: Top Right (Next to the "E" in "WE") */}
+-        <motion.div
+-          style={{ x: cloudRightX2, opacity: cloudOpacity }}
+-          className="absolute top-[0%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
+-        >
+-          <motion.div style={{ x: parallax1X, y: parallax2Y }}>
+-            <motion.img 
+-              animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
+-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+-              src="/images/clouds/8918191.webp" 
+-              alt="cloud" 
+-              className="w-full h-auto object-contain opacity-80" 
+-            />
+-          </motion.div>
+-        </motion.div>
+-
+-        {/* CLOUD 5: Center (Large cloud directly behind "WE") */}
+-        <motion.div
+-          style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity }}
+-          className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
+-        >
+-          <motion.div style={{ x: parallax3X, y: parallax3Y }}>
+-            <motion.img 
+-              animate={{ x: [0, 15, -15, 0], y: [0, -10, 10, 0] }}
+-              transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+-              src="/images/clouds/8918176.webp" 
+-              alt="cloud" 
+-              className="w-full h-auto object-contain opacity-50" 
+-            />
+-          </motion.div>
+-        </motion.div>
++      {/* Animated clouds behind the text */}
++      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
++        <motion.img 
++          style={{ x: cloudLeftX, y: combinedY1, opacity: cloudOpacity }}
++          src="/clouds/8918166.png"
++          className="absolute top-[10%] left-[-10%] w-[40vw] max-w-[500px] opacity-60"
++          alt="cloud"
++        />
++        <motion.img 
++          style={{ x: cloudRightX, y: combinedY2, opacity: cloudOpacity }}
++          src="/clouds/8918172.png"
++          className="absolute top-[30%] right-[0%] w-[35vw] max-w-[450px] opacity-50"
++          alt="cloud"
++        />
++        <motion.img 
++          style={{ x: cloudRightX2, y: combinedY3, opacity: cloudOpacity }}
++          src="/clouds/8918176.png"
++          className="absolute bottom-[20%] left-[20%] w-[45vw] max-w-[600px] opacity-40"
++          alt="cloud"
++        />
+       </div>
+ 
+       <div className="relative container-px max-content">
+@@ -360,71 +269,48 @@ export function WhyStandOut() {
+ 
+       <div 
+         ref={flightContainerRef}
+-        className="relative w-full mt-[-280px] md:mt-[-360px] z-30 overflow-hidden flex flex-col pointer-events-none"
++        className="relative w-full z-30 overflow-hidden flex flex-col pointer-events-none"
+       >
+-        
+-        {/* Slide 1: Orange */}
+-        <motion.div
+-          initial="hidden"
+-          animate={isTrackInView ? "visible" : "hidden"}
+-          variants={{
+-            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+-            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 } }
+-          }}
+-          className="absolute inset-0 z-0 bg-[var(--color-orange)]"
+-          style={{ clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)' }}
+-        />
+-
+-        {/* Slide 2: Black */}
+-        <motion.div
+-          initial="hidden"
+-          animate={isTrackInView ? "visible" : "hidden"}
+-          variants={{
+-            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+-            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 } }
+-          }}
+-          className="absolute inset-0 z-0 bg-[var(--color-ink)]"
+-          style={{ clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)' }}
+-        />
+-
+         {/* Slide 3: The Image */}
+-        <motion.div 
+-          initial="hidden"
+-          animate={isTrackInView ? "visible" : "hidden"}
+-          variants={{
+-            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+-            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 } }
+-          }}
++        <div 
+           style={{ 
+-            willChange: "transform", 
+-            clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)'
++            willChange: "transform"
+           }}
+-          className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center pt-64 md:pt-96 pb-48 md:pb-64 overflow-hidden" 
++          className="relative z-10 w-full flex-grow flex flex-col items-center justify-center pt-24 md:pt-32 pb-48 md:pb-64 overflow-hidden bg-[var(--color-mist)]" 
+         >
+-          {/* Scaled Background Layer */}
+-          <motion.div 
+-            className="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat z-0 pointer-events-none"
+-            style={{ 
+-              backgroundImage: "url('/images/track.webp')",
+-              scale: 1.5,
+-              transformOrigin: "bottom center",
+-              y: trackY
+-            }}
++          {/* Cloud Layer */}
++          <motion.img 
++            style={{ x: cloudLeftX, y: combinedY1, opacity: cloudOpacity }}
++            src="/clouds/8918166.png"
++            className="absolute top-[20%] left-[-10%] w-[40vw] max-w-[600px] opacity-70 pointer-events-none z-10"
++            alt="cloud"
++          />
++          <motion.img 
++            style={{ x: cloudRightX, y: combinedY2, opacity: cloudOpacity }}
++            src="/clouds/8918172.png"
++            className="absolute top-[40%] right-[-5%] w-[35vw] max-w-[500px] opacity-60 pointer-events-none z-10"
++            alt="cloud"
++          />
++          <motion.img 
++            style={{ x: cloudRightX2, y: combinedY3, scale: cloudCenterScale, opacity: cloudOpacity }}
++            src="/clouds/8918176.png"
++            className="absolute bottom-[20%] right-[15%] w-[45vw] max-w-[700px] opacity-80 pointer-events-none z-10"
++            alt="cloud"
++          />
++          <motion.img 
++            style={{ x: cloudLeftX, y: combinedY4, opacity: cloudOpacity }}
++            src="/clouds/8918181.png"
++            className="absolute bottom-[30%] left-[5%] w-[50vw] max-w-[800px] opacity-75 pointer-events-none z-10"
++            alt="cloud"
+           />
+ 
+-          {/* Flight Image Layer */}
+-          <div className="absolute bottom-0 left-0 w-full flex flex-col items-center pointer-events-none z-10 overflow-visible translate-y-[40%]">
+-            <motion.img 
+-              style={{ y: flightY, willChange: "transform" }}
+-              src="/images/flight.webp" 
+-              alt="Flight" 
+-              className="w-[110vw] md:w-[90vw] max-w-none object-contain"
+-            />
+-          </div>
++          {/* Scaled Background Layer */}
++          {/* Track background image removed as requested */}
+ 
+-          <div className="container-px max-content pointer-events-auto relative z-10 mt-[280px] md:mt-[360px]">
++          <div className="container-px max-content pointer-events-auto relative z-10 mt-16 md:mt-24">
+             {/* feature grid */}
+             <motion.div 
++              ref={gridRef}
+               initial={{ opacity: 0, y: 40 }}
+               animate={isTrackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+               transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
+@@ -433,11 +319,11 @@ export function WhyStandOut() {
+             >
+               {stats.map((s, idx) => {
+                 const isLeft = idx % 2 === 0;
+-                return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
++                return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} gridProgress={gridProgress} />;
+               })}
+             </motion.div>
+           </div>
+-        </motion.div>
++        </div>
+       </div>
+     </section>
+   );

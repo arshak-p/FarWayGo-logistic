@@ -144,11 +144,20 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     if (!container) return;
 
     let renderer;
+    const originalConsoleError = console.error;
     try {
+      // ogl's Renderer calls console.error internally if WebGL fails, 
+      // which triggers Next.js dev overlay. We intercept it for graceful degradation.
+      console.error = (...args) => {
+        if (typeof args[0] === 'string' && args[0].includes('unable to create webgl context')) return;
+        originalConsoleError.apply(console, args);
+      };
       renderer = new Renderer({ alpha: true });
     } catch (e) {
-      console.warn("Failed to create WebGL context", e);
+      console.warn("WebGL is not supported on this device. Threads background disabled.");
       return;
+    } finally {
+      console.error = originalConsoleError;
     }
     
     const gl = renderer.gl;

@@ -48,8 +48,8 @@ export function Process() {
   const isContentInView = useInView(contentTriggerRef, { once: false, amount: 0 });
 
   return (
-    // 250vh gives plenty of scroll room between triggers and a clean exit at the bottom
-    <section className="h-[250vh] relative z-0 w-full bg-black">
+    // 350vh gives plenty of scroll room between triggers and a clean exit at the bottom
+    <section className="h-[350vh] relative z-0 w-full bg-black">
       
       {/* 
         1. PANEL TRIGGER: Placed exactly at 100vh.
@@ -96,7 +96,7 @@ export function Process() {
               hidden: { opacity: 0 },
               visible: { 
                 opacity: 1,
-                transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+                transition: { staggerChildren: 0.08, delayChildren: 0.1 }
               }
             }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
@@ -105,8 +105,8 @@ export function Process() {
             {/* Header Block (Col 1, Row 1) */}
             <motion.div 
               variants={{
-                hidden: { opacity: 0, y: 40, transition: { duration: 0.6, ease: "easeIn" } },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                hidden: { opacity: 0, y: 40, transition: { duration: 0.4, ease: "easeIn" } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
               }}
               className="flex flex-col items-start justify-start"
             >
@@ -121,8 +121,8 @@ export function Process() {
               <motion.div 
                 key={step.id} 
                 variants={{
-                  hidden: { opacity: 0, y: 40, transition: { duration: 0.6, ease: "easeIn" } },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                  hidden: { opacity: 0, y: 40, transition: { duration: 0.4, ease: "easeIn" } },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                 }}
                 className="flex flex-col group h-full"
               >
@@ -131,8 +131,8 @@ export function Process() {
                   {/* Image Reveal Animation */}
                   <motion.div
                     variants={{
-                      hidden: { opacity: 0, scale: 1.15, transition: { duration: 0.6, ease: "easeIn" } },
-                      visible: { opacity: 1, scale: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
+                      hidden: { opacity: 0, scale: 1.15, transition: { duration: 0.4, ease: "easeIn" } },
+                      visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                     }}
                     className="absolute inset-0 z-0"
                   >
@@ -148,8 +148,8 @@ export function Process() {
                   {/* Step Number Fade-Up */}
                   <motion.div
                     variants={{
-                      hidden: { opacity: 0, y: 20, transition: { duration: 0.6, ease: "easeIn" } },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 } }
+                      hidden: { opacity: 0, y: 20, transition: { duration: 0.4, ease: "easeIn" } },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 } }
                     }}
                     className="absolute top-5 left-5 z-20 text-white/20 text-5xl font-display"
                   >
