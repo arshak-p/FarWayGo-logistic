@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { List, X, House, Info, Stack, Phone } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/Button";
+import { useLenis } from "@/components/providers/SmoothScrollProvider";
 
 const links = [
   { label: "Home", href: "#home", icon: House },
@@ -17,6 +18,20 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const lenis = useLenis();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (lenis) {
+        lenis.scrollTo(href, { offset: -80 });
+      } else {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      setOpen(false);
+    }
+  };
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -42,7 +57,7 @@ export function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 container-px pt-6"
       >
         <div className="max-content flex items-center justify-between">
-          <a href="#home" className="flex items-center">
+          <a href="#home" onClick={(e) => handleScroll(e, "#home")} className="flex items-center">
             <Image
               src="/images/logo.svg"
               alt="FarWayGo Logistics"
@@ -64,6 +79,7 @@ export function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
+                onClick={(e) => handleScroll(e, l.href)}
                 className="px-4 py-2 rounded-full text-sm font-medium text-[var(--color-navy)] hover:bg-[var(--color-navy)] hover:text-white transition-colors duration-200"
               >
                 {l.label}
@@ -72,7 +88,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <Button href="#contact" variant="ghost">
+            <Button href="#contact" variant="ghost" onClick={(e: any) => handleScroll(e, "#contact")}>
               Get a Quote
             </Button>
           </div>
@@ -116,7 +132,7 @@ export function Navbar() {
                 <motion.a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e: any) => handleScroll(e, l.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
@@ -127,7 +143,7 @@ export function Navbar() {
                 </motion.a>
               ))}
               <div className="mt-8">
-                <Button href="#contact" variant="primary" onClick={() => setOpen(false)}>
+                <Button href="#contact" variant="primary" onClick={(e: any) => handleScroll(e, "#contact")}>
                   Get a Quote
                 </Button>
               </div>

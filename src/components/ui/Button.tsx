@@ -42,7 +42,7 @@ export function Button({
 
   if (href) {
     return (
-      <a href={href} className="inline-block">
+      <a href={href} className="inline-block" onClick={onClick}>
         {content}
       </a>
     );
