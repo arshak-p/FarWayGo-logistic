@@ -149,7 +149,7 @@ function OrbitCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number })
 export function WhyStandOut() {
   const ref = useRef<HTMLDivElement>(null);
   const trackTriggerRef = useRef(null);
-  const isTrackInView = useInView(trackTriggerRef, { once: false, amount: 0.2 });
+  const isTrackInView = useInView(trackTriggerRef, { once: false, amount: 0.2, margin: "10000px 0px 0px 0px" });
 
   
   // Mouse Parallax Tracking
