@@ -218,6 +218,22 @@ export function WhyStandOut() {
       {/* Floating clouds with scroll AND mouse parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">
         
+        {/* Top Left Cloud */}
+        <motion.div
+          style={{ x: cloudLeftX, opacity: cloudOpacity }}
+          className="absolute top-[-5%] left-[5%] md:left-[10%] w-[65%] md:w-[40%] max-w-[600px]"
+        >
+          <motion.div style={{ x: parallax2X, y: parallax1Y }}>
+            <motion.img 
+              animate={{ x: [0, 25, 0], y: [0, 10, 0] }}
+              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+              src="/images/clouds/8918206.webp" 
+              alt="cloud" 
+              className="w-full h-auto object-contain opacity-70" 
+            />
+          </motion.div>
+        </motion.div>
+
         {/* Left Cloud */}
         <motion.div
           style={{ x: cloudLeftX, opacity: cloudOpacity }}
