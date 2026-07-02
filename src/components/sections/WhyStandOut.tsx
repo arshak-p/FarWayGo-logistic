@@ -339,27 +339,51 @@ export function WhyStandOut() {
       </div>
 
       <div ref={trackTriggerRef} className="relative w-full mt-24 md:mt-40 overflow-hidden">
+        
+        {/* Slide 1: Orange */}
+        <motion.div
+          initial="hidden"
+          animate={isTrackInView ? "visible" : "hidden"}
+          variants={{
+            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 } }
+          }}
+          className="absolute inset-0 z-0 bg-[var(--color-orange)]"
+        />
+
+        {/* Slide 2: Black */}
+        <motion.div
+          initial="hidden"
+          animate={isTrackInView ? "visible" : "hidden"}
+          variants={{
+            hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
+            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 } }
+          }}
+          className="absolute inset-0 z-0 bg-[var(--color-ink)]"
+        />
+
+        {/* Slide 3: The Image (or Orange, depending on interpretation, we'll use the Image with the track background here) */}
         <motion.div 
           initial="hidden"
           animate={isTrackInView ? "visible" : "hidden"}
           variants={{
             hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
-            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 } }
           }}
           style={{ willChange: "transform", backgroundImage: "url('/images/track.webp')" }}
-          className="relative w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
+          className="relative z-10 w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
         >
-        <div className="container-px max-content">
-          {/* feature grid */}
-          <div 
-            className="relative grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
-            style={{ perspective: "1500px" }}
-          >
-            {stats.map((s, idx) => {
-              const isLeft = idx % 2 === 0;
-              return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
-            })}
-          </div>
+          <div className="container-px max-content">
+            {/* feature grid */}
+            <div 
+              className="relative grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
+              style={{ perspective: "1500px" }}
+            >
+              {stats.map((s, idx) => {
+                const isLeft = idx % 2 === 0;
+                return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
+              })}
+            </div>
           </div>
         </motion.div>
       </div>
