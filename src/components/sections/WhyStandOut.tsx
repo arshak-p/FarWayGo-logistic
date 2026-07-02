@@ -382,7 +382,7 @@ export function WhyStandOut() {
             backgroundImage: "url('/images/track.webp')",
             clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)'
           }}
-          className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat pt-64 md:pt-96 pb-48 md:pb-64" 
+          className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat pt-64 md:pt-96 pb-48 md:pb-64" 
         >
           <div className="container-px max-content pointer-events-auto">
             {/* feature grid */}
