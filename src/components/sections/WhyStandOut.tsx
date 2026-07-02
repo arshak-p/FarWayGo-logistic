@@ -383,23 +383,16 @@ export function WhyStandOut() {
           }}
           className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center pt-64 md:pt-96 pb-48 md:pb-64 overflow-hidden" 
         >
-          {/* Flight Image Layer (Behind track) */}
-          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-0 overflow-visible">
-            <img 
-              src="/images/flight.webp" 
-              alt="Flight" 
-              className="w-[120vw] md:w-[100vw] max-w-none object-contain drop-shadow-2xl mt-[-40vh] md:mt-[-50vh]"
-            />
-          </div>
+          {/* Flight Image Layer (Background sky with plane) */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0 pointer-events-none"
+            style={{ backgroundImage: "url('/images/flight.webp')" }}
+          />
 
-          {/* Scaled Background Layer (Track) */}
+          {/* Track Foreground Layer (Road & Container cutout) */}
           <div 
             className="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat z-10 pointer-events-none"
-            style={{ 
-              backgroundImage: "url('/images/track.webp')",
-              transform: "scale(1.5)",
-              transformOrigin: "bottom center"
-            }}
+            style={{ backgroundImage: "url('/images/track.webp')" }}
           />
 
           <div className="container-px max-content pointer-events-auto relative z-10 mt-[280px] md:mt-[360px]">
