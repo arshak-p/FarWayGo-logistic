@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
 import Threads from "@/components/ui/Threads";
