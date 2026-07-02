@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { Truck, Globe, MapPin, UsersThree, Lightning, ShieldCheck, Headset, Tag, Clock, Star } from "@phosphor-icons/react";
 const stats = [
   {
     title: "Reliable Delivery",

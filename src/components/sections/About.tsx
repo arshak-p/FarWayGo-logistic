@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckCircle, HandCoins, ShieldCheck, Globe } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
 import ScrollFloat from "@/components/ui/ScrollFloat";
