@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
 
@@ -122,7 +121,16 @@ void main() {
 }
 `;
 
-const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseInteraction = false, ...rest }: any) => {
+type ThreadsProps = {
+  color?: [number, number, number];
+  amplitude?: number;
+  distance?: number;
+  enableMouseInteraction?: boolean;
+  className?: string;
+  [key: string]: any;
+};
+
+const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseInteraction = false, ...rest }: ThreadsProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameId = useRef(0);
 
@@ -135,13 +143,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const container = containerRef.current;
     if (!container) return;
 
-    let renderer: any;
-    try {
-      renderer = new Renderer({ alpha: true });
-    } catch (error) {
-      console.warn("Failed to create WebGL context (likely hit browser limit during HMR).", error);
-      return;
-    }
+    const renderer = new Renderer({ alpha: true });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
@@ -172,7 +174,8 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     // enough that the downscale is imperceptible.
     const MAX_RENDER_DIM = 1920;
     function resize() {
-      const { clientWidth, clientHeight } = container!;
+      if (!container) return;
+      const { clientWidth, clientHeight } = container;
       const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
       const longestSide = Math.max(clientWidth, clientHeight) * baseDpr;
       const dpr = longestSide > MAX_RENDER_DIM ? (baseDpr * MAX_RENDER_DIM) / longestSide : baseDpr;
@@ -192,7 +195,8 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     let targetMouse = [0.5, 0.5];
 
     function handleMouseMove(e: MouseEvent) {
-      const rect = container!.getBoundingClientRect();
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
       targetMouse = [x, y];
@@ -200,7 +204,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     function handleMouseLeave() {
       targetMouse = [0.5, 0.5];
     }
-    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('mousemove', handleMouseMove as any);
     container.addEventListener('mouseleave', handleMouseLeave);
 
     // Only animate while the canvas is on screen and the tab is visible, so the
@@ -245,14 +249,14 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       window.removeEventListener('resize', resize);
-      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mousemove', handleMouseMove as any);
       container.removeEventListener('mouseleave', handleMouseLeave);
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
   }, []);
 
-  return <div ref={containerRef} className="threads-container" {...rest} />;
+  return <div ref={containerRef} className={`threads-container ${rest.className || ''}`} {...rest} />;
 };
 
 export default Threads;
