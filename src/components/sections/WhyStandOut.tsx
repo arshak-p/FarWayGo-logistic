@@ -340,8 +340,7 @@ export function WhyStandOut() {
 
       <div 
         ref={trackTriggerRef} 
-        className="relative w-full min-h-screen mt-24 md:mt-40 overflow-hidden flex flex-col"
-        style={{ clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)' }}
+        className="relative w-full mt-[-280px] md:mt-[-360px] pt-[280px] md:pt-[360px] z-10 overflow-hidden flex flex-col pointer-events-none"
       >
         
         {/* Slide 1: Orange */}
@@ -383,7 +382,7 @@ export function WhyStandOut() {
           }}
           className="relative z-10 w-full flex-grow min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat pt-32 md:pt-48 pb-24 md:pb-32" 
         >
-          <div className="container-px max-content">
+          <div className="container-px max-content pointer-events-auto">
             {/* feature grid */}
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
