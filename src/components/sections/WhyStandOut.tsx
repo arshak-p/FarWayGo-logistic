@@ -218,7 +218,7 @@ export function WhyStandOut() {
       {/* Floating clouds with scroll AND mouse parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">
         
-        {/* Top Left Cloud */}
+        {/* CLOUD 1: Top Left (The new one we just added) */}
         <motion.div
           style={{ x: cloudLeftX, opacity: cloudOpacity }}
           className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
@@ -234,7 +234,7 @@ export function WhyStandOut() {
           </motion.div>
         </motion.div>
 
-        {/* Left Cloud */}
+        {/* CLOUD 2: Mid Left (Behind "WHY" and "STAND") */}
         <motion.div
           style={{ x: cloudLeftX, opacity: cloudOpacity }}
           className="absolute top-[10%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
@@ -250,7 +250,7 @@ export function WhyStandOut() {
           </motion.div>
         </motion.div>
 
-        {/* Right Cloud */}
+        {/* CLOUD 3: Bottom Right (Below the container on the right) */}
         <motion.div
           style={{ x: cloudRightX, opacity: cloudOpacity }}
           className="absolute top-[10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
@@ -266,7 +266,7 @@ export function WhyStandOut() {
           </motion.div>
         </motion.div>
 
-        {/* Second WE side cloud (Right side) */}
+        {/* CLOUD 4: Top Right (Next to the "E" in "WE") */}
         <motion.div
           style={{ x: cloudRightX2, opacity: cloudOpacity }}
           className="absolute top-[15%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
@@ -282,7 +282,7 @@ export function WhyStandOut() {
           </motion.div>
         </motion.div>
 
-        {/* Center cloud (Replaced with a non-cropped cloud) */}
+        {/* CLOUD 5: Center (Large cloud directly behind "WE") */}
         <motion.div
           style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity }}
           className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
