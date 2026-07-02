@@ -338,7 +338,11 @@ export function WhyStandOut() {
         </div>
       </div>
 
-      <div ref={trackTriggerRef} className="relative w-full mt-24 md:mt-40 overflow-hidden rounded-t-[40px] md:rounded-t-[80px]">
+      <div 
+        ref={trackTriggerRef} 
+        className="relative w-full mt-24 md:mt-40 overflow-hidden"
+        style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
+      >
         
         {/* Slide 1: Orange */}
         <motion.div
@@ -348,7 +352,8 @@ export function WhyStandOut() {
             hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 } }
           }}
-          className="absolute inset-0 z-0 bg-[var(--color-orange)] rounded-t-[40px] md:rounded-t-[80px]"
+          className="absolute inset-0 z-0 bg-[var(--color-orange)]"
+          style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
         />
 
         {/* Slide 2: Black */}
@@ -359,7 +364,8 @@ export function WhyStandOut() {
             hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 } }
           }}
-          className="absolute inset-0 z-0 bg-[var(--color-ink)] rounded-t-[40px] md:rounded-t-[80px]"
+          className="absolute inset-0 z-0 bg-[var(--color-ink)]"
+          style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
         />
 
         {/* Slide 3: The Image */}
@@ -370,8 +376,13 @@ export function WhyStandOut() {
             hidden: { y: "100%", transition: { duration: 0.6, ease: "easeIn" } },
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 } }
           }}
-          style={{ willChange: "transform", backgroundImage: "url('/images/track.webp')" }}
-          className="relative z-10 w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32 rounded-t-[40px] md:rounded-t-[80px]" 
+          style={{ 
+            willChange: "transform", 
+            backgroundImage: "url('/images/track.webp')",
+            borderTopLeftRadius: '50% 6vw', 
+            borderTopRightRadius: '50% 6vw'
+          }}
+          className="relative z-10 w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
         >
           <div className="container-px max-content">
             {/* feature grid */}
