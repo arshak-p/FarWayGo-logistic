@@ -221,7 +221,7 @@ export function WhyStandOut() {
         {/* Top Left Cloud */}
         <motion.div
           style={{ x: cloudLeftX, opacity: cloudOpacity }}
-          className="absolute top-[-5%] left-[5%] md:left-[10%] w-[65%] md:w-[40%] max-w-[600px]"
+          className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax1Y }}>
             <motion.img 
