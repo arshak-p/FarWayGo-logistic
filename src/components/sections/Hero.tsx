@@ -40,7 +40,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40 pb-20 md:pb-40"
+      className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40 pb-24 md:pb-[200px]"
     >
       {/* ambient sky gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#7dd3fc] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
