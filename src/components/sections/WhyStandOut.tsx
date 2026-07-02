@@ -186,8 +186,8 @@ export function WhyStandOut() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 70,
-    damping: 20,
+    stiffness: 30, // Lower stiffness = more delay/lag
+    damping: 15,
     restDelta: 0.001
   });
 
