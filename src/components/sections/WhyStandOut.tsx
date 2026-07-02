@@ -285,7 +285,7 @@ export function WhyStandOut() {
         {/* Center cloud (Replaced with a non-cropped cloud) */}
         <motion.div
           style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity }}
-          className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
+          className="absolute top-[25%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y }}>
             <motion.img 
