@@ -227,7 +227,7 @@ export function WhyStandOut() {
             <motion.img 
               animate={{ x: [0, 25, 0], y: [0, 10, 0] }}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-              src="/images/clouds/8918206.webp" 
+              src="/images/clouds/41576358_8918169.webp" 
               alt="cloud" 
               className="w-full h-auto object-contain opacity-70" 
             />
