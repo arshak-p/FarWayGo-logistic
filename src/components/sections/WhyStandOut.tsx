@@ -338,8 +338,10 @@ export function WhyStandOut() {
         </div>
       </div>
 
+      {/* Trigger element: Placed 50vh below the text so the text reaches the top half of the screen before triggering */}
+      <div ref={trackTriggerRef} className="absolute w-full h-[1px] mt-[30vh]" />
+
       <div 
-        ref={trackTriggerRef} 
         className="relative w-full mt-[-280px] md:mt-[-360px] pt-[280px] md:pt-[360px] z-10 overflow-hidden flex flex-col pointer-events-none"
       >
         
