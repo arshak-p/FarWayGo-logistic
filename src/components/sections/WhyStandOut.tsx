@@ -215,7 +215,7 @@ export function WhyStandOut() {
     <section
       id="why-us"
       ref={ref}
-      className="min-h-screen relative z-30 bg-transparent py-24 md:py-32"
+      className="min-h-screen relative bg-transparent py-24 md:py-32"
     >
       {/* Floating clouds with scroll AND mouse parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -342,7 +342,7 @@ export function WhyStandOut() {
       <div ref={trackTriggerRef} className="absolute w-full h-[1px] mt-[70vh]" />
 
       <div 
-        className="relative w-full mt-[-280px] md:mt-[-360px] z-10 overflow-hidden flex flex-col pointer-events-none"
+        className="relative w-full mt-[-280px] md:mt-[-360px] z-30 overflow-hidden flex flex-col pointer-events-none"
       >
         
         {/* Slide 1: Orange */}
@@ -392,6 +392,15 @@ export function WhyStandOut() {
               transformOrigin: "bottom center"
             }}
           />
+
+          {/* Flight Image Layer */}
+          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-10 overflow-visible">
+            <img 
+              src="/images/flight.webp" 
+              alt="Flight" 
+              className="w-[110vw] md:w-[90vw] max-w-none object-contain drop-shadow-2xl"
+            />
+          </div>
 
           <div className="container-px max-content pointer-events-auto relative z-10 mt-[280px] md:mt-[360px]">
             {/* feature grid */}
