@@ -341,7 +341,7 @@ export function WhyStandOut() {
       <div 
         ref={trackTriggerRef} 
         className="relative w-full min-h-screen mt-24 md:mt-40 overflow-hidden flex flex-col"
-        style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
+        style={{ borderTopLeftRadius: '50% 15vw', borderTopRightRadius: '50% 15vw' }}
       >
         
         {/* Slide 1: Orange */}
@@ -353,7 +353,7 @@ export function WhyStandOut() {
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 } }
           }}
           className="absolute inset-0 z-0 bg-[var(--color-orange)]"
-          style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
+          style={{ borderTopLeftRadius: '50% 15vw', borderTopRightRadius: '50% 15vw' }}
         />
 
         {/* Slide 2: Black */}
@@ -365,7 +365,7 @@ export function WhyStandOut() {
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 } }
           }}
           className="absolute inset-0 z-0 bg-[var(--color-ink)]"
-          style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
+          style={{ borderTopLeftRadius: '50% 15vw', borderTopRightRadius: '50% 15vw' }}
         />
 
         {/* Slide 3: The Image */}
@@ -379,14 +379,17 @@ export function WhyStandOut() {
           style={{ 
             willChange: "transform", 
             backgroundImage: "url('/images/track.webp')",
-            borderTopLeftRadius: '50% 6vw', 
-            borderTopRightRadius: '50% 6vw'
+            borderTopLeftRadius: '50% 15vw', 
+            borderTopRightRadius: '50% 15vw'
           }}
-          className="relative z-10 w-full flex-grow min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
+          className="relative z-10 w-full flex-grow min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat pt-32 md:pt-48 pb-24 md:pb-32" 
         >
           <div className="container-px max-content">
             {/* feature grid */}
-            <div 
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={isTrackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
               className="relative grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
               style={{ perspective: "1500px" }}
             >
@@ -394,7 +397,7 @@ export function WhyStandOut() {
                 const isLeft = idx % 2 === 0;
                 return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
               })}
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
