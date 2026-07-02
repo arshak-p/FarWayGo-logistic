@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
@@ -222,7 +222,7 @@ export function Services() {
     <section 
       id="services" 
       ref={sectionRef} 
-      className="relative w-full h-[1200vh] bg-transparent z-10"
+      className="relative w-full h-[800vh] bg-transparent z-10"
     >
       <div ref={panelTriggerRef} className="absolute top-[100vh] bottom-0 left-0 w-full pointer-events-none" />
 

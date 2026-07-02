@@ -367,14 +367,19 @@ export function WhyStandOut() {
           />
 
           {/* Flight Image Layer (Moved to Background) */}
-          <div className="absolute top-[50vh] left-0 w-full flex flex-col items-center pointer-events-none z-0 overflow-visible">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={isTrackInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+            className="absolute top-[50vh] left-0 w-full flex flex-col items-center pointer-events-none z-0 overflow-visible"
+          >
             <motion.img 
               style={{ y: flightY, willChange: "transform" }}
               src="/images/flight-optimized.webp" 
               alt="Flight" 
               className="w-[110vw] md:w-[90vw] max-w-none object-contain"
             />
-          </div>
+          </motion.div>
 
           {/* Scaled Background Layer */}
           {/* Track background image removed as requested */}
@@ -385,7 +390,7 @@ export function WhyStandOut() {
               ref={gridRef}
               initial={{ opacity: 0, y: 40 }}
               animate={isTrackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="relative grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
               style={{ perspective: "1500px" }}
             >
