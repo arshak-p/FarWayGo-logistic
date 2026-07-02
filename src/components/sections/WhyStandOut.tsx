@@ -398,7 +398,7 @@ export function WhyStandOut() {
             <img 
               src="/images/flight.webp" 
               alt="Flight" 
-              className="w-[120vw] md:w-[100vw] max-w-none object-contain drop-shadow-2xl"
+              className="w-[120vw] md:w-[100vw] max-w-none object-contain drop-shadow-2xl mt-[-40vh] md:mt-[-50vh]"
             />
           </div>
 
