@@ -379,12 +379,21 @@ export function WhyStandOut() {
           }}
           style={{ 
             willChange: "transform", 
-            backgroundImage: "url('/images/track.webp')",
             clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)'
           }}
-          className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center bg-cover bg-bottom bg-no-repeat pt-64 md:pt-96 pb-48 md:pb-64" 
+          className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center pt-64 md:pt-96 pb-48 md:pb-64 overflow-hidden" 
         >
-          <div className="container-px max-content pointer-events-auto">
+          {/* Scaled Background Layer */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat z-0 pointer-events-none"
+            style={{ 
+              backgroundImage: "url('/images/track.webp')",
+              transform: "scale(1.5)",
+              transformOrigin: "bottom center"
+            }}
+          />
+
+          <div className="container-px max-content pointer-events-auto relative z-10">
             {/* feature grid */}
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
