@@ -302,6 +302,24 @@ export function WhyStandOut() {
       </div>
 
       <div className="relative container-px max-content">
+        {/* Sticky Background Text & Container Image */}
+        <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center -mt-20 md:-mt-32 z-0">
+          <h2 
+            className="text-[12vw] leading-[0.85] font-display font-black text-white/90 uppercase tracking-tighter text-center relative z-10"
+            style={{ WebkitTextStroke: "2px rgba(255,255,255,0.1)" }}
+          >
+            Why We <br /> Stand Out
+          </h2>
+          {/* The container (flight.webp) sitting in the sky! */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 pt-20">
+            <img 
+              src="/images/flight.webp" 
+              alt="Container" 
+              className="w-[90vw] md:w-[70vw] max-w-6xl object-contain drop-shadow-2xl"
+            />
+          </div>
+        </div>
+        
         {/* headline with hanging container layered through it */}
         <div className="relative flex flex-col items-center justify-center min-h-[280px] md:min-h-[360px] w-full">
           
@@ -393,14 +411,7 @@ export function WhyStandOut() {
             }}
           />
 
-          {/* Flight Image Layer */}
-          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-0 overflow-visible">
-            <img 
-              src="/images/flight.webp" 
-              alt="Flight" 
-              className="w-[120vw] md:w-[100vw] max-w-none object-contain drop-shadow-2xl mt-[-40vh] md:mt-[-50vh]"
-            />
-          </div>
+
 
           <div className="container-px max-content pointer-events-auto relative z-10 mt-[280px] md:mt-[360px]">
             {/* feature grid */}
