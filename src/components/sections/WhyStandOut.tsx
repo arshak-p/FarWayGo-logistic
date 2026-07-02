@@ -269,7 +269,7 @@ export function WhyStandOut() {
         {/* Second WE side cloud (Right side) */}
         <motion.div
           style={{ x: cloudRightX2, opacity: cloudOpacity }}
-          className="absolute top-[-5%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
+          className="absolute top-[15%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y }}>
             <motion.img 
@@ -285,7 +285,7 @@ export function WhyStandOut() {
         {/* Center cloud (Replaced with a non-cropped cloud) */}
         <motion.div
           style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity }}
-          className="absolute top-[25%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
+          className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y }}>
             <motion.img 
