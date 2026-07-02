@@ -212,8 +212,7 @@ export function WhyStandOut() {
     <section
       id="why-us"
       ref={ref}
-      className="min-h-screen relative bg-cover bg-center bg-no-repeat py-24 md:py-32"
-      style={{ backgroundImage: "url('/images/track.webp')" }}
+      className="min-h-screen relative bg-transparent py-24 md:py-32"
     >
       {/* Floating clouds with scroll AND mouse parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -334,16 +333,23 @@ export function WhyStandOut() {
             </motion.h2>
           </div>
         </div>
+      </div>
 
-        {/* feature grid */}
-        <div 
-          className="relative mt-16 md:mt-24 grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
-          style={{ perspective: "1500px" }}
-        >
-          {stats.map((s, idx) => {
-            const isLeft = idx % 2 === 0;
-            return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
-          })}
+      <div 
+        className="relative w-full bg-cover bg-center bg-no-repeat pt-16 md:pt-24 pb-24 md:pb-32" 
+        style={{ backgroundImage: "url('/images/track.webp')" }}
+      >
+        <div className="container-px max-content">
+          {/* feature grid */}
+          <div 
+            className="relative grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
+            style={{ perspective: "1500px" }}
+          >
+            {stats.map((s, idx) => {
+              const isLeft = idx % 2 === 0;
+              return <OrbitCard key={s.title} s={s} isLeft={isLeft} idx={idx} />;
+            })}
+          </div>
         </div>
       </div>
     </section>
