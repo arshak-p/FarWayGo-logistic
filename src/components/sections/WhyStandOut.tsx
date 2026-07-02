@@ -149,9 +149,20 @@ function OrbitCard({ s, isLeft, idx }: { s: any; isLeft: boolean; idx: number })
 export function WhyStandOut() {
   const ref = useRef<HTMLDivElement>(null);
   const trackTriggerRef = useRef(null);
+  const flightContainerRef = useRef<HTMLDivElement>(null);
   const isTrackInView = useInView(trackTriggerRef, { once: false, amount: 0.2, margin: "10000px 0px 0px 0px" });
-
   
+  // Track specifically the flight container scrolling through the viewport
+  const { scrollYProgress: flightScrollProgress } = useScroll({
+    target: flightContainerRef,
+    offset: ["start end", "end start"],
+  });
+  
+  const smoothFlightProgress = useSpring(flightScrollProgress, {
+    stiffness: 70,
+    damping: 20,
+    restDelta: 0.001
+  });
   // Mouse Parallax Tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -209,8 +220,11 @@ export function WhyStandOut() {
   const cloudCenterY = useTransform(smoothProgress, [0, 1], ["50%", "0%"]);
   const cloudCenterScale = useTransform(smoothProgress, [0, 1], [0.8, 1]);
   
-  // Flight Parallax
-  const flightY = useTransform(smoothProgress, [0, 1], ["40%", "-20%"]);
+  // Flight Parallax (Cinematic slow glide upwards as the 150vh container scrolls)
+  const flightY = useTransform(smoothFlightProgress, [0, 1], ["0%", "-40%"]);
+  
+  // Track Parallax (Opposite direction of flight, slow glide downwards)
+  const trackY = useTransform(smoothFlightProgress, [0, 1], ["0%", "20%"]);
   
   const cloudOpacity = useTransform(smoothProgress, [0, 1], [0, 0.9]);
 
@@ -345,6 +359,7 @@ export function WhyStandOut() {
       <div ref={trackTriggerRef} className="absolute w-full h-[1px] mt-[70vh]" />
 
       <div 
+        ref={flightContainerRef}
         className="relative w-full mt-[-280px] md:mt-[-360px] z-30 overflow-hidden flex flex-col pointer-events-none"
       >
         
@@ -387,22 +402,23 @@ export function WhyStandOut() {
           className="relative z-10 w-full flex-grow min-h-[150vh] flex flex-col items-center justify-center pt-64 md:pt-96 pb-48 md:pb-64 overflow-hidden" 
         >
           {/* Scaled Background Layer */}
-          <div 
+          <motion.div 
             className="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat z-0 pointer-events-none"
             style={{ 
               backgroundImage: "url('/images/track.webp')",
-              transform: "scale(1.5)",
-              transformOrigin: "bottom center"
+              scale: 1.5,
+              transformOrigin: "bottom center",
+              y: trackY
             }}
           />
 
           {/* Flight Image Layer */}
-          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-10 overflow-visible">
+          <div className="absolute bottom-0 left-0 w-full flex flex-col items-center pointer-events-none z-10 overflow-visible translate-y-[40%]">
             <motion.img 
-              style={{ y: flightY }}
+              style={{ y: flightY, willChange: "transform" }}
               src="/images/flight.webp" 
               alt="Flight" 
-              className="w-[110vw] md:w-[90vw] max-w-none object-contain drop-shadow-2xl"
+              className="w-[110vw] md:w-[90vw] max-w-none object-contain"
             />
           </div>
 
