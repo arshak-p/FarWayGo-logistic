@@ -212,7 +212,8 @@ export function WhyStandOut() {
     <section
       id="why-us"
       ref={ref}
-      className="min-h-screen relative bg-transparent py-24 md:py-32"
+      className="min-h-screen relative bg-cover bg-center bg-no-repeat py-24 md:py-32"
+      style={{ backgroundImage: "url('/images/track.webp')" }}
     >
       {/* Floating clouds with scroll AND mouse parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">
