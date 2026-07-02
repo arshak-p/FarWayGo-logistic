@@ -38,7 +38,7 @@ export function Services() {
   const [loadProgress, setLoadProgress] = useState(0);
 
   const panelTriggerRef = useRef(null);
-  const isPanelInView = useInView(panelTriggerRef, { once: false, amount: 0 });
+  const isPanelInView = useInView(panelTriggerRef, { once: false, amount: 0, margin: "10000px 0px 0px 0px" });
 
   // 1. Preload Frames
   useEffect(() => {
