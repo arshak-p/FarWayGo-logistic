@@ -341,7 +341,7 @@ export function WhyStandOut() {
       <div 
         ref={trackTriggerRef} 
         className="relative w-full min-h-screen mt-24 md:mt-40 overflow-hidden flex flex-col"
-        style={{ borderTopLeftRadius: '50% 15vw', borderTopRightRadius: '50% 15vw' }}
+        style={{ clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)' }}
       >
         
         {/* Slide 1: Orange */}
@@ -353,7 +353,7 @@ export function WhyStandOut() {
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0 } }
           }}
           className="absolute inset-0 z-0 bg-[var(--color-orange)]"
-          style={{ borderTopLeftRadius: '50% 15vw', borderTopRightRadius: '50% 15vw' }}
+          style={{ clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)' }}
         />
 
         {/* Slide 2: Black */}
@@ -365,7 +365,7 @@ export function WhyStandOut() {
             visible: { y: "0%", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 } }
           }}
           className="absolute inset-0 z-0 bg-[var(--color-ink)]"
-          style={{ borderTopLeftRadius: '50% 15vw', borderTopRightRadius: '50% 15vw' }}
+          style={{ clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)' }}
         />
 
         {/* Slide 3: The Image */}
@@ -379,8 +379,7 @@ export function WhyStandOut() {
           style={{ 
             willChange: "transform", 
             backgroundImage: "url('/images/track.webp')",
-            borderTopLeftRadius: '50% 15vw', 
-            borderTopRightRadius: '50% 15vw'
+            clipPath: 'polygon(50% 0%, 100% 15vw, 100% 100%, 0% 100%, 0% 15vw)'
           }}
           className="relative z-10 w-full flex-grow min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat pt-32 md:pt-48 pb-24 md:pb-32" 
         >
