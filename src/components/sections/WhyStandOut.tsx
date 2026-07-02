@@ -393,6 +393,15 @@ export function WhyStandOut() {
             }}
           />
 
+          {/* Flight Image Layer */}
+          <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pointer-events-none z-0">
+            <img 
+              src="/images/flight.webp" 
+              alt="Flight" 
+              className="w-[80vw] max-w-4xl object-contain drop-shadow-2xl"
+            />
+          </div>
+
           <div className="container-px max-content pointer-events-auto relative z-10 mt-[280px] md:mt-[360px]">
             {/* feature grid */}
             <motion.div 
