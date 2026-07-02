@@ -336,7 +336,7 @@ export function WhyStandOut() {
       </div>
 
       <div 
-        className="relative w-full bg-cover bg-center bg-no-repeat pt-16 md:pt-24 pb-24 md:pb-32" 
+        className="relative w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32 mt-12 md:mt-24" 
         style={{ backgroundImage: "url('/images/track.webp')" }}
       >
         <div className="container-px max-content">
