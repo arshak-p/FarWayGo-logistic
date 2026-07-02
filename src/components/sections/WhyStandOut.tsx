@@ -269,7 +269,7 @@ export function WhyStandOut() {
         {/* CLOUD 4: Top Right (Next to the "E" in "WE") */}
         <motion.div
           style={{ x: cloudRightX2, opacity: cloudOpacity }}
-          className="absolute top-[15%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
+          className="absolute top-[0%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y }}>
             <motion.img 
