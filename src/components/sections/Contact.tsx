@@ -25,12 +25,12 @@ export function Contact() {
     <section id="contact" className="-mt-[100vh] z-20 min-h-screen relative overflow-hidden bg-cover bg-bottom bg-no-repeat container-px pt-32 md:pt-40 pb-20 md:pb-28" style={{ backgroundImage: 'url(/images/contact-bg-3.webp)' }}>
       <div className="max-content relative z-10">
         <AnimatedSection>
-          <AnimatedItem>
+          <AnimatedItem delay={0.6}>
             <h2 className="font-display font-semibold uppercase tracking-normal text-white text-[16vw] md:text-[7.5rem] leading-[0.85]">
               Contact Us
             </h2>
           </AnimatedItem>
-          <AnimatedItem delay={0.06} className="mt-5 max-w-xl">
+          <AnimatedItem delay={0.7} className="mt-5 max-w-xl">
             <p className="text-white/90 text-[15.5px] leading-relaxed">
               FarWayGo operates a high-precision global network 24/7.
               Whether you need immediate technical assistance or a long-term
@@ -41,7 +41,7 @@ export function Contact() {
 
         <div className="mt-14 grid lg:grid-cols-[1.3fr_1fr] gap-10">
           <AnimatedSection>
-            <AnimatedItem>
+            <AnimatedItem delay={0.8}>
               <h3 className="font-semibold text-white text-lg mb-5">
                 Send a Message
               </h3>
