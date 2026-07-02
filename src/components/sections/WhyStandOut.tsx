@@ -340,7 +340,7 @@ export function WhyStandOut() {
 
       <div 
         ref={trackTriggerRef} 
-        className="relative w-full mt-24 md:mt-40 overflow-hidden"
+        className="relative w-full min-h-screen mt-24 md:mt-40 overflow-hidden flex flex-col"
         style={{ borderTopLeftRadius: '50% 6vw', borderTopRightRadius: '50% 6vw' }}
       >
         
@@ -382,7 +382,7 @@ export function WhyStandOut() {
             borderTopLeftRadius: '50% 6vw', 
             borderTopRightRadius: '50% 6vw'
           }}
-          className="relative z-10 w-full bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
+          className="relative z-10 w-full flex-grow min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat pt-24 md:pt-32 pb-24 md:pb-32" 
         >
           <div className="container-px max-content">
             {/* feature grid */}
