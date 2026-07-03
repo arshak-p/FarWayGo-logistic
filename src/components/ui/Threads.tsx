@@ -143,7 +143,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     const container = containerRef.current;
     if (!container) return;
 
-    let renderer;
+    let renderer: Renderer;
     const originalConsoleError = console.error;
     try {
       // ogl's Renderer calls console.error internally if WebGL fails, 

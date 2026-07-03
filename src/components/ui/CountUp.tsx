@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { useInView, animate } from "framer-motion";
 
@@ -17,15 +19,15 @@ export default function CountUp({
   to,
   from = 0,
   direction = "up",
-  delay = 0,
-  duration = 2,
+  delay = 0.2,
+  duration = 2.5,
   className = "",
   separator = "",
   decimals = 0,
   suffix = "",
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   useEffect(() => {
     if (isInView) {
@@ -35,7 +37,7 @@ export default function CountUp({
 
         const controls = animate(startValue, endValue, {
           duration: duration,
-          ease: "easeOut", // Super smooth deceleration
+          ease: "easeOut",
           onUpdate(value) {
             if (ref.current) {
               let formatted = Intl.NumberFormat("en-US", {

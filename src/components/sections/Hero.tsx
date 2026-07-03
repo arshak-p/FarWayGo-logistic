@@ -44,6 +44,9 @@ export function Hero() {
     >
       {/* ambient sky gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
+      
+      {/* Top dark blue gradient overlay */}
+      <div className="absolute top-0 left-0 right-0 h-48 md:h-64 bg-gradient-to-b from-[var(--color-navy)] to-transparent opacity-60 z-0 pointer-events-none" />
 
       {/* Floating Clouds with Entrance & Parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">

@@ -7,7 +7,7 @@ type ButtonProps = {
   children: ReactNode;
   variant?: "primary" | "ghost" | "outline-light";
   href?: string;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   className?: string;
   type?: "button" | "submit";
 };
