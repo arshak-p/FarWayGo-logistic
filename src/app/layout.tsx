@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     "FarWayGo delivers reliable freight forwarding, transportation, customs clearance, and end-to-end logistics solutions across Saudi Arabia, the GCC, and international markets.",
 };
 
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { Preloader } from "@/components/ui/Preloader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,7 +54,9 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-hidden">
+        <Preloader />
         <CustomCursor />
+        <ScrollToTop />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

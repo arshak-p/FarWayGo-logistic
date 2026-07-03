@@ -160,46 +160,63 @@ export function Contact() {
           </AnimatedSection>
 
           <AnimatedSection className="flex flex-col gap-4 lg:mt-[52px]">
-            <AnimatedItem className="rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start">
-              <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center shrink-0">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Al+Urubah,+Ar+Rahmaniyah,+Riyadh,+Saudi+Arabia+12341"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10 rounded-2xl"
+                aria-label="View on Google Maps"
+              />
+              <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center shrink-0 relative z-0 group-hover:scale-110 transition-transform">
                 <MapPin size={20} weight="fill" className="text-[var(--color-orange)]" />
               </span>
-              <div>
+              <div className="relative z-0">
                 <p className="font-semibold text-white text-[15px]">
                   Global Headquarters
                 </p>
-                <p className="text-white/70 text-[13.5px] mt-1">
+                <p className="text-white/70 text-[13.5px] mt-1 group-hover:text-white transition-colors">
                   Al Urubah, Ar Rahmaniyah, Riyadh, Saudi Arabia – 12341
                 </p>
               </div>
             </AnimatedItem>
 
-            <AnimatedItem className="rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start">
-              <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center shrink-0">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
+              <a 
+                href="tel:+18005550199"
+                className="absolute inset-0 z-10 rounded-2xl"
+                aria-label="Call 24/7 Support Line"
+              />
+              <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center shrink-0 relative z-0 group-hover:scale-110 transition-transform">
                 <Phone size={20} weight="fill" className="text-[var(--color-orange)]" />
               </span>
-              <div>
+              <div className="relative z-0">
                 <p className="font-semibold text-white text-[15px]">
                   24/7 Support Line
                 </p>
                 <p className="text-[var(--color-orange)] font-semibold text-[14.5px] mt-1">
                   +1 (800) 555-0199
                 </p>
-                <p className="text-white/70 text-[12.5px] mt-0.5">
+                <p className="text-white/70 text-[12.5px] mt-0.5 group-hover:text-white/90 transition-colors">
                   Real-time resolution for active shipments.
                 </p>
               </div>
             </AnimatedItem>
 
-            <AnimatedItem className="rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start">
-              <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center shrink-0">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
+              <a 
+                href="mailto:global.ops@farwaygo.com"
+                className="absolute inset-0 z-10 rounded-2xl"
+                aria-label="Send an email"
+              />
+              <span className="w-10 h-10 rounded-full bg-[var(--color-orange)]/20 flex items-center justify-center shrink-0 relative z-0 group-hover:scale-110 transition-transform">
                 <EnvelopeSimple size={20} weight="fill" className="text-[var(--color-orange)]" />
               </span>
-              <div>
+              <div className="relative z-0">
                 <p className="font-semibold text-white text-[15px]">
                   Dedicated Email
                 </p>
-                <p className="text-white/70 text-[13.5px] mt-1">
+                <p className="text-white/70 text-[13.5px] mt-1 group-hover:text-white transition-colors">
                   global.ops@farwaygo.com
                 </p>
               </div>

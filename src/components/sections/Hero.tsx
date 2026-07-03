@@ -46,7 +46,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#7dd3fc] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
 
       {/* Floating Clouds with Entrance & Parallax */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <motion.div
           initial={{ x: "-20vw", opacity: 0 }}
           animate={{ x: 0, opacity: 0.6 }}
@@ -125,13 +125,13 @@ export function Hero() {
           <AnimatedItem delay={0.1} className="mt-10">
             <a
               href="#trust"
-              className="group inline-flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-orange)] text-white shadow-[0_10px_30px_rgba(253,94,2,0.35)]"
+              className="group inline-flex items-center justify-center w-20 h-20 rounded-full bg-[var(--color-orange)] text-white shadow-[0_10px_30px_rgba(253,94,2,0.35)] hover:scale-105 transition-transform"
             >
               <motion.span
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
               >
-                <ArrowDown size={22} weight="bold" />
+                <ArrowDown size={32} weight="bold" />
               </motion.span>
             </a>
           </AnimatedItem>

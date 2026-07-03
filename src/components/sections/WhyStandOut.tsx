@@ -206,7 +206,7 @@ export function WhyStandOut() {
       className="min-h-screen relative bg-[var(--color-mist)] py-24 md:py-32"
     >
       {/* Floating clouds with scroll AND mouse parallax */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-30">
         
         {/* CLOUD 1: Top Left (The new one we just added) */}
         <motion.div
@@ -296,14 +296,14 @@ export function WhyStandOut() {
           <div className="flex items-center justify-center gap-4 w-full relative z-0">
             <motion.h2 
               style={{ x: leftX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[20vw] md:text-[12vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Why
             </motion.h2>
 
             <motion.h2 
               style={{ x: rightX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[20vw] md:text-[12vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               We
             </motion.h2>
@@ -312,13 +312,13 @@ export function WhyStandOut() {
           <div className="flex items-center justify-center gap-4 w-full relative z-0 mt-8 md:mt-16">
             <motion.h2 
               style={{ x: standLeftX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[20vw] md:text-[12vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Stand
             </motion.h2>
             <motion.h2 
               style={{ x: standRightX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[20vw] md:text-[12vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Out?
             </motion.h2>
@@ -367,19 +367,14 @@ export function WhyStandOut() {
           />
 
           {/* Flight Image Layer (Moved to Background) */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={isTrackInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
-            className="absolute top-[50vh] left-0 w-full flex flex-col items-center pointer-events-none z-0 overflow-visible"
-          >
+          <div className="absolute top-[50vh] left-[-15vw] md:left-[-10vw] w-[120vw] pointer-events-none z-0 overflow-visible">
             <motion.img 
               style={{ y: flightY, willChange: "transform" }}
               src="/images/flight-optimized.webp" 
               alt="Flight" 
-              className="w-[110vw] md:w-[90vw] max-w-none object-contain"
+              className="w-full max-w-none object-contain"
             />
-          </motion.div>
+          </div>
 
           {/* Scaled Background Layer */}
           {/* Track background image removed as requested */}
