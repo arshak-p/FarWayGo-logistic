@@ -296,14 +296,14 @@ export function WhyStandOut() {
           <div className="flex items-center justify-center gap-4 w-full relative z-0">
             <motion.h2 
               style={{ x: leftX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Why
             </motion.h2>
 
             <motion.h2 
               style={{ x: rightX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               We
             </motion.h2>
@@ -312,13 +312,13 @@ export function WhyStandOut() {
           <div className="flex items-center justify-center gap-4 w-full relative z-0 mt-8 md:mt-16">
             <motion.h2 
               style={{ x: standLeftX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Stand
             </motion.h2>
             <motion.h2 
               style={{ x: standRightX }}
-              className="font-display font-semibold uppercase text-[#dbe1e3] text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Out?
             </motion.h2>

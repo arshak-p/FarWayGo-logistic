@@ -18,6 +18,13 @@ export function CustomCursor() {
     const moveCursor = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        
+        // Change cursor color based on hovered element
+        const target = e.target as HTMLElement;
+        if (target && target.closest) {
+          const shouldBeWhite = target.closest('[data-cursor="white"]');
+          cursorRef.current.style.filter = shouldBeWhite ? 'brightness(0) invert(1)' : 'none';
+        }
       }
     };
 

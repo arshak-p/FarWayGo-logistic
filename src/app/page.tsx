@@ -5,6 +5,7 @@ import { WhyStandOut } from "@/components/sections/WhyStandOut";
 import { About } from "@/components/sections/About";
 import { Services } from "@/components/sections/Services";
 import { Process } from "@/components/sections/Process";
+import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 import { FinalCta } from "@/components/sections/FinalCta";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <Services />
         <div className="bg-black">
           <Process />
+          <Faq />
           <Contact />
         </div>
       </main>

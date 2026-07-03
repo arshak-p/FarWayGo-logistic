@@ -43,7 +43,7 @@ export function Hero() {
       className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40 pb-24 md:pb-[212px]"
     >
       {/* ambient sky gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#7dd3fc] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
 
       {/* Floating Clouds with Entrance & Parallax */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -110,17 +110,32 @@ export function Hero() {
 
       <div className="relative z-10 container-px max-content">
         <AnimatedSection>
-          <AnimatedItem>
-            <h1 className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[12vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]">
-              Storage,
-              <br />
-              Distribution
-              <br />
-              &amp; Transportation
-              <br />
-              <span className="text-[var(--color-orange)]">Solutions</span>
-            </h1>
-          </AnimatedItem>
+          <motion.h1 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.1 } }
+            }}
+            className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[11vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]"
+          >
+            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+              <span className="overflow-hidden pb-4 -mb-4 inline-flex"><motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>Storage,</motion.span></span>
+            </div>
+            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+              <span className="overflow-hidden pb-4 -mb-4 inline-flex"><motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>Distribution</motion.span></span>
+            </div>
+            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+              {"& Transportation".split(" ").map((word, i) => (
+                <span key={`h3-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
+                  <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+              <span className="overflow-hidden pb-4 -mb-4 inline-flex text-[var(--color-orange)]"><motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>Solutions</motion.span></span>
+            </div>
+          </motion.h1>
 
           <AnimatedItem delay={0.1} className="mt-10">
             <a

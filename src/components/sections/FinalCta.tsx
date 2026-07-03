@@ -18,9 +18,9 @@ const footerLinks = {
 
 export function FinalCta() {
   return (
-    <footer className="relative bg-black">
+    <footer className="relative bg-black -mt-10 md:-mt-16 z-30">
       {/* final CTA card overlapping the dark footer */}
-      <div className="container-px relative z-10 -mb-24 md:-mb-32">
+      <div className="container-px relative z-10 -mb-24 md:-mb-32 pt-10 md:pt-16">
         <div className="max-content">
           <AnimatedSection>
             <AnimatedItem className="rounded-[28px] bg-[var(--color-navy)] px-8 md:px-16 py-14 md:py-20 text-center max-w-4xl mx-auto">

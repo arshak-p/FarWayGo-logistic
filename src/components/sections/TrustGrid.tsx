@@ -101,13 +101,30 @@ export function TrustGrid() {
       <div className="max-content relative z-10">
         <div className="grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-14 md:gap-y-24 relative max-w-[1400px] mx-auto">
           <AnimatedSection className="flex flex-col md:pr-16 lg:pr-24">
-            <AnimatedItem>
-              <h2 className="font-display font-bold uppercase text-[var(--color-navy-deep)] text-[16vw] md:text-[7.5rem] leading-[0.85] tracking-normal max-w-3xl">
-                Delivering Trust
-                <br />
-                Across Every Mile
-              </h2>
-            </AnimatedItem>
+            <motion.h2 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.15 } }
+              }}
+              className="font-display font-bold uppercase text-[var(--color-navy-deep)] text-[13vw] md:text-[7.5rem] leading-[0.85] tracking-normal max-w-3xl"
+            >
+              <div className="flex flex-wrap gap-x-[3vw] md:gap-x-6">
+                {"Delivering Trust".split(" ").map((word, i) => (
+                  <span key={`l1-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
+                    <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-x-[3vw] md:gap-x-6">
+                {"Across Every Mile".split(" ").map((word, i) => (
+                  <span key={`l2-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
+                    <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
+                  </span>
+                ))}
+              </div>
+            </motion.h2>
 
             <div className="pt-20 md:pt-44 flex flex-col gap-14 md:gap-24">
               {leftFeatures.map((f) => (

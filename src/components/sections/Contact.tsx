@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { MapPin, Phone, EnvelopeSimple, CaretDown, CheckCircle } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
@@ -18,6 +18,8 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: "10000px 0px 0px 0px" });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,15 +47,36 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="-mt-[100vh] z-20 min-h-screen relative overflow-hidden bg-cover bg-bottom bg-no-repeat container-px pt-32 md:pt-40 pb-20 md:pb-28" style={{ backgroundImage: 'url(/images/contact-bg-3.webp)' }}>
+    <section id="contact" ref={sectionRef} className="z-20 min-h-screen relative overflow-hidden container-px pt-32 md:pt-40 pb-20 md:pb-28">
+      <motion.div
+        className="absolute inset-0 z-0 bg-cover bg-bottom bg-no-repeat origin-bottom"
+        style={{ backgroundImage: 'url(/images/contact-bg-3.webp)' }}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={{
+          hidden: { scale: 1.25, opacity: 0, transition: { duration: 0.6, ease: "easeIn" } },
+          visible: { scale: 1.15, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+        }}
+      />
       <div className="max-content relative z-10">
         <AnimatedSection>
-          <AnimatedItem delay={0.6}>
-            <h2 className="font-display font-semibold uppercase tracking-normal text-white text-[16vw] md:text-[7.5rem] leading-[0.85]">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
+            className="overflow-hidden pb-4 mb-2"
+          >
+            <motion.h2 
+              variants={{
+                hidden: { y: "100%" },
+                visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 } }
+              }}
+              className="font-display font-semibold uppercase tracking-normal text-white text-[16vw] md:text-[7.5rem] leading-[0.85]"
+            >
               Contact Us
-            </h2>
-          </AnimatedItem>
-          <AnimatedItem delay={0.7} className="mt-5 max-w-xl">
+            </motion.h2>
+          </motion.div>
+          <AnimatedItem delay={0.6} className="mt-5 max-w-xl">
             <p className="text-white/90 text-[15.5px] leading-relaxed">
               FarWayGo operates a high-precision global network 24/7.
               Whether you need immediate technical assistance or a long-term

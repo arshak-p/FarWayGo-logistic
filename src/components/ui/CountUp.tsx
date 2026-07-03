@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useInView, animate } from "framer-motion";
 
 export interface CountUpProps {
   to: number;
@@ -25,45 +25,41 @@ export default function CountUp({
   suffix = "",
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(direction === "down" ? to : from);
-  
-  // Calculate damping and stiffness based on duration
-  const damping = 20 + 40 * (1 / duration);
-  const stiffness = 100 * (1 / duration);
-  
-  const springValue = useSpring(motionValue, {
-    damping,
-    stiffness,
-  });
-  
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   useEffect(() => {
     if (isInView) {
-      setTimeout(() => {
-        motionValue.set(direction === "down" ? from : to);
-      }, delay * 1000);
-    }
-  }, [motionValue, isInView, delay, to, from, direction]);
+      let timeoutId = setTimeout(() => {
+        const startValue = direction === "down" ? to : from;
+        const endValue = direction === "down" ? from : to;
 
-  useEffect(() => {
-    springValue.on("change", (latest) => {
-      if (ref.current) {
-        let formatted = Intl.NumberFormat("en-US", {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        }).format(Number(latest.toFixed(decimals)));
-        
-        if (separator === "") {
-          formatted = formatted.replace(/,/g, "");
-        } else if (separator !== ",") {
-          formatted = formatted.replace(/,/g, separator);
-        }
-        
-        ref.current.textContent = formatted + suffix;
-      }
-    });
-  }, [springValue, decimals, separator, suffix]);
+        const controls = animate(startValue, endValue, {
+          duration: duration,
+          ease: "easeOut", // Super smooth deceleration
+          onUpdate(value) {
+            if (ref.current) {
+              let formatted = Intl.NumberFormat("en-US", {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+              }).format(Number(value.toFixed(decimals)));
+              
+              if (separator === "") {
+                formatted = formatted.replace(/,/g, "");
+              } else if (separator !== ",") {
+                formatted = formatted.replace(/,/g, separator);
+              }
+              
+              ref.current.textContent = formatted + suffix;
+            }
+          },
+        });
+
+        return controls.stop;
+      }, delay * 1000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isInView, delay, duration, decimals, separator, suffix, from, to, direction]);
 
   return <span ref={ref} className={className}>{from}{suffix}</span>;
 }

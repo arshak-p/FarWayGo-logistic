@@ -60,11 +60,11 @@ export function Process() {
       <div ref={panelTriggerRef} className="absolute top-[100vh] bottom-0 left-0 w-full pointer-events-none" />
 
       {/* 
-        2. CONTENT TRIGGER: Placed at 160vh.
-        You must scroll 60vh INTO the pinned section before this hits the bottom of your screen.
-        When scrolling back up, this exits the screen first (at 60vh), making the content disappear BEFORE the panel.
+        2. CONTENT TRIGGER: Placed at 102vh.
+        You must scroll 2vh INTO the pinned section before this hits the bottom of your screen.
+        When scrolling back up, this exits the screen first (at 2vh), making the content disappear BEFORE the panel.
       */}
-      <div ref={contentTriggerRef} className="absolute top-[110vh] bottom-0 left-0 w-full pointer-events-none" />
+      <div ref={contentTriggerRef} className="absolute top-[102vh] bottom-0 left-0 w-full pointer-events-none" />
 
       {/* The sticky wrapper holds the UI on screen while we scroll through the triggers */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center py-24 px-6 md:px-12">
@@ -96,10 +96,10 @@ export function Process() {
               hidden: { opacity: 0 },
               visible: { 
                 opacity: 1,
-                transition: { staggerChildren: 0.08, delayChildren: 0.1 }
+                transition: { staggerChildren: 0.05, delayChildren: 0 }
               }
             }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-8 gap-y-12 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 hide-scrollbar"
           >
             
             {/* Header Block (Col 1, Row 1) */}
@@ -108,12 +108,40 @@ export function Process() {
                 hidden: { opacity: 0, y: 40, transition: { duration: 0.4, ease: "easeIn" } },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
               }}
-              className="flex flex-col items-start justify-start"
+              className="flex flex-col justify-end min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-center pb-8 md:pb-0"
             >
               <EyebrowBadge variant="orange">Our Process</EyebrowBadge>
-              <h2 className="font-display text-white text-5xl md:text-6xl lg:text-[4rem] leading-[1.1] tracking-tight mt-6">
-                How we move<br/>your cargo across<br/>the skies
-              </h2>
+              <motion.h2 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
+                variants={{
+                  visible: { transition: { staggerChildren: 0.15 } }
+                }}
+                className="font-display text-white text-5xl md:text-6xl lg:text-[4rem] leading-[1.1] tracking-tight mt-6"
+              >
+                <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
+                  {"How we move".split(" ").map((word, i) => (
+                    <span key={`p1-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
+                      <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
+                    </span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
+                  {"your cargo across".split(" ").map((word, i) => (
+                    <span key={`p2-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
+                      <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
+                    </span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
+                  {"the skies".split(" ").map((word, i) => (
+                    <span key={`p3-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
+                      <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
+                    </span>
+                  ))}
+                </div>
+              </motion.h2>
             </motion.div>
 
             {/* Process Steps */}
@@ -124,7 +152,7 @@ export function Process() {
                   hidden: { opacity: 0, y: 40, transition: { duration: 0.4, ease: "easeIn" } },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                 }}
-                className="flex flex-col group h-full"
+                className="flex flex-col group h-full min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-center"
               >
                 {/* Image Container with Text Inside */}
                 <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/5 bg-white/5 flex flex-col justify-end">
