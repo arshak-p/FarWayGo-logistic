@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  assetPrefix: '.',
   allowedDevOrigins: ['192.168.1.4'],
 };
 

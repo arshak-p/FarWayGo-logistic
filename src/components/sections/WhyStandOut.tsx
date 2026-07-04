@@ -386,7 +386,7 @@ export function WhyStandOut() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTrackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="relative grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-12 md:gap-y-20 max-w-[1400px] mx-auto z-10"
+              className="relative grid md:grid-cols-2 gap-x-24 lg:gap-x-[300px] xl:gap-x-[400px] 2xl:gap-x-[500px] gap-y-12 md:gap-y-24 max-w-[1500px] mx-auto z-10"
               style={{ perspective: "1500px" }}
             >
               {stats.map((s, idx) => {

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { Plus, Minus, EnvelopeSimple, Phone } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CaretDown } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { AnimatedTitleBlock } from "@/components/ui/AnimatedTitle";
+import { CaretDown } from "@phosphor-icons/react";
 
 const faqs = [
   {
@@ -53,22 +55,11 @@ export function Faq() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="md:col-span-5 md:sticky md:top-32">
             <AnimatedSection>
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-                className="overflow-hidden pb-4 md:pb-6 mb-4 md:mb-6"
-              >
-                <motion.h2 
-                  variants={{
-                    hidden: { y: "100%" },
-                    visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
-                  }}
-                  className="font-display font-semibold uppercase tracking-normal text-black text-[18vw] md:text-7xl lg:text-8xl leading-[0.85]"
-                >
+              <AnimatedTitleBlock className="md:pb-6 mb-4 md:mb-6">
+                <h2 className="font-display font-semibold uppercase tracking-normal text-black text-[18vw] md:text-7xl lg:text-8xl leading-[0.85]">
                   FAQ
-                </motion.h2>
-              </motion.div>
+                </h2>
+              </AnimatedTitleBlock>
               <AnimatedItem delay={0.1}>
                 <p className="text-black font-medium text-xl md:text-2xl mb-4">
                   Still have a doubt?

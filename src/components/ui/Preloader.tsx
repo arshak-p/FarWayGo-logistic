@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+export const MediaCache = {
+  videoUrl: "/videos/services-scroll.mp4"
+};
+
 export function Preloader() {
   const [progress, setProgress] = useState(0); // Start at 0, or 10 as in the framer component
   const [isLoading, setIsLoading] = useState(true);
@@ -11,31 +15,70 @@ export function Preloader() {
     // Disable scrolling while loading
     document.body.style.overflow = "hidden";
 
+    let isVideoLoaded = false;
+    let minTimePassed = false;
+
     // Simulate loading progress
     const duration = 2000; // 2 seconds
     const interval = 30;
     const steps = duration / interval;
     let currentStep = 0;
 
+    const finishLoading = () => {
+      setProgress(100);
+      setTimeout(() => {
+        setIsLoading(false);
+        document.body.style.overflow = ""; // Re-enable scrolling
+      }, 400);
+    };
+
     const timer = setInterval(() => {
       currentStep++;
       const rawProgress = (currentStep / steps);
       const easedProgress = 1 - Math.pow(1 - rawProgress, 3); // Cubic ease out
-      const currentPercentage = Math.round(easedProgress * 100);
+      let currentPercentage = Math.round(easedProgress * 100);
+      
+      // Don't reach 100% until video is loaded
+      if (currentPercentage > 99 && !isVideoLoaded) {
+        currentPercentage = 99;
+      }
       
       setProgress(currentPercentage > 100 ? 100 : currentPercentage);
 
       if (currentStep >= steps) {
+        minTimePassed = true;
         clearInterval(timer);
-        setTimeout(() => {
-          setIsLoading(false);
-          document.body.style.overflow = ""; // Re-enable scrolling
-        }, 400); 
+        if (isVideoLoaded) {
+          finishLoading();
+        }
       }
     }, interval);
 
+    // Force unlock after 15 seconds max (fallback)
+    const fallbackTimer = setTimeout(() => {
+      if (!isVideoLoaded) {
+        isVideoLoaded = true;
+        if (minTimePassed) finishLoading();
+      }
+    }, 15000);
+
+    // Fetch video to memory blob
+    fetch(MediaCache.videoUrl)
+      .then(res => res.blob())
+      .then(blob => {
+         MediaCache.videoUrl = URL.createObjectURL(blob);
+         isVideoLoaded = true;
+         if (minTimePassed) finishLoading();
+      })
+      .catch(err => {
+         console.warn("Failed to preload video blob", err);
+         isVideoLoaded = true;
+         if (minTimePassed) finishLoading();
+      });
+
     return () => {
       clearInterval(timer);
+      clearTimeout(fallbackTimer);
       document.body.style.overflow = "";
     };
   }, []);

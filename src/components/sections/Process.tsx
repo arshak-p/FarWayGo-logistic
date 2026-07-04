@@ -1,9 +1,9 @@
 "use client";
 
-import { EyebrowBadge } from "@/components/ui/EyebrowBadge";
+import { ReactNode, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { AnimatedTitleBlock, AnimatedTitleGroup, SplitText } from "@/components/ui/AnimatedTitle";
 
 const steps = [
   {
@@ -108,40 +108,27 @@ export function Process() {
                 hidden: { opacity: 0, y: 40, transition: { duration: 0.4, ease: "easeIn" } },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
               }}
-              className="flex flex-col justify-end min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-center pb-8 md:pb-0"
+              className="flex flex-col justify-end items-start min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-center pb-8 md:pb-0"
             >
-              <EyebrowBadge variant="orange">Our Process</EyebrowBadge>
-              <motion.h2 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-                variants={{
-                  visible: { transition: { staggerChildren: 0.15 } }
-                }}
-                className="font-display text-white text-5xl md:text-6xl lg:text-[4rem] leading-[1.1] tracking-tight mt-6"
+              <AnimatedTitleBlock>
+                <h2 className="text-[var(--color-orange)] font-display font-bold text-5xl md:text-6xl lg:text-[4rem] uppercase tracking-tight mb-6">
+                  Our Process
+                </h2>
+              </AnimatedTitleBlock>
+              <AnimatedTitleGroup 
+                as="h3"
+                className="font-display text-white text-3xl md:text-4xl lg:text-4xl leading-[1.1] tracking-tight"
               >
                 <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
-                  {"How we move".split(" ").map((word, i) => (
-                    <span key={`p1-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
-                      <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
-                    </span>
-                  ))}
+                  <SplitText text="How we move" className="pr-4 shrink-0" />
                 </div>
                 <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
-                  {"your cargo across".split(" ").map((word, i) => (
-                    <span key={`p2-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
-                      <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
-                    </span>
-                  ))}
+                  <SplitText text="your cargo across" className="pr-4 shrink-0" />
                 </div>
                 <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
-                  {"the skies".split(" ").map((word, i) => (
-                    <span key={`p3-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
-                      <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
-                    </span>
-                  ))}
+                  <SplitText text="the skies" className="pr-4 shrink-0" />
                 </div>
-              </motion.h2>
+              </AnimatedTitleGroup>
             </motion.div>
 
             {/* Process Steps */}

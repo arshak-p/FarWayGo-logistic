@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from "fram
 import { useRef, useEffect } from "react";
 import { ArrowDown } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { AnimatedTitleGroup, AnimatedWord, SplitText } from "@/components/ui/AnimatedTitle";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -113,32 +114,23 @@ export function Hero() {
 
       <div className="relative z-10 container-px max-content">
         <AnimatedSection>
-          <motion.h1 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } }
-            }}
+          <AnimatedTitleGroup 
+            as="h1"
             className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[11vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]"
           >
             <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
-              <span className="overflow-hidden pb-4 -mb-4 inline-flex"><motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>Storage,</motion.span></span>
+              <AnimatedWord>Storage,</AnimatedWord>
             </div>
             <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
-              <span className="overflow-hidden pb-4 -mb-4 inline-flex"><motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>Distribution</motion.span></span>
+              <AnimatedWord>Distribution</AnimatedWord>
             </div>
             <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
-              {"& Transportation".split(" ").map((word, i) => (
-                <span key={`h3-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
-                  <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
-                </span>
-              ))}
+              <SplitText text="& Transportation" className="pr-4 shrink-0" />
             </div>
             <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
-              <span className="overflow-hidden pb-4 -mb-4 inline-flex text-[var(--color-orange)]"><motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>Solutions</motion.span></span>
+              <AnimatedWord className="text-[var(--color-orange)]">Solutions</AnimatedWord>
             </div>
-          </motion.h1>
+          </AnimatedTitleGroup>
 
           <AnimatedItem delay={0.1} className="mt-10">
             <a

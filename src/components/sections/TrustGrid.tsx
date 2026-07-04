@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { AnimatedTitleGroup, SplitText } from "@/components/ui/AnimatedTitle";
 import { ReactNode, useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useVelocity, useSpring, useTransform } from "framer-motion";
@@ -99,32 +100,16 @@ export function TrustGrid() {
       </div>
 
       <div className="max-content relative z-10">
-        <div className="grid md:grid-cols-2 gap-x-24 md:gap-x-48 lg:gap-x-[400px] gap-y-14 md:gap-y-24 relative max-w-[1400px] mx-auto">
-          <AnimatedSection className="flex flex-col md:pr-16 lg:pr-24">
-            <motion.h2 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-              variants={{
-                visible: { transition: { staggerChildren: 0.15 } }
-              }}
-              className="font-display font-bold uppercase text-[var(--color-navy-deep)] text-[13vw] md:text-[7.5rem] leading-[0.85] tracking-normal max-w-3xl"
-            >
+        <div className="grid md:grid-cols-2 gap-x-24 lg:gap-x-[300px] xl:gap-x-[400px] 2xl:gap-x-[500px] gap-y-14 md:gap-y-24 relative max-w-[1500px] mx-auto">
+          <AnimatedSection className="flex flex-col md:pr-16 lg:pr-24 mt-[20px]">
+            <AnimatedTitleGroup as="h2" className="font-display font-bold uppercase text-[var(--color-navy-deep)] text-[12vw] md:text-[5.5vw] lg:text-[6rem] xl:text-[6.5rem] leading-[0.85] tracking-normal max-w-3xl pr-4">
               <div className="flex flex-wrap gap-x-[3vw] md:gap-x-6">
-                {"Delivering Trust".split(" ").map((word, i) => (
-                  <span key={`l1-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
-                    <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
-                  </span>
-                ))}
+                <SplitText text="Delivering Trust" />
               </div>
-              <div className="flex flex-wrap gap-x-[3vw] md:gap-x-6">
-                {"Across Every Mile".split(" ").map((word, i) => (
-                  <span key={`l2-${i}`} className="overflow-hidden pb-4 -mb-4 inline-flex">
-                    <motion.span variants={{ hidden: { y: "100%" }, visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}>{word}</motion.span>
-                  </span>
-                ))}
+              <div className="flex flex-wrap gap-x-[3vw] md:gap-x-6 mt-2">
+                <SplitText text="Across Every Mile" />
               </div>
-            </motion.h2>
+            </AnimatedTitleGroup>
 
             <div className="pt-20 md:pt-44 flex flex-col gap-14 md:gap-24">
               {leftFeatures.map((f) => (
@@ -140,7 +125,7 @@ export function TrustGrid() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection className="flex flex-col gap-14 md:gap-20 md:pl-16 lg:pl-24 pt-32 md:pt-[380px] lg:pt-[500px] xl:pt-[600px] text-left">
+          <AnimatedSection className="flex flex-col gap-14 md:gap-20 md:pl-16 lg:pl-24 pt-32 md:pt-[380px] lg:pt-[500px] xl:pt-[600px] text-left -mt-[80px]">
             {rightFeatures.map((f) => (
               <AnimatedItem key={f.title}>
                 <h3 className="font-subheading font-semibold uppercase text-[var(--color-navy)] text-xl md:text-[1.4rem] mb-3">

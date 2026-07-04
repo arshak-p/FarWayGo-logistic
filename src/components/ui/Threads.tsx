@@ -26,7 +26,7 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
+const int u_line_count = 15;
 const float u_line_width = 7.0;
 const float u_line_blur = 10.0;
 
@@ -188,7 +188,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     // its cost scales with the number of rendered pixels. Cap the internal render
     // resolution to keep large / high-DPI screens smooth; the effect is soft
     // enough that the downscale is imperceptible.
-    const MAX_RENDER_DIM = 1920;
+    const MAX_RENDER_DIM = 1280;
     function resize() {
       if (!container) return;
       const { clientWidth, clientHeight } = container;

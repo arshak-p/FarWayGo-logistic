@@ -3,7 +3,7 @@
 import { CheckCircle, HandCoins, ShieldCheck, Globe } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
-
+import { AnimatedTitleBlock } from "@/components/ui/AnimatedTitle";
 import ScrollFloat from "@/components/ui/ScrollFloat";
 import CountUp from "@/components/ui/CountUp";
 
@@ -61,22 +61,11 @@ export function About() {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
           <div className="h-full relative">
             <div className="md:sticky md:top-1/2 md:-translate-y-1/2">
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-                className="overflow-hidden pb-4"
-              >
-                <motion.h2 
-                  variants={{
-                    hidden: { y: "100%" },
-                    visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
-                  }}
-                  className="font-display font-semibold uppercase text-[var(--color-navy)] text-[16vw] md:text-[7.5rem] leading-[0.85] tracking-normal"
-                >
+              <AnimatedTitleBlock>
+                <h2 className="font-display font-semibold uppercase text-[var(--color-navy)] text-[16vw] md:text-[7.5rem] leading-[0.85] tracking-normal">
                   About Us
-                </motion.h2>
-              </motion.div>
+                </h2>
+              </AnimatedTitleBlock>
             </div>
           </div>
 

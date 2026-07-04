@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Phone, EnvelopeSimple, CaretDown, CheckCircle } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { AnimatedTitleBlock } from "@/components/ui/AnimatedTitle";
 import { Button } from "@/components/ui/Button";
 
 const subjects = [
@@ -60,22 +61,11 @@ export function Contact() {
       />
       <div className="max-content relative z-10">
         <AnimatedSection>
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, margin: "10000px 0px -100px 0px" }}
-            className="overflow-hidden pb-4 mb-2"
-          >
-            <motion.h2 
-              variants={{
-                hidden: { y: "100%" },
-                visible: { y: "0%", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 } }
-              }}
-              className="font-display font-semibold uppercase tracking-normal text-white text-[16vw] md:text-[7.5rem] leading-[0.85]"
-            >
+          <AnimatedTitleBlock className="mb-2">
+            <h2 className="font-display font-semibold uppercase tracking-normal text-white text-[16vw] md:text-[7.5rem] leading-[0.85]">
               Contact Us
-            </motion.h2>
-          </motion.div>
+            </h2>
+          </AnimatedTitleBlock>
           <AnimatedItem delay={0.6} className="mt-5 max-w-xl">
             <p className="text-white/90 text-[15.5px] leading-relaxed">
               FarWayGo operates a high-precision global network 24/7.
@@ -206,7 +196,7 @@ export function Contact() {
 
             <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
               <a 
-                href="tel:+18005550199"
+                href="tel:+966568191547"
                 className="absolute inset-0 z-10 rounded-2xl"
                 aria-label="Call 24/7 Support Line"
               />
@@ -218,7 +208,7 @@ export function Contact() {
                   24/7 Support Line
                 </p>
                 <p className="text-[var(--color-orange)] font-semibold text-[14.5px] mt-1">
-                  +1 (800) 555-0199
+                  +966 56 819 1547
                 </p>
                 <p className="text-white/70 text-[12.5px] mt-0.5 group-hover:text-white/90 transition-colors">
                   Real-time resolution for active shipments.
