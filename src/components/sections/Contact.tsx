@@ -196,7 +196,7 @@ export function Contact() {
 
             <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
               <a 
-                href="tel:+966568191547"
+                href="tel:00966112701448"
                 className="absolute inset-0 z-10 rounded-2xl"
                 aria-label="Call 24/7 Support Line"
               />
@@ -208,7 +208,7 @@ export function Contact() {
                   24/7 Support Line
                 </p>
                 <p className="text-[var(--color-orange)] font-semibold text-[14.5px] mt-1">
-                  +966 56 819 1547
+                  00966 11 270 1448
                 </p>
                 <p className="text-white/70 text-[12.5px] mt-0.5 group-hover:text-white/90 transition-colors">
                   Real-time resolution for active shipments.
