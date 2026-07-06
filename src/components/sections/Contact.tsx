@@ -107,7 +107,7 @@ export function Contact() {
               <form onSubmit={handleSubmit} className="grid gap-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="text-[13px] font-semibold text-white/90 block mb-2">
+                    <label className="text-[13px] font-semibold text-white block mb-2">
                       Full Name
                     </label>
                     <input
@@ -115,11 +115,11 @@ export function Contact() {
                       required
                       type="text"
                       placeholder="John Doe"
-                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors"
+                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="text-[13px] font-semibold text-white/90 block mb-2">
+                    <label className="text-[13px] font-semibold text-white block mb-2">
                       Business Email
                     </label>
                     <input
@@ -127,13 +127,13 @@ export function Contact() {
                       required
                       type="email"
                       placeholder="j.doe@enterprise.com"
-                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors"
+                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-[13px] font-semibold text-white/90 block mb-2">
+                  <label className="text-[13px] font-semibold text-white block mb-2">
                     Subject
                   </label>
                   <div className="relative">
@@ -150,7 +150,7 @@ export function Contact() {
                 </div>
 
                 <div>
-                  <label className="text-[13px] font-semibold text-white/90 block mb-2">
+                  <label className="text-[13px] font-semibold text-white block mb-2">
                     Message
                   </label>
                   <textarea
@@ -158,7 +158,7 @@ export function Contact() {
                     required
                     rows={5}
                     placeholder="Describe your logistical requirements..."
-                    className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors resize-none"
+                    className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors resize-none"
                   />
                 </div>
 
@@ -188,7 +188,7 @@ export function Contact() {
                 <p className="font-semibold text-white text-[15px]">
                   Global Headquarters
                 </p>
-                <p className="text-white/70 text-[13.5px] mt-1 group-hover:text-white transition-colors">
+                <p className="text-white text-[13.5px] mt-1 group-hover:text-white transition-colors">
                   Al Urubah, Ar Rahmaniyah, Riyadh, Saudi Arabia – 12341
                 </p>
               </div>
@@ -210,7 +210,7 @@ export function Contact() {
                 <p className="text-[var(--color-orange)] font-semibold text-[14.5px] mt-1">
                   00966 11 270 1448
                 </p>
-                <p className="text-white/70 text-[12.5px] mt-0.5 group-hover:text-white/90 transition-colors">
+                <p className="text-white text-[12.5px] mt-0.5 group-hover:text-white transition-colors">
                   Real-time resolution for active shipments.
                 </p>
               </div>
@@ -229,7 +229,7 @@ export function Contact() {
                 <p className="font-semibold text-white text-[15px]">
                   Dedicated Email
                 </p>
-                <p className="text-white/70 text-[13.5px] mt-1 group-hover:text-white transition-colors">
+                <p className="text-white text-[13.5px] mt-1 group-hover:text-white transition-colors">
                   global.ops@farwaygo.com
                 </p>
               </div>

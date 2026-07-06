@@ -73,7 +73,7 @@ export function TrustGrid() {
   const smoothY = useSpring(rawY, {
     stiffness: 70,
     damping: 20,
-    restDelta: 0.001
+    restDelta: 0.1
   });
 
   // Asymmetric smoothing: 
@@ -86,7 +86,7 @@ export function TrustGrid() {
 
       {/* Extends into the next section so the container stops between the WHY WE text */}
       <div ref={trackRef} className="absolute top-0 left-0 right-0 -bottom-[425px] md:-bottom-[550px] z-0 pointer-events-none">
-        <motion.div style={{ y, translateZ: 0 }} className="w-full flex justify-center absolute top-0 left-0">
+        <motion.div style={{ y, willChange: "transform", transform: "translateZ(0)" }} className="w-full flex justify-center absolute top-0 left-0">
           <div ref={elementRef} className="w-[70%] md:w-[45%] lg:w-[35%] xl:w-[30%] max-w-[500px] flex justify-center items-center -translate-y-[8%] lg:-translate-x-[0.3rem]">
             <Image
               src="/images/GroupB.webp"

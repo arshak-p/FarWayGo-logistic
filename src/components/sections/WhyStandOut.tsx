@@ -81,10 +81,11 @@ function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; 
           x: translateXScroll,
           scale: scaleScroll,
           opacity: opacityScroll,
+          willChange: "transform",
         }}
-        className="w-full [will-change:transform]"
+        className="w-full"
       >
-        <div className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-6 ${isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"}`}>
+        <div style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-6 ${isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"}`}>
           <div className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]">
             <Icon size={32} weight="regular" />
           </div>
@@ -129,15 +130,21 @@ export function WhyStandOut() {
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
+    let rafId: number;
     const handleMouseMove = (e: MouseEvent) => {
-      // Normalize mouse position from -1 to 1 based on screen center
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      mouseX.set(x);
-      mouseY.set(y);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth) * 2 - 1;
+        const y = (e.clientY / window.innerHeight) * 2 - 1;
+        mouseX.set(x);
+        mouseY.set(y);
+      });
     };
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [mouseX, mouseY]);
 
   // Spring smooth the mouse for fluid parallax
@@ -194,10 +201,10 @@ export function WhyStandOut() {
   const cloudScroll3 = useTransform(smoothFlightProgress, [0, 1], [0, 150]);
   const cloudScroll4 = useTransform(smoothFlightProgress, [0, 1], [0, 250]);
 
-  const combinedY1 = useMotionTemplate`calc(${parallax1Y}px + ${cloudScroll1}px)`;
-  const combinedY2 = useMotionTemplate`calc(${parallax2Y}px + ${cloudScroll2}px)`;
-  const combinedY3 = useMotionTemplate`calc(${parallax3Y}px + ${cloudScroll3}px)`;
-  const combinedY4 = useMotionTemplate`calc(${parallax2Y}px + ${cloudScroll4}px)`;
+  const combinedY1 = useTransform([parallax1Y, cloudScroll1], ([p, c]: number[]) => p + c);
+  const combinedY2 = useTransform([parallax2Y, cloudScroll2], ([p, c]: number[]) => p + c);
+  const combinedY3 = useTransform([parallax3Y, cloudScroll3], ([p, c]: number[]) => p + c);
+  const combinedY4 = useTransform([parallax2Y, cloudScroll4], ([p, c]: number[]) => p + c);
 
   return (
     <section
@@ -210,7 +217,7 @@ export function WhyStandOut() {
         
         {/* CLOUD 1: Top Left (The new one we just added) */}
         <motion.div
-          style={{ x: cloudLeftX, opacity: cloudOpacity }}
+          style={{ x: cloudLeftX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax1Y }}>
@@ -226,7 +233,7 @@ export function WhyStandOut() {
 
         {/* CLOUD 2: Mid Left (Behind "WHY" and "STAND") */}
         <motion.div
-          style={{ x: cloudLeftX, opacity: cloudOpacity }}
+          style={{ x: cloudLeftX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[10%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax1Y }}>
@@ -242,7 +249,7 @@ export function WhyStandOut() {
 
         {/* CLOUD 3: Bottom Right (Below the container on the right) */}
         <motion.div
-          style={{ x: cloudRightX, opacity: cloudOpacity }}
+          style={{ x: cloudRightX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax2Y }}>
@@ -258,7 +265,7 @@ export function WhyStandOut() {
 
         {/* CLOUD 4: Top Right (Next to the "E" in "WE") */}
         <motion.div
-          style={{ x: cloudRightX2, opacity: cloudOpacity }}
+          style={{ x: cloudRightX2, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[0%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y }}>
@@ -274,7 +281,7 @@ export function WhyStandOut() {
 
         {/* CLOUD 5: Center (Large cloud directly behind "WE") */}
         <motion.div
-          style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity }}
+          style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y }}>
@@ -343,25 +350,25 @@ export function WhyStandOut() {
           {/* Cloud Layer */}
           <motion.img 
             style={{ x: cloudLeftX, y: combinedY1, opacity: cloudOpacity }}
-            src="/clouds/8918166.png"
+            src="/images/clouds/8918166.webp"
             className="absolute top-[-25%] left-[-10%] w-[50vw] max-w-[800px] opacity-100 pointer-events-none z-40"
             alt="cloud"
           />
           <motion.img 
             style={{ x: cloudRightX, y: combinedY2, opacity: cloudOpacity }}
-            src="/clouds/8918172.png"
+            src="/images/clouds/8918172.webp"
             className="absolute top-[40%] right-[-5%] w-[35vw] max-w-[500px] opacity-60 pointer-events-none z-10"
             alt="cloud"
           />
           <motion.img 
             style={{ x: cloudRightX2, y: combinedY3, scale: cloudCenterScale, opacity: cloudOpacity }}
-            src="/clouds/8918176.png"
+            src="/images/clouds/8918176.webp"
             className="absolute bottom-[20%] right-[15%] w-[45vw] max-w-[700px] opacity-80 pointer-events-none z-10"
             alt="cloud"
           />
           <motion.img 
             style={{ x: cloudLeftX, y: combinedY4, opacity: cloudOpacity }}
-            src="/clouds/8918181.png"
+            src="/images/clouds/8918181.webp"
             className="absolute bottom-[30%] left-[5%] w-[50vw] max-w-[800px] opacity-75 pointer-events-none z-10"
             alt="cloud"
           />
