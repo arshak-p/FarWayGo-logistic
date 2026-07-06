@@ -18,13 +18,16 @@ export function Hero() {
   const mouseY = useMotionValue(0);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set((e.clientX / window.innerWidth) * 2 - 1);
-      mouseY.set((e.clientY / window.innerHeight) * 2 - 1);
-    };
+    // Only run mouse tracking on devices with a fine pointer (mouse/trackpad) to save battery/performance on mobile
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const handleMouseMove = (e: MouseEvent) => {
+        mouseX.set((e.clientX / window.innerWidth) * 2 - 1);
+        mouseY.set((e.clientY / window.innerHeight) * 2 - 1);
+      };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    }
   }, [mouseX, mouseY]);
 
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
@@ -41,7 +44,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40 pb-24 md:pb-[212px]"
+      className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40 pb-32 md:pb-48"
     >
       {/* ambient sky gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
@@ -101,15 +104,17 @@ export function Hero() {
       </div>
 
       {/* Hero Image (Group 2) */}
-      <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 top-[5%] md:top-[8%] lg:top-[10%] w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0 pointer-events-none">
-        <Image
-          src="/images/group-2.webp"
-          alt="Logistics Solutions Group"
-          width={1600}
-          height={1600}
-          className="w-full h-auto object-contain object-right opacity-90 md:opacity-100"
-          priority
-        />
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex flex-col justify-end">
+        <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 bottom-0 w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0">
+          <Image
+            src="/images/group-2.webp"
+            alt="Logistics Solutions Group"
+            width={1600}
+            height={1600}
+            className="w-full h-auto object-contain object-right opacity-90 md:opacity-100"
+            priority
+          />
+        </div>
       </div>
 
       <div className="relative z-10 container-px max-content">

@@ -115,7 +115,7 @@ export function Contact() {
                       required
                       type="text"
                       placeholder="John Doe"
-                      className="w-full rounded-xl border border-white/20 bg-black/30 backdrop-blur-sm px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors"
+                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors"
                     />
                   </div>
                   <div>
@@ -127,7 +127,7 @@ export function Contact() {
                       required
                       type="email"
                       placeholder="j.doe@enterprise.com"
-                      className="w-full rounded-xl border border-white/20 bg-black/30 backdrop-blur-sm px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors"
+                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors"
                     />
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export function Contact() {
                     Subject
                   </label>
                   <div className="relative">
-                    <select name="subject" className="w-full appearance-none rounded-xl border border-white/20 bg-black/30 backdrop-blur-sm px-4 py-3 text-[14.5px] text-white outline-none focus:border-[var(--color-orange)] transition-colors">
+                    <select name="subject" className="w-full appearance-none rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white outline-none focus:border-[var(--color-orange)] transition-colors">
                       {subjects.map((s) => (
                         <option key={s} value={s} className="bg-black/90 text-white">{s}</option>
                       ))}
@@ -158,7 +158,7 @@ export function Contact() {
                     required
                     rows={5}
                     placeholder="Describe your logistical requirements..."
-                    className="w-full rounded-xl border border-white/20 bg-black/30 backdrop-blur-sm px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors resize-none"
+                    className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/50 outline-none focus:border-[var(--color-orange)] transition-colors resize-none"
                   />
                 </div>
 
@@ -173,7 +173,7 @@ export function Contact() {
           </AnimatedSection>
 
           <AnimatedSection className="flex flex-col gap-4 lg:mt-[52px]">
-            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 backdrop-blur-xl p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
               <a 
                 href="https://www.google.com/maps/search/?api=1&query=Al+Urubah,+Ar+Rahmaniyah,+Riyadh,+Saudi+Arabia+12341"
                 target="_blank"
@@ -194,7 +194,7 @@ export function Contact() {
               </div>
             </AnimatedItem>
 
-            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 backdrop-blur-xl p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
               <a 
                 href="tel:00966112701448"
                 className="absolute inset-0 z-10 rounded-2xl"
@@ -216,7 +216,7 @@ export function Contact() {
               </div>
             </AnimatedItem>
 
-            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md p-6 flex gap-4 items-start relative hover:bg-black/50 hover:border-white/40 transition-all cursor-pointer">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 backdrop-blur-xl p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
               <a 
                 href="mailto:global.ops@farwaygo.com"
                 className="absolute inset-0 z-10 rounded-2xl"

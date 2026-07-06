@@ -92,7 +92,11 @@ export function Services() {
         
         // Scrub Video
         if (videoRef.current && videoRef.current.duration) {
-          videoRef.current.currentTime = progress * videoRef.current.duration;
+          const targetTime = progress * videoRef.current.duration;
+          // Only update currentTime if the difference is larger than 30ms to prevent decoder thrashing on mobile
+          if (Math.abs(videoRef.current.currentTime - targetTime) > 0.03) {
+            videoRef.current.currentTime = targetTime;
+          }
         }
 
         // Pair Logic

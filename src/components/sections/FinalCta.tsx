@@ -111,10 +111,10 @@ export function FinalCta() {
                 <p className="mt-3 text-[13.5px]">
                   <span className="text-white/45">call </span>
                   <a
-                    href="tel:+18005550199"
+                    href="tel:00966112701448"
                     className="text-[var(--color-orange)] font-semibold hover:underline"
                   >
-                    +1 (800) 555-0199
+                    00966 11 270 1448
                   </a>
                 </p>
               </div>

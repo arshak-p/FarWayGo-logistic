@@ -35,14 +35,24 @@ export function Navbar() {
 
   useEffect(() => {
     let lastY = window.scrollY;
+    let currentScrolled = window.scrollY > 40;
+    let currentHidden = false;
+
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 40);
-      if (y > lastY && y > 120) {
-        setHidden(true);
-      } else {
-        setHidden(false);
+      const newScrolled = y > 40;
+      const newHidden = y > lastY && y > 120;
+
+      if (newScrolled !== currentScrolled) {
+        setScrolled(newScrolled);
+        currentScrolled = newScrolled;
       }
+      
+      if (newHidden !== currentHidden) {
+        setHidden(newHidden);
+        currentHidden = newHidden;
+      }
+      
       lastY = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
