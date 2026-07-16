@@ -36,7 +36,8 @@ body {
   background: var(--color-mist);
   color: var(--color-ink);
   font-family: var(--font-body), sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100vw;
 }
 
 .font-display {
@@ -66,6 +67,15 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--color-navy);
   border-radius: 8px;
+}
+
+/* Hide scrollbar utility for horizontal sliders */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

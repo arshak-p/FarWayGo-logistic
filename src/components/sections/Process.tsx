@@ -176,12 +176,14 @@ export function Process() {
 
                   {/* Text Content inside the image box */}
                   <div className="relative z-20 p-5 md:p-6 flex flex-col">
-                    <h3 className="text-white font-display text-2xl md:text-3xl mb-2 tracking-wide">
+                    <h3 className="text-white font-display text-2xl md:text-3xl mb-0 tracking-wide transition-all duration-500">
                       {step.title}
                     </h3>
-                    <p className="text-white/70 text-xs md:text-sm leading-relaxed">
-                      {step.body}
-                    </p>
+                    <div className="overflow-hidden max-h-0 group-hover:max-h-32 transition-all duration-500 ease-in-out">
+                      <p className="text-white/70 text-xs md:text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 mt-2">
+                        {step.body}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>

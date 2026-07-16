@@ -73,7 +73,7 @@ function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; 
   const opacityScroll = useTransform(localProgress, [0, 1], [0, 1]);
 
   return (
-    <div className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}>
+    <div className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-start md:items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}>
       <motion.div
         style={{
           rotateY: rotateYScroll,
@@ -85,7 +85,7 @@ function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; 
         }}
         className="w-full"
       >
-        <div style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-6 ${isLeft ? "text-right flex flex-col items-end" : "text-left flex flex-col items-start"}`}>
+        <div style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-6 ${isLeft ? "text-left md:text-right flex flex-col items-start md:items-end" : "text-left flex flex-col items-start"}`}>
           <div className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]">
             <Icon size={32} weight="regular" />
           </div>
@@ -210,7 +210,7 @@ export function WhyStandOut() {
     <section
       id="why-us"
       ref={ref}
-      className="min-h-screen relative bg-[var(--color-mist)] py-24 md:py-32"
+      className="min-h-screen relative bg-transparent md:bg-[var(--color-mist)] py-24 md:py-32 overflow-x-clip overflow-y-visible"
     >
       {/* Floating clouds with scroll AND mouse parallax */}
       <div className="absolute inset-0 pointer-events-none z-30">
@@ -220,8 +220,9 @@ export function WhyStandOut() {
           style={{ x: cloudLeftX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
         >
-          <motion.div style={{ x: parallax2X, y: parallax1Y }}>
+          <motion.div style={{ x: parallax2X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.img 
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, 25, 0], y: [0, 10, 0] }}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
               src="/images/clouds/41576358_8918169.webp" 
@@ -236,8 +237,9 @@ export function WhyStandOut() {
           style={{ x: cloudLeftX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[10%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
         >
-          <motion.div style={{ x: parallax1X, y: parallax1Y }}>
+          <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.img 
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, 40, 0], y: [0, -15, 0] }}
               transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
               src="/images/clouds/8918172.webp" 
@@ -252,8 +254,9 @@ export function WhyStandOut() {
           style={{ x: cloudRightX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
         >
-          <motion.div style={{ x: parallax2X, y: parallax2Y }}>
+          <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.img 
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
               transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
               src="/images/clouds/8918181.webp" 
@@ -268,8 +271,9 @@ export function WhyStandOut() {
           style={{ x: cloudRightX2, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[0%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
         >
-          <motion.div style={{ x: parallax1X, y: parallax2Y }}>
+          <motion.div style={{ x: parallax1X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.img 
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
               transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
               src="/images/clouds/8918191.webp" 
@@ -284,8 +288,9 @@ export function WhyStandOut() {
           style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
           className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
-          <motion.div style={{ x: parallax3X, y: parallax3Y }}>
+          <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.img 
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, 15, -15, 0], y: [0, -10, 10, 0] }}
               transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
               src="/images/clouds/8918176.webp" 

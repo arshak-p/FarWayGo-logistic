@@ -44,10 +44,10 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[100vh] bg-[var(--color-mist)] pt-32 md:pt-40 pb-32 md:pb-48"
+      className="relative min-h-[100vh] bg-transparent md:bg-[var(--color-mist)] pt-32 md:pt-40 pb-32 md:pb-48 overflow-visible md:overflow-hidden"
     >
       {/* ambient sky gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
+      <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
       
       {/* Top dark blue gradient overlay */}
       <div className="absolute top-0 left-0 right-0 h-48 md:h-64 bg-gradient-to-b from-[var(--color-navy)] to-transparent opacity-60 z-0 pointer-events-none" />
@@ -60,8 +60,9 @@ export function Hero() {
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
           className="absolute top-[5%] left-[-15%] md:left-[-5%] w-[80%] md:w-[50%] max-w-[800px]"
         >
-          <motion.div style={{ x: parallax1X, y: parallax1Y }}>
+          <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, 60, 0], y: [0, 15, 0] }}
               transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
             >
@@ -76,8 +77,9 @@ export function Hero() {
           transition={{ duration: 2.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className="absolute top-[30%] right-[-20%] md:right-[-5%] w-[70%] md:w-[45%] max-w-[700px]"
         >
-          <motion.div style={{ x: parallax2X, y: parallax2Y }}>
+          <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, -50, 0], y: [0, -20, 0] }}
               transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 3 }}
             >
@@ -92,8 +94,9 @@ export function Hero() {
           transition={{ duration: 3, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="absolute bottom-[-10%] left-[20%] w-[90%] md:w-[60%] max-w-[900px]"
         >
-          <motion.div style={{ x: parallax3X, y: parallax3Y }}>
+          <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
               animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 3.4 }}
             >
@@ -105,7 +108,8 @@ export function Hero() {
 
       {/* Hero Image (Group 2) */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex flex-col justify-end">
-        <div className="absolute right-[-20%] md:right-[-10%] lg:right-0 bottom-0 w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0">
+        {/* Desktop Wrapper (Original) */}
+        <div className="hidden md:block absolute right-[-20%] md:right-[-10%] lg:right-0 bottom-0 w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0">
           <Image
             src="/images/group-2.webp"
             alt="Logistics Solutions Group"
@@ -115,24 +119,42 @@ export function Hero() {
             priority
           />
         </div>
+        
+        {/* Mobile Wrapper (Full Background) */}
+        <div className="md:hidden absolute inset-x-0 top-[20%] h-[300vh] z-0 pointer-events-none">
+          <Image
+            src="/images/crane-mobile.webp"
+            alt="Logistics Solutions Group Mobile"
+            fill
+            className="object-cover object-top opacity-90"
+            priority
+          />
+        </div>
       </div>
 
       <div className="relative z-10 container-px max-content">
         <AnimatedSection>
           <AnimatedTitleGroup 
             as="h1"
-            className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[11vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]"
+            className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[9.5vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]"
           >
-            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+            {/* Mobile: 1 Line for Storage/Distribution (3 lines total) */}
+            <div className="flex md:hidden flex-wrap gap-x-[2vw]">
               <AnimatedWord>Storage,</AnimatedWord>
-            </div>
-            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
               <AnimatedWord>Distribution</AnimatedWord>
             </div>
-            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+            
+            {/* Desktop: 2 Lines for Storage/Distribution (4 lines total) */}
+            <div className="hidden md:flex flex-wrap gap-x-4">
+              <AnimatedWord>Storage,</AnimatedWord>
+            </div>
+            <div className="hidden md:flex flex-wrap gap-x-4">
+              <AnimatedWord>Distribution</AnimatedWord>
+            </div>
+            <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
               <SplitText text="& Transportation" className="pr-4 shrink-0" />
             </div>
-            <div className="flex flex-wrap gap-x-[3vw] md:gap-x-4">
+            <div className="flex flex-wrap gap-x-[2vw] md:gap-x-4">
               <AnimatedWord className="text-[var(--color-orange)]">Solutions</AnimatedWord>
             </div>
           </AnimatedTitleGroup>
@@ -152,7 +174,7 @@ export function Hero() {
           </AnimatedItem>
         </AnimatedSection>
 
-        <div className="-mt-12 md:-mt-20 max-w-md ml-auto">
+        <div className="mt-8 md:-mt-20 max-w-md ml-auto">
           <AnimatedSection>
             <AnimatedItem>
               <p className="font-subheading text-[var(--color-orange)] font-semibold uppercase text-xl md:text-2xl tracking-wide leading-tight">

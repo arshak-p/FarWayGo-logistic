@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '.' : undefined,
   allowedDevOrigins: ['192.168.1.4', '192.168.29.62'],
 };
 

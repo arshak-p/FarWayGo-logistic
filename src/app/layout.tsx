@@ -53,7 +53,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-hidden">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-clip max-w-[100vw]">
         <Preloader />
         <CustomCursor />
         <ScrollToTop />
