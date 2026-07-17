@@ -226,7 +226,7 @@ export function Services() {
                     animate="center"
                     exit="exit"
                     transition={{ type: "spring", stiffness: 90, damping: 20, mass: 1 }}
-                    className="absolute grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 w-full max-w-5xl pointer-events-auto"
+                    className="absolute grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-24 w-full max-w-5xl pointer-events-auto"
                     style={{ perspective: 1000, willChange: "transform, opacity" }}
                   >
                     {activePair.map((service, idx) => (
@@ -234,16 +234,16 @@ export function Services() {
                         key={service.id} 
                         animate={{ y: [0, idx === 0 ? -15 : -10, 0] }}
                         transition={{ duration: idx === 0 ? 4 : 4.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="h-[240px] md:h-[250px] w-full min-w-0 bg-black/60 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
+                        className="h-auto py-8 px-5 sm:px-6 md:h-[250px] md:p-6 w-full min-w-0 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
                         style={{ WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
                       >
                         <p className="text-[var(--color-orange)] text-sm md:text-base font-bold tracking-widest uppercase mb-3">
                           {service.id.padStart(2, '0')} // {service.tag}
                         </p>
-                        <h3 className="text-3xl md:text-4xl font-display text-white leading-tight mb-3">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-display text-white leading-tight mb-3">
                           {service.title}
                         </h3>
-                        <p className="text-white/80 text-base md:text-lg font-medium leading-relaxed">
+                        <p className="text-white/80 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                           {service.body}
                         </p>
                       </motion.div>

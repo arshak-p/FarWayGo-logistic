@@ -56,7 +56,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="min-h-screen relative bg-transparent container-px py-20 md:py-28">
+    <section id="about" className="min-h-screen relative bg-transparent container-px py-16 sm:py-20 md:py-28">
       <div className="max-content">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
           <div className="h-full relative">
@@ -76,11 +76,11 @@ export function About() {
               </h3>
             </AnimatedItem>
             
-            <div className="text-[var(--color-ink)]/80 text-[18px] md:text-[25px] leading-relaxed">
+            <div className="text-[var(--color-ink)]/80 text-[16px] sm:text-[18px] md:text-[25px] leading-relaxed">
               FarWayGo is a dynamic logistics and transportation solutions provider based in Riyadh, Saudi Arabia. Operating under Halloul Al Riadeh Co. Ltd., we combine fleet ownership, advanced logistics systems, and industry expertise to deliver seamless end-to-end transportation services across multiple industries.
             </div>
             
-            <div className="text-[var(--color-ink)]/80 text-[18px] md:text-[25px] leading-relaxed">
+            <div className="text-[var(--color-ink)]/80 text-[16px] sm:text-[18px] md:text-[25px] leading-relaxed">
               Our integrated logistics network enables businesses to manage transportation, warehousing, heavy equipment rentals, and project cargo handling through one reliable partner. We focus on operational efficiency, cargo safety, and long-term business partnerships.
             </div>
           </AnimatedSection>
@@ -92,7 +92,7 @@ export function About() {
             {stats.map((s) => (
               <AnimatedItem
                 key={s.label}
-                className={`rounded-[2rem] p-8 flex flex-col items-center text-center gap-4 ${s.bg} ${s.text} ${s.bg === 'bg-white' ? 'shadow-[0_20px_40px_rgba(2,51,65,0.08)]' : ''}`}
+                className={`rounded-[2rem] p-6 md:p-8 flex flex-col items-center text-center gap-4 ${s.bg} ${s.text} ${s.bg === 'bg-white' ? 'shadow-[0_20px_40px_rgba(2,51,65,0.08)]' : ''}`}
               >
                 <span className="w-16 h-16 rounded-full bg-black/10 flex items-center justify-center mb-2">
                   <s.icon size={32} weight="regular" />

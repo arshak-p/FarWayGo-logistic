@@ -54,17 +54,11 @@ export function FinalCta() {
           <div className="max-content pointer-events-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-16">
               <div>
-                <p className="text-[var(--color-orange)] font-semibold uppercase text-[13px] tracking-wide mb-4">
-                  FARWAYGO
-                </p>
-                <p className="text-white/45 text-[13.5px] leading-relaxed max-w-[220px]">
-                  The global standard for industrial logistics and
-                  infrastructure technology.
-                </p>
+                <img src="/images/footer_logo.webp" alt="FarWayGo" className="w-40 md:w-48 h-auto object-contain opacity-90" />
               </div>
 
               <div>
-                <p className="text-[var(--color-orange)] font-semibold uppercase text-[13px] tracking-wide mb-4">
+                <p className="text-[var(--color-orange)] font-bold uppercase text-[15px] tracking-wider mb-5">
                   SERVICES
                 </p>
                 <ul className="flex flex-col gap-2.5">
@@ -82,7 +76,7 @@ export function FinalCta() {
               </div>
 
               <div>
-                <p className="text-[var(--color-orange)] font-semibold uppercase text-[13px] tracking-wide mb-4">
+                <p className="text-[var(--color-orange)] font-bold uppercase text-[15px] tracking-wider mb-5">
                   COMPANY
                 </p>
                 <ul className="flex flex-col gap-2.5">
@@ -100,7 +94,7 @@ export function FinalCta() {
               </div>
 
               <div>
-                <p className="text-[var(--color-orange)] font-semibold uppercase text-[13px] tracking-wide mb-4">
+                <p className="text-[var(--color-orange)] font-bold uppercase text-[15px] tracking-wider mb-5">
                   GLOBAL HQ
                 </p>
                 <p className="text-white/55 text-[13.5px] leading-relaxed">

@@ -44,7 +44,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[100vh] bg-transparent md:bg-[var(--color-mist)] pt-32 md:pt-40 pb-32 md:pb-48 overflow-visible md:overflow-hidden"
+      className="relative min-h-[100vh] bg-transparent md:bg-[var(--color-mist)] pt-28 md:pt-40 pb-24 md:pb-48 overflow-visible md:overflow-hidden"
     >
       {/* ambient sky gradient */}
       <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
@@ -121,7 +121,7 @@ export function Hero() {
         </div>
         
         {/* Mobile Wrapper (Full Background) */}
-        <div className="md:hidden absolute inset-x-0 top-[20%] h-[300vh] z-0 pointer-events-none">
+        <div className="md:hidden absolute inset-x-0 top-[20%] h-[150vh] z-0 pointer-events-none">
           <Image
             src="/images/crane-mobile.webp"
             alt="Logistics Solutions Group Mobile"
@@ -136,7 +136,7 @@ export function Hero() {
         <AnimatedSection>
           <AnimatedTitleGroup 
             as="h1"
-            className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[9.5vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]"
+            className="font-display font-semibold uppercase leading-[0.95] tracking-normal text-[11vw] sm:text-[9.5vw] md:text-[6.2vw] xl:text-[5.4rem] text-[var(--color-ink)] max-w-[18ch]"
           >
             {/* Mobile: 1 Line for Storage/Distribution (3 lines total) */}
             <div className="flex md:hidden flex-wrap gap-x-[2vw]">
@@ -174,7 +174,7 @@ export function Hero() {
           </AnimatedItem>
         </AnimatedSection>
 
-        <div className="mt-8 md:-mt-20 max-w-md ml-auto">
+        <div className="mt-12 sm:mt-16 md:-mt-20 max-w-md ml-auto">
           <AnimatedSection>
             <AnimatedItem>
               <p className="font-subheading text-[var(--color-orange)] font-semibold uppercase text-xl md:text-2xl tracking-wide leading-tight">

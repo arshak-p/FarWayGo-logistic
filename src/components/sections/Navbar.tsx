@@ -146,7 +146,7 @@ export function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
-                  className="font-subheading text-5xl text-white py-3 flex items-center gap-4"
+                  className="font-subheading text-3xl sm:text-4xl md:text-5xl text-white py-3 flex items-center gap-4"
                 >
                   <l.icon size={28} className="text-[var(--color-orange)]" />
                   {l.label}

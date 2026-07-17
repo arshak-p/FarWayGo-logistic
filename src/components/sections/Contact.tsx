@@ -48,7 +48,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" ref={sectionRef} className="z-20 min-h-screen relative overflow-hidden container-px pt-32 md:pt-40 pb-20 md:pb-28">
+    <section id="contact" ref={sectionRef} className="z-20 min-h-screen relative overflow-hidden container-px pt-24 sm:pt-28 md:pt-40 pb-20 md:pb-28">
       <motion.div
         className="absolute inset-0 z-0 bg-cover bg-bottom bg-no-repeat origin-bottom"
         style={{ backgroundImage: 'url(/images/contact-bg-3.webp)' }}
@@ -62,7 +62,7 @@ export function Contact() {
       <div className="max-content relative z-10">
         <AnimatedSection>
           <AnimatedTitleBlock className="mb-2">
-            <h2 className="font-display font-semibold uppercase tracking-normal text-white text-[16vw] md:text-[7.5rem] leading-[0.85]">
+            <h2 className="font-display font-semibold uppercase tracking-normal text-white text-[14vw] sm:text-[12vw] md:text-[7.5rem] leading-[0.85]">
               Contact Us
             </h2>
           </AnimatedTitleBlock>
@@ -238,7 +238,7 @@ export function Contact() {
         </div>
 
         <AnimatedSection className="mt-8">
-          <AnimatedItem className="rounded-2xl bg-white px-7 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <AnimatedItem className="rounded-2xl bg-white px-5 py-5 sm:px-7 sm:py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
               <p className="font-semibold text-[var(--color-orange)] text-[15px]">
                 Need a custom logistics solution?

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView, useMotionTemplate } from "framer-motion";
 import { Truck, Globe, MapPin, UsersThree, Lightning, ShieldCheck, Headset, Tag, Clock, Star } from "@phosphor-icons/react";
 const stats = [
@@ -85,7 +86,7 @@ function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; 
         }}
         className="w-full"
       >
-        <div style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-6 ${isLeft ? "text-left md:text-right flex flex-col items-start md:items-end" : "text-left flex flex-col items-start"}`}>
+        <div style={{ backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-5 md:p-6 ${isLeft ? "text-left md:text-right flex flex-col items-start md:items-end" : "text-left flex flex-col items-start"}`}>
           <div className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]">
             <Icon size={32} weight="regular" />
           </div>
@@ -221,14 +222,9 @@ export function WhyStandOut() {
           className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.img 
-              style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, 25, 0], y: [0, 10, 0] }}
-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-              src="/images/clouds/41576358_8918169.webp" 
-              alt="cloud" 
-              className="w-full h-auto object-contain opacity-70" 
-            />
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 25, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}>
+              <Image src="/images/clouds/41576358_8918169.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 65vw, 40vw" className="w-full h-auto object-contain opacity-70" priority={false} />
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -238,14 +234,9 @@ export function WhyStandOut() {
           className="absolute top-[10%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.img 
-              style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, 40, 0], y: [0, -15, 0] }}
-              transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-              src="/images/clouds/8918172.webp" 
-              alt="cloud" 
-              className="w-full h-auto object-contain opacity-80" 
-            />
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 40, 0], y: [0, -15, 0] } : { x: 0, y: 0 }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}>
+              <Image src="/images/clouds/8918172.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 75vw, 45vw" className="w-full h-auto object-contain opacity-80" priority={false} />
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -255,14 +246,9 @@ export function WhyStandOut() {
           className="absolute top-[10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.img 
-              style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-              src="/images/clouds/8918181.webp" 
-              alt="cloud" 
-              className="w-full h-auto object-contain" 
-            />
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -30, 0], y: [0, 20, 0] } : { x: 0, y: 0 }} transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}>
+              <Image src="/images/clouds/8918181.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 85vw, 50vw" className="w-full h-auto object-contain" priority={false} />
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -272,14 +258,9 @@ export function WhyStandOut() {
           className="absolute top-[0%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.img 
-              style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-              src="/images/clouds/8918191.webp" 
-              alt="cloud" 
-              className="w-full h-auto object-contain opacity-80" 
-            />
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -20, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
+              <Image src="/images/clouds/8918191.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 60vw, 35vw" className="w-full h-auto object-contain opacity-80" priority={false} />
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -289,14 +270,9 @@ export function WhyStandOut() {
           className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.img 
-              style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, 15, -15, 0], y: [0, -10, 10, 0] }}
-              transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-              src="/images/clouds/8918176.webp" 
-              alt="cloud" 
-              className="w-full h-auto object-contain opacity-50" 
-            />
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 15, -15, 0], y: [0, -10, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}>
+              <Image src="/images/clouds/8918176.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 90vw, 60vw" className="w-full h-auto object-contain opacity-50" priority={false} />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
@@ -308,14 +284,14 @@ export function WhyStandOut() {
           <div className="flex items-center justify-center gap-4 w-full relative z-0">
             <motion.h2 
               style={{ x: leftX }}
-              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[22vw] sm:text-[18vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Why
             </motion.h2>
 
             <motion.h2 
               style={{ x: rightX }}
-              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[22vw] sm:text-[18vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               We
             </motion.h2>
@@ -324,13 +300,13 @@ export function WhyStandOut() {
           <div className="flex items-center justify-center gap-4 w-full relative z-0 mt-8 md:mt-16">
             <motion.h2 
               style={{ x: standLeftX }}
-              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[22vw] sm:text-[18vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Stand
             </motion.h2>
             <motion.h2 
               style={{ x: standRightX }}
-              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[25vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
+              className="font-display font-semibold uppercase text-white drop-shadow-lg text-[22vw] sm:text-[18vw] md:text-[16vw] leading-[0.85] text-center select-none pointer-events-none"
             >
               Out?
             </motion.h2>
@@ -353,39 +329,74 @@ export function WhyStandOut() {
           className="relative z-10 w-full flex-grow flex flex-col items-center justify-center pt-24 md:pt-32 pb-48 md:pb-64 min-h-[150vh]" 
         >
           {/* Cloud Layer */}
-          <motion.img 
+          <motion.div 
             style={{ x: cloudLeftX, y: combinedY1, opacity: cloudOpacity }}
-            src="/images/clouds/8918166.webp"
-            className="absolute top-[-25%] left-[-10%] w-[50vw] max-w-[800px] opacity-100 pointer-events-none z-40"
-            alt="cloud"
-          />
-          <motion.img 
+            className="absolute top-[-25%] left-[-10%] w-[50vw] max-w-[800px] pointer-events-none z-40"
+          >
+            <Image 
+              src="/images/clouds/8918166.webp" 
+              alt="cloud" 
+              width={2000} height={2000} 
+              sizes="50vw" 
+              className="w-full h-auto object-contain opacity-100" 
+              loading="eager"
+            />
+          </motion.div>
+          
+          <motion.div 
             style={{ x: cloudRightX, y: combinedY2, opacity: cloudOpacity }}
-            src="/images/clouds/8918172.webp"
-            className="absolute top-[40%] right-[-5%] w-[35vw] max-w-[500px] opacity-60 pointer-events-none z-10"
-            alt="cloud"
-          />
-          <motion.img 
+            className="absolute top-[40%] right-[-5%] w-[35vw] max-w-[500px] pointer-events-none z-10"
+          >
+            <Image 
+              src="/images/clouds/8918172.webp" 
+              alt="cloud" 
+              width={3000} height={2000} 
+              sizes="35vw" 
+              className="w-full h-auto object-contain opacity-60" 
+              loading="eager"
+            />
+          </motion.div>
+          
+          <motion.div 
             style={{ x: cloudRightX2, y: combinedY3, scale: cloudCenterScale, opacity: cloudOpacity }}
-            src="/images/clouds/8918176.webp"
-            className="absolute bottom-[20%] right-[15%] w-[45vw] max-w-[700px] opacity-80 pointer-events-none z-10"
-            alt="cloud"
-          />
-          <motion.img 
+            className="absolute bottom-[20%] right-[15%] w-[45vw] max-w-[700px] pointer-events-none z-10"
+          >
+            <Image 
+              src="/images/clouds/8918176.webp" 
+              alt="cloud" 
+              width={3000} height={2000} 
+              sizes="45vw" 
+              className="w-full h-auto object-contain opacity-80" 
+              loading="eager"
+            />
+          </motion.div>
+          
+          <motion.div 
             style={{ x: cloudLeftX, y: combinedY4, opacity: cloudOpacity }}
-            src="/images/clouds/8918181.webp"
-            className="absolute bottom-[30%] left-[5%] w-[50vw] max-w-[800px] opacity-75 pointer-events-none z-10"
-            alt="cloud"
-          />
+            className="absolute bottom-[30%] left-[5%] w-[50vw] max-w-[800px] pointer-events-none z-10"
+          >
+            <Image 
+              src="/images/clouds/8918181.webp" 
+              alt="cloud" 
+              width={3000} height={2000} 
+              sizes="50vw" 
+              className="w-full h-auto object-contain opacity-75" 
+              loading="eager"
+            />
+          </motion.div>
 
           {/* Flight Image Layer (Moved to Background) */}
           <div className="absolute top-[95vh] left-[-15vw] md:left-[-10vw] w-[120vw] pointer-events-none z-0 overflow-visible">
-            <motion.img 
-              style={{ y: flightY, willChange: "transform" }}
-              src="/images/ship.webp" 
-              alt="Ship" 
-              className="w-full max-w-none object-contain"
-            />
+            <motion.div style={{ y: flightY, willChange: "transform" }}>
+              <Image 
+                src="/images/ship.webp" 
+                alt="Ship" 
+                width={2000} height={2000} 
+                sizes="120vw" 
+                className="w-full max-w-none object-contain"
+                loading="eager"
+              />
+            </motion.div>
           </div>
 
           {/* Scaled Background Layer */}
@@ -398,7 +409,7 @@ export function WhyStandOut() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTrackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="relative grid md:grid-cols-2 gap-x-24 lg:gap-x-[300px] xl:gap-x-[400px] 2xl:gap-x-[500px] gap-y-12 md:gap-y-24 max-w-[1500px] mx-auto z-10"
+              className="relative grid md:grid-cols-2 gap-x-24 lg:gap-x-[300px] xl:gap-x-[400px] 2xl:gap-x-[500px] gap-y-8 sm:gap-y-12 md:gap-y-24 max-w-[1500px] mx-auto z-10"
               style={{ perspective: "1500px" }}
             >
               {stats.map((s, idx) => {
