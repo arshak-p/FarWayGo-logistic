@@ -53,15 +53,15 @@ export function FinalCta() {
         <div className="container-px relative z-10 pointer-events-none">
           <div className="max-content pointer-events-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-16">
-              <div>
+              <div className="flex justify-center md:justify-start">
                 <img src="/images/footer_logo.webp" alt="FarWayGo" className="w-40 md:w-48 h-auto object-contain opacity-90" />
               </div>
 
-              <div>
+              <div className="flex flex-col items-center text-center md:items-start md:text-left">
                 <p className="text-[var(--color-orange)] font-bold uppercase text-[15px] tracking-wider mb-5">
                   SERVICES
                 </p>
-                <ul className="flex flex-col gap-2.5">
+                <ul className="flex flex-col gap-2.5 items-center md:items-start">
                   {footerLinks.Services.map((l) => (
                     <li key={l}>
                       <a
@@ -75,11 +75,11 @@ export function FinalCta() {
                 </ul>
               </div>
 
-              <div>
+              <div className="flex flex-col items-center text-center md:items-start md:text-left">
                 <p className="text-[var(--color-orange)] font-bold uppercase text-[15px] tracking-wider mb-5">
                   COMPANY
                 </p>
-                <ul className="flex flex-col gap-2.5">
+                <ul className="flex flex-col gap-2.5 items-center md:items-start">
                   {footerLinks.Company.map((l) => (
                     <li key={l}>
                       <a
@@ -93,7 +93,7 @@ export function FinalCta() {
                 </ul>
               </div>
 
-              <div>
+              <div className="flex flex-col items-center text-center md:items-start md:text-left">
                 <p className="text-[var(--color-orange)] font-bold uppercase text-[15px] tracking-wider mb-5">
                   GLOBAL HQ
                 </p>
@@ -118,10 +118,10 @@ export function FinalCta() {
 
         {/* Bottom Copyright Bar */}
         <div className="bg-[var(--color-navy)] py-6 container-px mt-4 relative z-10">
-          <div className="max-content flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="text-white/50 text-[12px] tracking-wide pointer-events-auto flex flex-col lg:flex-row lg:items-center">
+          <div className="max-content flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-3 text-center sm:text-left">
+            <div className="text-white/50 text-[12px] tracking-wide pointer-events-auto flex flex-col items-center lg:flex-row lg:items-center">
               <span>© 2024 FarWayGo. Global Logistics & Infrastructure.</span>
-              <span className="lg:ml-4 flex items-center flex-wrap gap-x-3 gap-y-1 mt-3 lg:mt-0">
+              <span className="lg:ml-4 flex items-center justify-center flex-wrap gap-x-3 gap-y-1 mt-3 lg:mt-0">
                 <span>Designed by <a href="https://www.linkedin.com/in/aadhil-yoosuf-27b704411?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="text-[var(--color-orange)] hover:underline transition-colors">aadhil</a></span>
                 <span className="text-white/20 hidden sm:inline">•</span>
                 <span className="flex items-center gap-1.5">

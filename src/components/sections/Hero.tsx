@@ -130,6 +130,39 @@ export function Hero() {
             priority
           />
         </div>
+
+        {/* Mobile-Only Container Clouds */}
+        <div className="md:hidden absolute inset-0 pointer-events-none z-50">
+          <motion.div
+            initial={{ x: "-10vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 0.7 }}
+            transition={{ duration: 3, delay: 0.5 }}
+            className="absolute bottom-[2%] left-[-45%] w-[80%]"
+          >
+            <motion.div
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
+              animate={{ x: [0, 40, 0], y: [0, 15, 0] }}
+              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src="/images/clouds/8918206.webp" alt="cloud" className="w-full h-auto object-contain" />
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ x: "10vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 0.6 }}
+            transition={{ duration: 3, delay: 0.8 }}
+            className="absolute bottom-[-10%] right-[-45%] w-[75%]"
+          >
+            <motion.div
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
+              animate={{ x: [0, -35, 0], y: [0, -10, 0] }}
+              transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src="/images/clouds/8918166.webp" alt="cloud" className="w-full h-auto object-contain" />
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       <div className="relative z-10 container-px max-content">

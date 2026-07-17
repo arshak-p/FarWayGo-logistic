@@ -45,6 +45,7 @@ export function Services() {
     const checkBlob = () => {
       if (MediaCache.videoUrl && MediaCache.videoUrl.startsWith("blob:")) {
         setVideoSrc(MediaCache.videoUrl);
+        setVideoLoaded(true); // Force loaded state instantly since it's already a blob
         return true;
       }
       return false;
@@ -134,27 +135,16 @@ export function Services() {
     <section 
       id="services" 
       ref={sectionRef} 
-      className="relative w-full h-[1200vh] bg-transparent z-10"
+      className="relative w-full h-auto md:h-[1200vh] bg-[var(--color-navy)] md:bg-transparent z-10"
     >
       <div ref={panelTriggerRef} className="absolute top-[100vh] bottom-0 left-0 w-full pointer-events-none" />
 
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+      {/* ========================================= */}
+      {/* DESKTOP VIEW: Scroll Trigger & Flying Cards */}
+      {/* ========================================= */}
+      <div className="hidden md:flex sticky top-0 h-screen w-full overflow-hidden items-center justify-center">
         
-        {/* Loading Overlay */}
-        <AnimatePresence>
-          {!videoLoaded && (
-            <motion.div 
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-center"
-            >
-              <div className="mb-8">
-                <EyebrowBadge variant="orange">Loading Assets</EyebrowBadge>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Loading Overlay Removed to prevent blocking the UI on mobile */}
 
         {/* Video Wrapper */}
         <motion.div
@@ -257,6 +247,38 @@ export function Services() {
         </div>
         
       </div>
+
+      {/* ========================================= */}
+      {/* MOBILE VIEW: Simple Vertical List of 10 Cards */}
+      {/* ========================================= */}
+      <div className="md:hidden w-full flex flex-col pt-16 pb-24 container-px relative z-20">
+        <div className="flex flex-col items-center justify-center mb-12">
+          <h2 className="text-4xl font-display font-bold text-white uppercase tracking-tight text-center drop-shadow-xl">
+            Our <span className="text-[var(--color-orange)]">Services</span>
+          </h2>
+          <div className="w-16 h-1 bg-[var(--color-orange)] mt-6 rounded-full" />
+        </div>
+        
+        <div className="flex flex-col gap-6 w-full">
+          {services.map((service) => (
+            <div 
+              key={service.id} 
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col"
+            >
+              <p className="text-[var(--color-orange)] text-sm font-bold tracking-widest uppercase mb-2">
+                {service.id.padStart(2, '0')} // {service.tag}
+              </p>
+              <h3 className="text-2xl font-display text-white leading-tight mb-3">
+                {service.title}
+              </h3>
+              <p className="text-white/80 text-[15px] font-medium leading-relaxed">
+                {service.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </section>
   );
 }

@@ -74,7 +74,7 @@ function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; 
   const opacityScroll = useTransform(localProgress, [0, 1], [0, 1]);
 
   return (
-    <div className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-start md:items-end" : "md:pl-16 lg:pl-24 flex flex-col items-start"}>
+    <div className={isLeft ? "md:pr-16 lg:pr-24 flex flex-col items-center md:items-end" : "md:pl-16 lg:pl-24 flex flex-col items-center md:items-start"}>
       <motion.div
         style={{
           rotateY: rotateYScroll,
@@ -86,7 +86,7 @@ function OrbitCard({ s, isLeft, idx, gridProgress }: { s: any; isLeft: boolean; 
         }}
         className="w-full"
       >
-        <div style={{ backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-5 md:p-6 ${isLeft ? "text-left md:text-right flex flex-col items-start md:items-end" : "text-left flex flex-col items-start"}`}>
+        <div style={{ backfaceVisibility: "hidden" }} className={`group w-full rounded-2xl border border-[var(--color-navy)]/10 bg-white/90 backdrop-blur-md p-5 md:p-6 ${isLeft ? "text-center md:text-right flex flex-col items-center md:items-end" : "text-center md:text-left flex flex-col items-center md:items-start"}`}>
           <div className="mb-4 text-[var(--color-navy)] transition-colors duration-300 group-hover:text-[var(--color-orange)]">
             <Icon size={32} weight="regular" />
           </div>
@@ -184,6 +184,28 @@ export function WhyStandOut() {
   const cloudLeftX = useTransform(smoothProgress, [0, 1], ["-100%", "0%"]);
   const cloudRightX = useTransform(smoothProgress, [0, 1], ["100%", "0%"]);
   
+  // Dedicated super-smooth scroll for the falling container (longer scroll distance)
+  const { scrollYProgress: containerScroll } = useScroll({
+    target: ref,
+    offset: ["start 1.0", "start 0.2"],
+  });
+  // Lightweight spring for a smooth, floaty feel without the heavy lag
+  const smoothContainer = useSpring(containerScroll, {
+    stiffness: 100,
+    damping: 25,
+    mass: 0.5,
+    restDelta: 0.001
+  });
+  
+  // Mobile Container Fall Animation
+  // -200vh ensures it stays completely off the top of the phone screen
+  // We use the lightweight spring here for the buttery smooth motion
+  const mobileContainerY = useTransform(smoothContainer, [0, 1], ["-200vh", "-15vh"]);
+  
+  // Set visibility to hidden when progress is near 0 based on RAW scroll. 
+  // This instantly removes it when you hit the top, completely preventing dragging/jerking!
+  const visibility = useTransform(containerScroll, (v) => v > 0.05 ? "visible" : "hidden");
+  
   // New clouds
   const cloudRightX2 = useTransform(smoothProgress, [0, 1], ["80%", "0%"]);
   const cloudCenterY = useTransform(smoothProgress, [0, 1], ["50%", "0%"]);
@@ -209,17 +231,35 @@ export function WhyStandOut() {
 
   return (
     <section
-      id="why-us"
+      id="why-we-stand-out"
       ref={ref}
       className="min-h-screen relative bg-transparent md:bg-[var(--color-mist)] py-24 md:py-32 overflow-x-clip overflow-y-visible"
     >
+      {/* Mobile-Only Top Center Container Image (Animated Parallax) */}
+      <motion.div 
+        style={{ y: mobileContainerY, visibility, willChange: "transform" }}
+        className="md:hidden absolute top-0 inset-x-0 z-40 pointer-events-none flex justify-center"
+      >
+        <div className="w-[55%] max-w-[400px]">
+          <Image
+            src="/images/phone-container-2.webp"
+            alt="Phone Container"
+            width={800}
+            height={800}
+            className="w-full h-auto object-contain [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%)]"
+            priority
+            loading="eager"
+          />
+        </div>
+      </motion.div>
+
       {/* Floating clouds with scroll AND mouse parallax */}
-      <div className="absolute inset-0 pointer-events-none z-30">
+      <div className="absolute inset-0 pointer-events-none md:z-30">
         
         {/* CLOUD 1: Top Left (The new one we just added) */}
         <motion.div
           style={{ x: cloudLeftX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
-          className="absolute top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px]"
+          className="absolute top-[5%] md:top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px] z-50 pointer-events-none"
         >
           <motion.div style={{ x: parallax2X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 25, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}>
@@ -231,7 +271,7 @@ export function WhyStandOut() {
         {/* CLOUD 2: Mid Left (Behind "WHY" and "STAND") */}
         <motion.div
           style={{ x: cloudLeftX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
-          className="absolute top-[10%] left-[-20%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
+          className="absolute top-[10%] md:top-[10%] left-[-5%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 40, 0], y: [0, -15, 0] } : { x: 0, y: 0 }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}>
@@ -243,7 +283,7 @@ export function WhyStandOut() {
         {/* CLOUD 3: Bottom Right (Below the container on the right) */}
         <motion.div
           style={{ x: cloudRightX, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
-          className="absolute top-[10%] right-[-15%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
+          className="hidden md:block absolute top-[0%] md:top-[10%] right-[-5%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -30, 0], y: [0, 20, 0] } : { x: 0, y: 0 }} transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}>
@@ -255,7 +295,7 @@ export function WhyStandOut() {
         {/* CLOUD 4: Top Right (Next to the "E" in "WE") */}
         <motion.div
           style={{ x: cloudRightX2, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
-          className="absolute top-[0%] right-[-5%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px]"
+          className="absolute top-[10%] md:top-[0%] right-[-10%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px] z-50 pointer-events-none"
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -20, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
@@ -267,7 +307,7 @@ export function WhyStandOut() {
         {/* CLOUD 5: Center (Large cloud directly behind "WE") */}
         <motion.div
           style={{ y: cloudCenterY, scale: cloudCenterScale, opacity: cloudOpacity, willChange: "transform", transform: "translateZ(0)" }}
-          className="absolute top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
+          className="absolute top-[5%] md:top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 15, -15, 0], y: [0, -10, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}>
@@ -279,7 +319,7 @@ export function WhyStandOut() {
 
       <div className="relative container-px max-content">
         {/* headline with hanging container layered through it */}
-        <div className="relative flex flex-col items-center justify-center min-h-[280px] md:min-h-[360px] w-full">
+        <div className="relative flex flex-col items-center justify-center min-h-[280px] md:min-h-[360px] w-full mt-24 md:mt-0">
           
           <div className="flex items-center justify-center gap-4 w-full relative z-0">
             <motion.h2 
@@ -386,7 +426,7 @@ export function WhyStandOut() {
           </motion.div>
 
           {/* Flight Image Layer (Moved to Background) */}
-          <div className="absolute top-[95vh] left-[-15vw] md:left-[-10vw] w-[120vw] pointer-events-none z-0 overflow-visible">
+          <div className="hidden md:block absolute top-[95vh] left-[-15vw] md:left-[-10vw] w-[120vw] pointer-events-none z-0 overflow-visible">
             <motion.div style={{ y: flightY, willChange: "transform" }}>
               <Image 
                 src="/images/ship.webp" 

@@ -50,7 +50,7 @@ export function Faq() {
   };
 
   return (
-    <section data-cursor="white" className="-mt-[100vh] py-20 md:py-32 container-px relative z-30 bg-[var(--color-orange)]">
+    <section data-cursor="white" className="mt-0 md:-mt-[100vh] py-20 md:py-32 container-px relative z-30 bg-[var(--color-orange)]">
       <div className="max-content">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="md:col-span-5 md:sticky md:top-32">

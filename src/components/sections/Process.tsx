@@ -49,25 +49,15 @@ export function Process() {
 
   return (
     // 350vh gives plenty of scroll room between triggers and a clean exit at the bottom
-    <section className="h-[350vh] relative z-0 w-full bg-black">
+    <section className="h-auto md:h-[350vh] relative z-0 w-full bg-black">
       
-      {/* 
-        1. PANEL TRIGGER: Placed exactly at 100vh.
-        When the top of this section pins to the top of the screen, the bottom of your screen 
-        crosses the 100vh mark, triggering the panel to slide up. 
-        When scrolling back up, it leaves the screen exactly at this point, sliding the panel away.
-      */}
       <div ref={panelTriggerRef} className="absolute top-[100vh] bottom-0 left-0 w-full pointer-events-none" />
-
-      {/* 
-        2. CONTENT TRIGGER: Placed at 102vh.
-        You must scroll 2vh INTO the pinned section before this hits the bottom of your screen.
-        When scrolling back up, this exits the screen first (at 2vh), making the content disappear BEFORE the panel.
-      */}
       <div ref={contentTriggerRef} className="absolute top-[102vh] bottom-0 left-0 w-full pointer-events-none" />
 
-      {/* The sticky wrapper holds the UI on screen while we scroll through the triggers */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center py-24 px-6 md:px-12">
+      {/* ========================================= */}
+      {/* DESKTOP VIEW: Sticky Scroll & Horizontal Snap */}
+      {/* ========================================= */}
+      <div className="hidden md:flex sticky top-0 h-screen w-full overflow-hidden flex-col justify-center py-24 px-6 md:px-12">
         
         {/* The Animated Black Panel */}
         <motion.div 
@@ -156,7 +146,7 @@ export function Process() {
                       alt={step.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 1200px) 50vw, 33vw"
                     />
                   </motion.div>
 
@@ -192,6 +182,52 @@ export function Process() {
           </motion.div>
         </div>
       </div>
+
+      {/* ========================================= */}
+      {/* MOBILE VIEW: Simple Vertical List */}
+      {/* ========================================= */}
+      <div className="md:hidden w-full flex flex-col py-16 container-px relative z-20 bg-black">
+        <div className="flex flex-col items-start justify-center mb-10">
+          <h2 className="text-[var(--color-orange)] font-display font-bold text-4xl uppercase tracking-tight mb-2">
+            Our Process
+          </h2>
+          <h3 className="font-display text-white text-2xl leading-[1.2] tracking-tight">
+            How we move your cargo across the skies
+          </h3>
+        </div>
+        
+        <div className="flex flex-col gap-6 w-full">
+          {steps.map((step) => (
+            <div 
+              key={step.id} 
+              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex flex-col justify-end shadow-xl"
+            >
+              <Image 
+                src={step.image}
+                alt={step.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw"
+              />
+              <div className="absolute top-4 left-4 z-20 text-white/40 text-4xl font-display font-bold">
+                {step.id}
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
+              
+              <div className="relative z-20 p-5 flex flex-col">
+                <h3 className="text-white font-display text-2xl mb-2 tracking-wide">
+                  {step.title}
+                </h3>
+                {/* On mobile, text is ALWAYS visible, no hover mechanics needed */}
+                <p className="text-white/80 text-[15px] leading-relaxed">
+                  {step.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </section>
   );
 }
