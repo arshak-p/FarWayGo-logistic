@@ -44,7 +44,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative min-h-[100vh] bg-transparent md:bg-[var(--color-mist)] pt-28 md:pt-40 pb-24 md:pb-48 overflow-visible md:overflow-hidden"
+      className="relative z-30 md:z-0 min-h-[115vh] md:min-h-[100vh] bg-transparent md:bg-[var(--color-mist)] pt-28 md:pt-40 pb-40 md:pb-48 overflow-visible md:overflow-hidden"
     >
       {/* ambient sky gradient */}
       <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-[#bae6fd] via-[var(--color-mist)] to-[var(--color-mist)] opacity-60" />
@@ -121,12 +121,12 @@ export function Hero() {
         </div>
         
         {/* Mobile Wrapper (Full Background) */}
-        <div className="md:hidden absolute inset-x-0 top-[20%] h-[150vh] z-0 pointer-events-none">
+        <div className="md:hidden absolute right-0 top-[35%] w-[75%] h-[100vh] z-40 pointer-events-none">
           <Image
-            src="/images/crane-mobile.webp"
+            src="/images/phone-crane-hero.webp"
             alt="Logistics Solutions Group Mobile"
             fill
-            className="object-cover object-top opacity-90"
+            className="object-contain object-right-top opacity-90"
             priority
           />
         </div>
