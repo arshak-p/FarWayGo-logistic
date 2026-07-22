@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ArrowDown } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { AnimatedTitleGroup, AnimatedWord, SplitText } from "@/components/ui/AnimatedTitle";
@@ -193,17 +193,7 @@ export function Hero() {
           </AnimatedTitleGroup>
 
           <AnimatedItem delay={0.1} className="mt-10">
-            <a
-              href="#trust"
-              className="group inline-flex items-center justify-center w-20 h-20 rounded-full bg-[var(--color-orange)] text-white shadow-[0_10px_30px_rgba(253,94,2,0.35)] hover:scale-105 transition-transform"
-            >
-              <motion.span
-                animate={{ y: [0, 5, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <ArrowDown size={32} weight="bold" />
-              </motion.span>
-            </a>
+            <HeroCtaButton />
           </AnimatedItem>
         </AnimatedSection>
 
@@ -228,5 +218,44 @@ export function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function HeroCtaButton() {
+  const isTouchRef = useRef(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <a
+      href="#contact"
+      onTouchStart={() => { isTouchRef.current = true; }}
+      onMouseEnter={() => { if (!isTouchRef.current) setIsExpanded(true); }}
+      onMouseLeave={() => { if (!isTouchRef.current) setIsExpanded(false); }}
+      onClick={(e) => {
+        if (isTouchRef.current && !isExpanded) {
+          e.preventDefault();
+          setIsExpanded(true);
+        }
+      }}
+      className={`relative flex items-center justify-center h-16 md:h-20 rounded-full shadow-[0_10px_30px_rgba(253,94,2,0.35)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden cursor-pointer ${
+        isExpanded 
+          ? "w-[200px] md:w-[260px] bg-[#fff4ea] text-[var(--color-ink)]" 
+          : "w-16 md:w-20 bg-[var(--color-orange)] text-white"
+      }`}
+    >
+      {/* Text that slides in */}
+      <span className={`absolute left-7 md:left-9 whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] font-subheading font-medium text-[16px] md:text-[18px] tracking-wide pointer-events-none ${
+        isExpanded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+      }`}>
+        Get in Touch
+      </span>
+      
+      {/* Arrow that slides to the right and rotates */}
+      <div className={`absolute right-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isExpanded ? "-rotate-90" : "rotate-0"
+      }`}>
+        <ArrowDown size={28} className="md:w-8 md:h-8" weight="bold" />
+      </div>
+    </a>
   );
 }

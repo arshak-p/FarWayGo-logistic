@@ -9,7 +9,8 @@ export function CustomCursor() {
 
   useEffect(() => {
     // Check if the device is a touch screen. If so, abort immediately.
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice || !window.matchMedia("(pointer: fine)").matches || window.innerWidth < 768) return;
     
     setIsVisible(true);
     // Add custom cursor class to body safely
