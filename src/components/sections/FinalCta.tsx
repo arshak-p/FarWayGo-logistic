@@ -54,7 +54,7 @@ export function FinalCta() {
           <div className="max-content pointer-events-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-16">
               <div className="flex justify-center md:justify-start">
-                <img src="/images/footer_logo.webp" alt="FarWayGo" className="w-40 md:w-48 h-auto object-contain opacity-90" />
+                <img src="/images/footer_logo.webp" alt="FarWayGo Logistics" className="w-40 md:w-48 h-auto object-contain opacity-90" />
               </div>
 
               <div className="flex flex-col items-center text-center md:items-start md:text-left">

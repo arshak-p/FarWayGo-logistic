@@ -90,7 +90,7 @@ export function TrustGrid() {
           <div ref={elementRef} className="hidden md:flex w-[70%] md:w-[45%] lg:w-[35%] xl:w-[30%] max-w-[500px] justify-center items-center -translate-y-[8%] lg:-translate-x-[0.3rem]">
             <Image
               src="/images/GroupB.webp"
-              alt="Logistics Operations"
+              alt="FarWayGo logistics operations and warehousing services"
               width={1600}
               height={1600}
               className="w-full h-auto object-contain object-center opacity-40 md:opacity-100"

@@ -64,7 +64,7 @@ export function CustomCursor() {
     >
       <Image 
         src="/images/cursor.webp" 
-        alt="cursor" 
+        alt="" 
         fill 
         className="object-contain object-top object-left drop-shadow-md" 
         unoptimized 

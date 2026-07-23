@@ -243,7 +243,7 @@ export function WhyStandOut() {
         <div className="w-[55%] max-w-[400px]">
           <Image
             src="/images/phone-container-2.webp"
-            alt="Phone Container"
+            alt="Cargo shipping container tracking and logistics management"
             width={800}
             height={800}
             className="w-full h-auto object-contain [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%)]"
@@ -263,7 +263,7 @@ export function WhyStandOut() {
         >
           <motion.div style={{ x: parallax2X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 25, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}>
-              <Image src="/images/clouds/41576358_8918169.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 65vw, 40vw" className="w-full h-auto object-contain opacity-70" priority={false} />
+              <Image src="/images/clouds/41576358_8918169.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 65vw, 40vw" className="w-full h-auto object-contain opacity-70" priority={false} />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -275,7 +275,7 @@ export function WhyStandOut() {
         >
           <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 40, 0], y: [0, -15, 0] } : { x: 0, y: 0 }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}>
-              <Image src="/images/clouds/8918172.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 75vw, 45vw" className="w-full h-auto object-contain opacity-80" priority={false} />
+              <Image src="/images/clouds/8918172.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 75vw, 45vw" className="w-full h-auto object-contain opacity-80" priority={false} />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -287,7 +287,7 @@ export function WhyStandOut() {
         >
           <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -30, 0], y: [0, 20, 0] } : { x: 0, y: 0 }} transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}>
-              <Image src="/images/clouds/8918181.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 85vw, 50vw" className="w-full h-auto object-contain" priority={false} />
+              <Image src="/images/clouds/8918181.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 85vw, 50vw" className="w-full h-auto object-contain" priority={false} />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -299,7 +299,7 @@ export function WhyStandOut() {
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -20, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
-              <Image src="/images/clouds/8918191.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 60vw, 35vw" className="w-full h-auto object-contain opacity-80" priority={false} />
+              <Image src="/images/clouds/8918191.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 60vw, 35vw" className="w-full h-auto object-contain opacity-80" priority={false} />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -311,7 +311,7 @@ export function WhyStandOut() {
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 15, -15, 0], y: [0, -10, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}>
-              <Image src="/images/clouds/8918176.webp" alt="cloud" width={3000} height={2000} sizes="(max-width: 768px) 90vw, 60vw" className="w-full h-auto object-contain opacity-50" priority={false} />
+              <Image src="/images/clouds/8918176.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 90vw, 60vw" className="w-full h-auto object-contain opacity-50" priority={false} />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -375,7 +375,7 @@ export function WhyStandOut() {
           >
             <Image 
               src="/images/clouds/8918166.webp" 
-              alt="cloud" 
+              alt="" 
               width={2000} height={2000} 
               sizes="50vw" 
               className="w-full h-auto object-contain opacity-100" 
@@ -389,7 +389,7 @@ export function WhyStandOut() {
           >
             <Image 
               src="/images/clouds/8918172.webp" 
-              alt="cloud" 
+              alt="" 
               width={3000} height={2000} 
               sizes="35vw" 
               className="w-full h-auto object-contain opacity-60" 
@@ -403,7 +403,7 @@ export function WhyStandOut() {
           >
             <Image 
               src="/images/clouds/8918176.webp" 
-              alt="cloud" 
+              alt="" 
               width={3000} height={2000} 
               sizes="45vw" 
               className="w-full h-auto object-contain opacity-80" 
@@ -417,7 +417,7 @@ export function WhyStandOut() {
           >
             <Image 
               src="/images/clouds/8918181.webp" 
-              alt="cloud" 
+              alt="" 
               width={3000} height={2000} 
               sizes="50vw" 
               className="w-full h-auto object-contain opacity-75" 
@@ -430,7 +430,7 @@ export function WhyStandOut() {
             <motion.div style={{ y: flightY, willChange: "transform" }}>
               <Image 
                 src="/images/ship.webp" 
-                alt="Ship" 
+                alt="Cargo ship freight transportation services" 
                 width={2000} height={2000} 
                 sizes="120vw" 
                 className="w-full max-w-none object-contain"

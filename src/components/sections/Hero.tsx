@@ -66,7 +66,7 @@ export function Hero() {
               animate={{ x: [0, 60, 0], y: [0, 15, 0] }}
               transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
             >
-              <img src="/images/clouds/8918166.webp" alt="cloud" className="w-full h-auto object-contain" />
+              <img src="/images/clouds/8918166.webp" alt="" className="w-full h-auto object-contain" />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -83,7 +83,7 @@ export function Hero() {
               animate={{ x: [0, -50, 0], y: [0, -20, 0] }}
               transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 3 }}
             >
-              <img src="/images/clouds/8918191.webp" alt="cloud" className="w-full h-auto object-contain" />
+              <img src="/images/clouds/8918191.webp" alt="" className="w-full h-auto object-contain" />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -100,7 +100,7 @@ export function Hero() {
               animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 3.4 }}
             >
-              <img src="/images/clouds/8918206.webp" alt="cloud" className="w-full h-auto object-contain" />
+              <img src="/images/clouds/8918206.webp" alt="" className="w-full h-auto object-contain" />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -112,7 +112,7 @@ export function Hero() {
         <div className="hidden md:block absolute right-[-20%] md:right-[-10%] lg:right-0 bottom-0 w-[100%] md:w-[75%] lg:w-[65%] xl:w-[60%] max-w-[1300px] z-0">
           <Image
             src="/images/group-2.webp"
-            alt="Logistics Solutions Group"
+            alt="Freight forwarding and transportation logistics team in Saudi Arabia"
             width={1600}
             height={1600}
             className="w-full h-auto object-contain object-right opacity-90 md:opacity-100"
@@ -124,7 +124,7 @@ export function Hero() {
         <div className="md:hidden absolute right-0 top-[35%] w-[75%] h-[100vh] z-40 pointer-events-none">
           <Image
             src="/images/phone-crane-hero.webp"
-            alt="Logistics Solutions Group Mobile"
+            alt="Crane and cargo logistics operations mobile view"
             fill
             className="object-contain object-right-top opacity-90"
             priority
@@ -144,7 +144,7 @@ export function Hero() {
               animate={{ x: [0, 40, 0], y: [0, 15, 0] }}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
             >
-              <img src="/images/clouds/8918206.webp" alt="cloud" className="w-full h-auto object-contain" />
+              <img src="/images/clouds/8918206.webp" alt="" className="w-full h-auto object-contain" />
             </motion.div>
           </motion.div>
 
@@ -159,7 +159,7 @@ export function Hero() {
               animate={{ x: [0, -35, 0], y: [0, -10, 0] }}
               transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
             >
-              <img src="/images/clouds/8918166.webp" alt="cloud" className="w-full h-auto object-contain" />
+              <img src="/images/clouds/8918166.webp" alt="" className="w-full h-auto object-contain" />
             </motion.div>
           </motion.div>
         </div>

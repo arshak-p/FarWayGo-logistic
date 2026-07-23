@@ -70,7 +70,7 @@ export function Navbar() {
           <a href="#home" onClick={(e) => handleScroll(e, "#home")} className="flex items-center">
             <Image
               src="/images/logo.svg"
-              alt="FarWayGo Logistics"
+              alt="FarWayGo Logistics logo"
               width={160}
               height={42}
               priority
@@ -124,7 +124,7 @@ export function Navbar() {
             <div className="container-px pt-6 flex items-center justify-between">
               <Image
                 src="/images/logo-on-dark.svg"
-                alt="FarWayGo Logistics"
+                alt="FarWayGo Logistics logo"
                 width={160}
                 height={42}
                 className="h-8 w-auto"
