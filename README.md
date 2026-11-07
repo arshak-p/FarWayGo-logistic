@@ -1,5 +1,7 @@
 # FarWayGo Logistics — Marketing Website
 
+🌐 **Live site:** [https://farwaygo.com](https://farwaygo.com)
+
 Next.js 16 (App Router) + TypeScript + Tailwind v4 + Framer Motion + Lenis.
 
 ## Setup
