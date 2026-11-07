@@ -16,17 +16,26 @@ export function CustomCursor() {
     // Add custom cursor class to body safely
     document.body.style.cursor = 'none';
 
-    const moveCursor = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        
-        // Change cursor color based on hovered element
-        const target = e.target as HTMLElement;
-        if (target && target.closest) {
-          const shouldBeWhite = target.closest('[data-cursor="white"]');
-          cursorRef.current.style.filter = shouldBeWhite ? 'brightness(0) invert(1)' : 'none';
-        }
+    // Batch DOM work to one update per frame instead of per mouse event.
+    let rafId = 0;
+    let lastEvent: MouseEvent | null = null;
+    const applyCursor = () => {
+      rafId = 0;
+      const e = lastEvent;
+      if (!e || !cursorRef.current) return;
+      cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+
+      // Change cursor color based on hovered element
+      const target = e.target as HTMLElement;
+      if (target && target.closest) {
+        const shouldBeWhite = target.closest('[data-cursor="white"]');
+        const next = shouldBeWhite ? 'brightness(0) invert(1)' : 'none';
+        if (cursorRef.current.style.filter !== next) cursorRef.current.style.filter = next;
       }
+    };
+    const moveCursor = (e: MouseEvent) => {
+      lastEvent = e;
+      if (!rafId) rafId = requestAnimationFrame(applyCursor);
     };
 
     const handleMouseLeave = () => {
@@ -41,6 +50,7 @@ export function CustomCursor() {
     document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       document.body.style.cursor = 'auto';
       window.removeEventListener("mousemove", moveCursor);
       document.removeEventListener("mouseleave", handleMouseLeave);

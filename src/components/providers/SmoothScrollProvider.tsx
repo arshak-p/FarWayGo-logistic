@@ -19,12 +19,12 @@ export default function SmoothScrollProvider({
       /iPad|iPhone|iPod/.test(navigator.userAgent);
 
     const lenis = new Lenis({
-      duration: isSafari ? 1.8 : 1.6,
-      lerp: isSafari ? 0.07 : 0.05,
+      duration: 1.1,
+      lerp: isSafari ? 0.12 : 0.1,
       smoothWheel: true,
       syncTouch: false,
       touchMultiplier: 1.5,
-      wheelMultiplier: 0.8,
+      wheelMultiplier: 1,
     });
 
     setLenisInstance(lenis);

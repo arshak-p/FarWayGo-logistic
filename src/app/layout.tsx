@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   title: "FarWayGo Logistics | Storage, Distribution & Transportation Solutions",
   description:
     "FarWayGo delivers reliable freight forwarding, transportation, customs clearance, and end-to-end logistics solutions across Saudi Arabia, the GCC, and international markets.",
+  verification: {
+    google: "dUfDzq-ur9gozqRyjyMrbxMHZ-VJTrQf7IP-fDxSceM",
+  },
 };
 
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
@@ -53,6 +56,36 @@ export default function RootLayout({
       lang="en"
       className={`${bebasNeue.variable} ${degularBody.variable} ${aeonik.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "FarWayGo Logistics",
+              "alternateName": "FarWayGo",
+              "url": "https://farwaygo.com",
+              "logo": "https://farwaygo.com/images/logo.svg",
+              "description": "FarWayGo delivers reliable freight forwarding, transportation, customs clearance, and end-to-end logistics solutions across Saudi Arabia, the GCC, and international markets.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Al Urubah, Ar Rahmaniyah",
+                "addressLocality": "Riyadh",
+                "postalCode": "12341",
+                "addressCountry": "SA"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+966112701448",
+                "contactType": "customer service",
+                "email": "global.ops@farwaygo.com"
+              },
+              "sameAs": []
+            }),
+          }}
+        />
+      </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-mist)] overflow-x-clip max-w-[100vw]">
         <Preloader />
         <CustomCursor />

@@ -19,7 +19,7 @@ export function Preloader() {
     let minTimePassed = false;
 
     // Simulate loading progress
-    const duration = 2000; // 2 seconds
+    const duration = 1200;
     const interval = 30;
     const steps = duration / interval;
     let currentStep = 0;
@@ -63,7 +63,12 @@ export function Preloader() {
     }, 15000);
 
     // Fetch video to memory blob
-    fetch(MediaCache.videoUrl)
+    // The scrub video is only used on desktop (md+); skip the 6MB download on phones.
+    const skipVideo = window.innerWidth < 768;
+    if (skipVideo) {
+      isVideoLoaded = true;
+    }
+    (skipVideo ? Promise.reject("skip") : fetch(MediaCache.videoUrl))
       .then(res => res.blob())
       .then(blob => {
          MediaCache.videoUrl = URL.createObjectURL(blob);
@@ -71,7 +76,7 @@ export function Preloader() {
          if (minTimePassed) finishLoading();
       })
       .catch(err => {
-         console.warn("Failed to preload video blob", err);
+         if (err !== "skip") console.warn("Failed to preload video blob", err);
          isVideoLoaded = true;
          if (minTimePassed) finishLoading();
       });

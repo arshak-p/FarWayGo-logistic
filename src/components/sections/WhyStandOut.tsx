@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView, useMotionTemplate } from "framer-motion";
 import { Truck, Globe, MapPin, UsersThree, Lightning, ShieldCheck, Headset, Tag, Clock, Star } from "@phosphor-icons/react";
@@ -108,6 +108,10 @@ export function WhyStandOut() {
   const flightContainerRef = useRef<HTMLDivElement>(null);
   const isTrackInView = useInView(trackTriggerRef, { once: false, amount: 0.2, margin: "10000px 0px 0px 0px" });
   const sectionInView = useInView(ref, { once: false, amount: 0.1 });
+  const [canDrift, setCanDrift] = useState(false);
+  useEffect(() => {
+    setCanDrift(window.matchMedia("(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches);
+  }, []);
   
   const gridRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: gridProgress } = useScroll({
@@ -141,12 +145,13 @@ export function WhyStandOut() {
         mouseY.set(y);
       });
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    if (!canDrift || !sectionInView) return;
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, canDrift, sectionInView]);
 
   // Spring smooth the mouse for fluid parallax
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20, restDelta: 0.01 });
@@ -262,7 +267,7 @@ export function WhyStandOut() {
           className="absolute top-[5%] md:top-[-5%] left-[-5%] md:left-[0%] w-[65%] md:w-[40%] max-w-[600px] z-50 pointer-events-none"
         >
           <motion.div style={{ x: parallax2X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 25, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}>
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView && canDrift ? { x: [0, 25, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}>
               <Image src="/images/clouds/41576358_8918169.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 65vw, 40vw" className="w-full h-auto object-contain opacity-70" priority={false} />
             </motion.div>
           </motion.div>
@@ -274,7 +279,7 @@ export function WhyStandOut() {
           className="absolute top-[10%] md:top-[10%] left-[-5%] md:left-[-10%] w-[75%] md:w-[45%] max-w-[700px]"
         >
           <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 40, 0], y: [0, -15, 0] } : { x: 0, y: 0 }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}>
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView && canDrift ? { x: [0, 40, 0], y: [0, -15, 0] } : { x: 0, y: 0 }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}>
               <Image src="/images/clouds/8918172.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 75vw, 45vw" className="w-full h-auto object-contain opacity-80" priority={false} />
             </motion.div>
           </motion.div>
@@ -286,7 +291,7 @@ export function WhyStandOut() {
           className="hidden md:block absolute top-[0%] md:top-[10%] right-[-5%] md:right-[-5%] w-[85%] md:w-[50%] max-w-[800px]"
         >
           <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -30, 0], y: [0, 20, 0] } : { x: 0, y: 0 }} transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}>
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView && canDrift ? { x: [0, -30, 0], y: [0, 20, 0] } : { x: 0, y: 0 }} transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}>
               <Image src="/images/clouds/8918181.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 85vw, 50vw" className="w-full h-auto object-contain" priority={false} />
             </motion.div>
           </motion.div>
@@ -298,7 +303,7 @@ export function WhyStandOut() {
           className="absolute top-[10%] md:top-[0%] right-[-10%] md:right-[5%] w-[60%] md:w-[35%] max-w-[600px] z-50 pointer-events-none"
         >
           <motion.div style={{ x: parallax1X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, -20, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView && canDrift ? { x: [0, -20, 0], y: [0, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
               <Image src="/images/clouds/8918191.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 60vw, 35vw" className="w-full h-auto object-contain opacity-80" priority={false} />
             </motion.div>
           </motion.div>
@@ -310,7 +315,7 @@ export function WhyStandOut() {
           className="absolute top-[5%] md:top-[10%] left-[50%] -translate-x-[50%] w-[90%] md:w-[60%] max-w-[1000px] z-[-1]"
         >
           <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
-            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView ? { x: [0, 15, -15, 0], y: [0, -10, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}>
+            <motion.div style={{ willChange: "transform", transform: "translateZ(0)" }} animate={sectionInView && canDrift ? { x: [0, 15, -15, 0], y: [0, -10, 10, 0] } : { x: 0, y: 0 }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}>
               <Image src="/images/clouds/8918176.webp" alt="" width={3000} height={2000} sizes="(max-width: 768px) 90vw, 60vw" className="w-full h-auto object-contain opacity-50" priority={false} />
             </motion.div>
           </motion.div>

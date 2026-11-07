@@ -188,7 +188,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     // its cost scales with the number of rendered pixels. Cap the internal render
     // resolution to keep large / high-DPI screens smooth; the effect is soft
     // enough that the downscale is imperceptible.
-    const MAX_RENDER_DIM = 1280;
+    const MAX_RENDER_DIM = 960;
     function resize() {
       if (!container) return;
       const { clientWidth, clientHeight } = container;

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { ArrowDown } from "@phosphor-icons/react";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
@@ -13,6 +13,13 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
+
+  const heroInView = useInView(ref, { amount: 0 });
+  const [canDrift, setCanDrift] = useState(false);
+  useEffect(() => {
+    setCanDrift(window.matchMedia("(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches);
+  }, []);
+  const drift = canDrift && heroInView;
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -63,7 +70,7 @@ export function Hero() {
           <motion.div style={{ x: parallax1X, y: parallax1Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div
               style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, 60, 0], y: [0, 15, 0] }}
+              animate={drift ? { x: [0, 60, 0], y: [0, 15, 0] } : undefined}
               transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
             >
               <img src="/images/clouds/8918166.webp" alt="" className="w-full h-auto object-contain" />
@@ -80,7 +87,7 @@ export function Hero() {
           <motion.div style={{ x: parallax2X, y: parallax2Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div
               style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, -50, 0], y: [0, -20, 0] }}
+              animate={drift ? { x: [0, -50, 0], y: [0, -20, 0] } : undefined}
               transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 3 }}
             >
               <img src="/images/clouds/8918191.webp" alt="" className="w-full h-auto object-contain" />
@@ -97,7 +104,7 @@ export function Hero() {
           <motion.div style={{ x: parallax3X, y: parallax3Y, willChange: "transform", transform: "translateZ(0)" }}>
             <motion.div
               style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+              animate={drift ? { x: [0, 40, 0], y: [0, 30, 0] } : undefined}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 3.4 }}
             >
               <img src="/images/clouds/8918206.webp" alt="" className="w-full h-auto object-contain" />
@@ -141,7 +148,7 @@ export function Hero() {
           >
             <motion.div
               style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, 40, 0], y: [0, 15, 0] }}
+              animate={drift ? { x: [0, 40, 0], y: [0, 15, 0] } : undefined}
               transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
             >
               <img src="/images/clouds/8918206.webp" alt="" className="w-full h-auto object-contain" />
@@ -156,7 +163,7 @@ export function Hero() {
           >
             <motion.div
               style={{ willChange: "transform", transform: "translateZ(0)" }}
-              animate={{ x: [0, -35, 0], y: [0, -10, 0] }}
+              animate={drift ? { x: [0, -35, 0], y: [0, -10, 0] } : undefined}
               transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
             >
               <img src="/images/clouds/8918166.webp" alt="" className="w-full h-auto object-contain" />

@@ -88,7 +88,7 @@ export function Contact() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-2xl bg-black/40 backdrop-blur-xl border border-[var(--color-orange)]/50 p-10 text-white flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(255,107,0,0.15)] mt-4"
+                className="rounded-2xl bg-black/40 border border-[var(--color-orange)]/50 p-10 text-white flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(255,107,0,0.15)] mt-4"
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -115,7 +115,7 @@ export function Contact() {
                       required
                       type="text"
                       placeholder="John Doe"
-                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors"
+                      className="w-full rounded-xl border border-white/20 bg-black/70 px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors"
                     />
                   </div>
                   <div>
@@ -127,7 +127,7 @@ export function Contact() {
                       required
                       type="email"
                       placeholder="j.doe@enterprise.com"
-                      className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors"
+                      className="w-full rounded-xl border border-white/20 bg-black/70 px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors"
                     />
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export function Contact() {
                     Subject
                   </label>
                   <div className="relative">
-                    <select name="subject" className="w-full appearance-none rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white outline-none focus:border-[var(--color-orange)] transition-colors">
+                    <select name="subject" className="w-full appearance-none rounded-xl border border-white/20 bg-black/70 px-4 py-3 text-[14.5px] text-white outline-none focus:border-[var(--color-orange)] transition-colors">
                       {subjects.map((s) => (
                         <option key={s} value={s} className="bg-black/90 text-white">{s}</option>
                       ))}
@@ -158,7 +158,7 @@ export function Contact() {
                     required
                     rows={5}
                     placeholder="Describe your logistical requirements..."
-                    className="w-full rounded-xl border border-white/20 bg-black/70 backdrop-blur-xl px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors resize-none"
+                    className="w-full rounded-xl border border-white/20 bg-black/70 px-4 py-3 text-[14.5px] text-white placeholder-white/70 outline-none focus:border-[var(--color-orange)] transition-colors resize-none"
                   />
                 </div>
 
@@ -173,7 +173,7 @@ export function Contact() {
           </AnimatedSection>
 
           <AnimatedSection className="flex flex-col gap-4 lg:mt-[52px]">
-            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 backdrop-blur-xl p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
               <a 
                 href="https://www.google.com/maps/search/?api=1&query=Al+Urubah,+Ar+Rahmaniyah,+Riyadh,+Saudi+Arabia+12341"
                 target="_blank"
@@ -194,7 +194,7 @@ export function Contact() {
               </div>
             </AnimatedItem>
 
-            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 backdrop-blur-xl p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
               <a 
                 href="tel:00966112701448"
                 className="absolute inset-0 z-10 rounded-2xl"
@@ -216,7 +216,7 @@ export function Contact() {
               </div>
             </AnimatedItem>
 
-            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 backdrop-blur-xl p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
+            <AnimatedItem className="group rounded-2xl border border-white/20 bg-black/70 p-6 flex gap-4 items-start relative hover:bg-black/90 hover:border-[var(--color-orange)]/50 transition-all cursor-pointer">
               <a 
                 href="mailto:global.ops@farwaygo.com"
                 className="absolute inset-0 z-10 rounded-2xl"

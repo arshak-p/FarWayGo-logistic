@@ -2,7 +2,9 @@
 
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
-import Threads from "@/components/ui/Threads";
+import dynamic from "next/dynamic";
+
+const Threads = dynamic(() => import("@/components/ui/Threads"), { ssr: false });
 
 const footerLinks = {
   Services: [

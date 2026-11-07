@@ -83,6 +83,24 @@ export function Services() {
       return Math.min(4, Math.floor(adj * 5));
     };
 
+    let targetProgress = 0;
+    let currentProgress = 0;
+    let scrubRaf = 0;
+    const scrubStep = () => {
+      scrubRaf = 0;
+      const video = videoRef.current;
+      currentProgress += (targetProgress - currentProgress) * 0.18;
+      if (Math.abs(targetProgress - currentProgress) < 0.0004) currentProgress = targetProgress;
+      if (video && video.duration) {
+        const t = currentProgress * video.duration;
+        if (Math.abs(video.currentTime - t) > 0.02) video.currentTime = t;
+      }
+      if (currentProgress !== targetProgress) scrubRaf = requestAnimationFrame(scrubStep);
+    };
+    const startScrub = () => {
+      if (!scrubRaf) scrubRaf = requestAnimationFrame(scrubStep);
+    };
+
     const updateScroll = () => {
       if (sectionHeightRef.current > 0) {
         const scrollableDistance = sectionHeightRef.current - window.innerHeight;
@@ -91,14 +109,9 @@ export function Services() {
         let progress = (scrollY - sectionTopRef.current) / scrollableDistance;
         progress = Math.max(0, Math.min(1, progress));
         
-        // Scrub Video
-        if (videoRef.current && videoRef.current.duration) {
-          const targetTime = progress * videoRef.current.duration;
-          // Only update currentTime if the difference is larger than 30ms to prevent decoder thrashing on mobile
-          if (Math.abs(videoRef.current.currentTime - targetTime) > 0.03) {
-            videoRef.current.currentTime = targetTime;
-          }
-        }
+        // Scrub Video (eased toward the scroll position so playback feels fluid)
+        targetProgress = progress;
+        startScrub();
 
         // Pair Logic
         const pairIndex = getPairIndex(progress);
@@ -125,6 +138,7 @@ export function Services() {
     
     return () => {
       window.removeEventListener("scroll", onScroll);
+      if (scrubRaf) cancelAnimationFrame(scrubRaf);
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
     };
   }, [lenis]);
@@ -224,7 +238,7 @@ export function Services() {
                         key={service.id} 
                         animate={{ y: [0, idx === 0 ? -15 : -10, 0] }}
                         transition={{ duration: idx === 0 ? 4 : 4.5, repeat: Infinity, ease: "easeInOut" }}
-                        className="h-auto py-8 px-5 sm:px-6 md:h-[250px] md:p-6 w-full min-w-0 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
+                        className="h-auto py-8 px-5 sm:px-6 md:h-[250px] md:p-6 w-full min-w-0 bg-black/75 border border-white/10 rounded-3xl shadow-2xl flex flex-col justify-center will-change-transform transform-gpu"
                         style={{ WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
                       >
                         <p className="text-[var(--color-orange)] text-sm md:text-base font-bold tracking-widest uppercase mb-3">
@@ -263,7 +277,7 @@ export function Services() {
           {services.map((service) => (
             <div 
               key={service.id} 
-              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col"
+              className="w-full bg-white/10 border border-white/10 rounded-2xl p-6 shadow-xl flex flex-col"
             >
               <p className="text-[var(--color-orange)] text-sm font-bold tracking-widest uppercase mb-2">
                 {service.id.padStart(2, '0')} // {service.tag}
